@@ -7,7 +7,7 @@ class Node(BaseModel):
     input_type: NodeType
     output_type: NodeType
     template_path: str
-    required_params: list[str]  # e.g. ["file_path"], ["route", "port"]
+    required_params: list[str] = []
 
 NODE_REGISTRY = {
     "CSVParser": Node(
