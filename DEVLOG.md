@@ -10,3 +10,5 @@
 - install project dependencies
 - Created code for all 10 nodes
 - created core/ and tests/
+- implemented compiler.py
+- implemented validator.py
