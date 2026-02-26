@@ -1,9 +1,17 @@
 import os
 from nodes.registry import NODE_REGISTRY
+from core.validator import validate_plan, topological_sort
 
 
 def compile_output(plan: dict) -> str:
-    from core.validator import topological_sort
+  
+    is_valid, errors = validate_plan(plan)
+
+    if not is_valid:
+        raise ValueError(
+            "Invalid plan:\n" + "\n".join(errors)
+        )
+  
     nodes = plan.get("nodes", [])
     edges = plan.get("edges", [])
     ordered_nodes = topological_sort(nodes, edges)
@@ -29,7 +37,7 @@ def compile_output(plan: dict) -> str:
             template_code = f.read()
 
         output_parts.append(f"# --- Node: {node_name} ---")
-        output_parts.append(template_code)
+        output_parts.append(template_code.strip() + "\n")
         output_parts.append("")
 
     # Append glue code

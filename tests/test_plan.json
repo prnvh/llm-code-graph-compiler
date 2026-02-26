@@ -1,0 +1,20 @@
+{
+  "nodes": ["CSVParser", "SQLiteConnector", "QueryEngine"],
+  "edges": [
+    ["CSVParser", "SQLiteConnector"],
+    ["SQLiteConnector", "QueryEngine"]
+  ],
+  "parameters": {
+    "CSVParser": {
+      "file_path": "data.csv"
+    },
+    "SQLiteConnector": {
+      "db_path": "database.db",
+      "table_name": "table"
+    },
+    "QueryEngine": {
+      "query": "SELECT * FROM table"
+    }
+  },
+  "glue_code": ""
+}

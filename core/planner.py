@@ -16,6 +16,32 @@ def build_node_summary() -> str:
     return "\n".join(lines)
 
 
+def plan_from_nodes(nodes: list[str]) -> dict:
+    edges = []
+    parameters = {}
+
+    if len(nodes) == 0:
+        return {"nodes": [], "edges": [], "parameters": {}, "glue_code": ""}
+
+    for i in range(len(nodes) - 1):
+        edges.append((nodes[i], nodes[i + 1]))
+        parameters.setdefault(nodes[i], {})
+
+    parameters.setdefault(nodes[-1], {})
+
+    return {
+        "nodes": nodes,
+        "edges": edges,
+        "parameters": parameters,
+        "glue_code": ""
+    }
+
+
+def load_plan(path: str) -> dict:
+    with open(path, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
 SYSTEM_PROMPT = """
 You are a code graph planner.
 
