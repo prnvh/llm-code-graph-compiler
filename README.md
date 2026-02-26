@@ -16,8 +16,7 @@ Most current AI code generation systems rely on large language models to synthes
 
 This project explores a different paradigm:
 
-> The LLM does not write systems directly.  
-> It composes them.
+> The LLM does not write systems directly, It composes them.
 
 Instead of generating arbitrary code, the model selects from a registry of predefined, typed execution nodes. These nodes are compiled into a directed execution graph and stitched together with minimal glue logic.
 
