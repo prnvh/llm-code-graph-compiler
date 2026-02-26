@@ -1,5 +1,4 @@
 import argparse
-import json
 
 from core.validator import validate_plan
 from core.compiler import compile_output, write_output
@@ -8,6 +7,7 @@ from core.planner import plan_from_nodes, load_plan, get_plan
 
 def main():
     print("CLI STARTED")
+
     parser = argparse.ArgumentParser()
 
     parser.add_argument("--nodes", nargs="*")
@@ -35,6 +35,15 @@ def main():
     else:
         print("Provide --nodes, --plan, or --task")
         return
+
+    # ------------------------------
+    # Advisory flag signaling
+    # ------------------------------
+
+    if plan.get("flags"):
+        print("\nPlanning Warnings:")
+        for flag in plan["flags"]:
+            print(flag)
 
     # ------------------------------
     # Validation pipeline
