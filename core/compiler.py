@@ -3,7 +3,10 @@ from nodes.registry import NODE_REGISTRY
 
 
 def compile_output(plan: dict) -> str:
+    from core.validator import topological_sort
     nodes = plan.get("nodes", [])
+    edges = plan.get("edges", [])
+    ordered_nodes = topological_sort(nodes, edges)
     glue_code = plan.get("glue_code", "")
 
     output_parts: list[str] = []
@@ -13,7 +16,7 @@ def compile_output(plan: dict) -> str:
     output_parts.append("# DO NOT EDIT MANUALLY\n")
 
     # Load each node template
-    for node_name in nodes:
+    for node_name in ordered_nodes:
         node = NODE_REGISTRY[node_name]
         template_path = node.template_path
 

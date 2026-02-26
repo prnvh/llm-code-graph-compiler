@@ -83,3 +83,33 @@ def validate_plan(plan: dict) -> tuple[bool, list[str]]:
                 )
 
     return len(errors) == 0, errors
+
+def topological_sort(nodes: list[str], edges: list[tuple[str, str]]) -> list[str]:
+    """
+    Returns nodes in deterministic topological order.
+    Raises ValueError if cycle exists.
+    """
+
+    adj = defaultdict(list)
+    in_degree = {node: 0 for node in nodes}
+
+    for source, target in edges:
+        adj[source].append(target)
+        in_degree[target] += 1
+
+    queue = deque([n for n in nodes if in_degree[n] == 0])
+    ordered: list[str] = []
+
+    while queue:
+        node = queue.popleft()
+        ordered.append(node)
+
+        for neighbor in adj[node]:
+            in_degree[neighbor] -= 1
+            if in_degree[neighbor] == 0:
+                queue.append(neighbor)
+
+    if len(ordered) != len(nodes):
+        raise ValueError("Graph contains a cycle.")
+
+    return ordered
