@@ -1,190 +1,114 @@
-# LLM Graph Code Compiler
+# LLM Code Graph Compiler
 
-A constrained code generation system where an LLM acts as a planner over predefined executable nodes instead of generating entire systems from scratch.
-
----
+A constraint-guided program synthesis system that uses large language models to plan execution graphs over a fixed library of typed template nodes, then deterministically compiles them into executable Python artifacts.
 
 ## Overview
 
-Most current AI code generation systems rely on large language models to synthesize entire programs from memory. This works, but it has structural weaknesses:
+Instead of generating free-form source code, this system:
 
-- No enforced architecture  
-- No static validation of component compatibility  
-- No guarantees of execution flow correctness  
-- High variance in outputs  
-- Opaque reasoning paths  
+- Converts a task description into a structured graph plan.
+- Validates the plan for structural and type safety.
+- Topologically schedules execution nodes.
+- Assembles executable Python code by composing template primitives.
 
-This project explores a different paradigm:
+The design improves reliability in code generation by restricting synthesis inside a graph-constrained template execution space.
 
-> The LLM does not write systems directly, It composes them.
+## Pipeline
 
-Instead of generating arbitrary code, the model selects from a registry of predefined, typed execution nodes. These nodes are compiled into a directed execution graph and stitched together with minimal glue logic.
+The system follows this execution flow:
 
-The LLM functions as a conductor, not a generator.
+Task Description
+↓
+Planner (LLM or stub planner)
+↓
+Validator (graph structure, type compatibility, parameter completeness)
+↓
+Topological Scheduler
+↓
+Compiler (template assembly)
+↓
+Executable Python Artifact
 
----
 
-## Core Idea
+## Node Registry
 
-A system request (e.g., "Build an API endpoint that fetches data and returns an LLM response") is translated into:
+Computation is performed using a fixed library of template nodes.
 
-1. A set of required capabilities  
-2. A graph of compatible nodes  
-3. A validated execution order  
-4. Compiled output code  
+Each node is defined with:
+- Input type and output type semantics
+- Required parameters
+- Path to implementation template
 
-Each node:
+Nodes are stored inside:
+nodes/registry.py
+nodes/types.py
+nodes/templates/
 
-- Has defined input/output types  
-- Exposes metadata describing its capability  
-- Can be validated before execution  
 
-This allows structured composition rather than free-form generation.
+## CLI Usage
 
----
+Generate code using manual node composition:
+python cli.py --nodes CSVParser QueryEngine
 
-## Architecture
+Generate code from plan JSON:
+python cli.py --plan tests/test_plan.json
 
-The system consists of five primary components:
+Generate code from task description using LLM planner:
+python cli.py --task "Read CSV file, store into SQLite, and query data"
 
-### 1. Node Registry
 
-A database of reusable, typed building blocks.
+Artifacts are emitted to:
 
-Each node defines:
-- Name  
-- Input types  
-- Output types  
-- Execution logic  
-- Required configuration (e.g., API keys)
+output/app.py
+output/requirements.txt
 
-Nodes are versioned and validated before inclusion.
 
+## Planner
+Two planning modes are supported:
 
-### 2. Planner (LLM Layer)
+- Deterministic stub planner for testing
+- OpenAI-based planner that produces structured synthesis plans
 
-The LLM receives a high-level request and outputs:
-- Required capabilities  
-- A proposed node composition graph  
+Planner output must conform to:
 
-Importantly, the LLM is constrained to selecting nodes that exist in the registry. It does not invent new primitives.
 
+{
+"nodes": [],
+"edges": [],
+"parameters": {},
+"flags": [],
+"glue_code": ""
+}
 
-### 3. Validator
 
-Before compilation:
+## Validation
+The validator enforces:
 
-- Type compatibility is checked  
-- Cycles are rejected  
-- Missing nodes are flagged  
-- Unresolved configuration fields are surfaced  
+- Node existence
+- Directed acyclic graph structure
+- Type compatibility between connected nodes
+- Required parameter presence
+- Orphan node detection
 
-Invalid compositions never reach compilation.
+## Compiler
+The compiler performs deterministic artifact synthesis by:
 
+- Loading template code from registry paths
+- Ordering nodes using topological sorting
+- Emitting templates sequentially
+- Adding execution stubs
+- Allowing optional glue code injection
 
-### 4. Compiler
+## Reliability Analysis Module
 
-The compiler:
+A standalone utility exists for estimating synthesis plan quality using structural connectivity and type coherence metrics.
+File location:
+core/reliability.py
 
-- Orders nodes topologically  
-- Generates glue code  
-- Injects configuration placeholders  
-- Produces executable output  
+This module is not integrated into the execution pipeline.
 
-The result is deterministic given a valid graph.
-
-
-### 5. CLI Interface
-
-A simple entry point where a user provides:
-- A natural language task  
-- Optional configuration  
-
-The system returns:
-- Structured execution graph  
-- Generated output code  
-- Warnings for missing parameters  
-
----
-
-## Why This Exists
-
-This project explores a broader question:
-
-Can AI assisted software construction become more deterministic, inspectable, and verifiable?
-
-**Rather than:** LLM creating raw code and hoping it runs
-**This system attempts:** LLM to Typed Graph to Validation to Compilation to Execution
-
-
-The difference is structural guarantees.
-
----
-
-## How This Differs From Standard LLM Codegen
-
-**Standard model:**
-- Token prediction  
-- Implicit architecture  
-- High flexibility, low guarantees  
-
-**This model:**
-- Explicit node registry  
-- Typed interfaces  
-- Graph validation  
-- Constrained planning  
-
-**Tradeoff:**
-- Less raw creativity  
-- More structural correctness  
-
----
-
-## Relation to SVMP
-
-This project extends the architectural philosophy introduced in SVMP v4.1.
-
-SVMP constrains runtime reasoning through:
-- Identity Frames (hard multi-tenant isolation)
-- Intent Logic Forks (deterministic execution paths)
-- Similarity Governance Gates (confidence thresholds)
-- Exactly-once state processing
-
-Its core principle is simple:
-
-> The LLM must operate within structural constraints.
-
-This Graph Code Compiler applies the same principle to system construction.
-
-Where SVMP constrains conversational reasoning at runtime,  
-this system constrains code generation at build-time.
-
-Both replace unconstrained token generation with:
-- Explicit control flow
-- Deterministic validation
-- Zero-trust architectural assumptions
-
----
-
-## Current Status
-
-Prototype phase.
-
-Current goals:
-
-- Implement minimal node registry  
-- Validate graph construction  
-- Compile simple multi-node systems  
-- Demonstrate deterministic generation within a constrained domain  
-
----
-
-## Future Directions
-
-- Capability scoring of nodes  
-- Cost-aware graph planning  
-- Runtime execution tracing  
-- Formal graph verification  
-- Registry learning from usage  
-
+## Requirements
+pydantic
+pandas
+openai
 
