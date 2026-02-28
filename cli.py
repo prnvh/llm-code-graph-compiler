@@ -28,6 +28,8 @@ def main():
 
     elif args.task:
         plan = get_plan(args.task)
+        import pprint
+        pprint.pprint(plan)
 
     elif args.nodes:
         plan = plan_from_nodes(args.nodes)

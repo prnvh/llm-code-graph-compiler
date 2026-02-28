@@ -2,6 +2,8 @@ import json
 from openai import OpenAI
 from nodes.registry import NODE_REGISTRY
 
+from dotenv import load_dotenv
+load_dotenv()
 client = OpenAI()
 
 
@@ -92,4 +94,21 @@ Task:
     )
 
     raw = response.choices[0].message.content.strip()
-    return json.loads(raw)
+    plan = json.loads(raw)
+    return normalize_plan(plan)
+
+def normalize_plan(plan: dict) -> dict:
+    # Normalize nodes: [{"type": "CSVParser", "params": {...}}] -> ["CSVParser"]
+    raw_nodes = plan.get("nodes", [])
+    if raw_nodes and isinstance(raw_nodes[0], dict):
+        plan["nodes"] = [n["type"] for n in raw_nodes]
+        # Move params into parameters if parameters is empty
+        if not plan.get("parameters"):
+            plan["parameters"] = {n["type"]: n.get("params", {}) for n in raw_nodes}
+
+    # Normalize edges: [{"from": "A", "to": "B"}] -> [["A", "B"]]
+    raw_edges = plan.get("edges", [])
+    if raw_edges and isinstance(raw_edges[0], dict):
+        plan["edges"] = [[e["from"], e["to"]] for e in raw_edges]
+
+    return plan

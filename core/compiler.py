@@ -1,6 +1,57 @@
 import os
+import re
 from nodes.registry import NODE_REGISTRY
 from core.validator import validate_plan, topological_sort
+
+
+def _to_snake_case(name: str) -> str:
+    """Convert CamelCase node name to snake_case function name."""
+    return re.sub(r'(?<!^)(?=[A-Z])', '_', name).lower()
+
+
+def _output_var(node_name: str) -> str:
+    """Generate a variable name for a node's output."""
+    return f"out_{_to_snake_case(node_name)}"
+
+
+def auto_glue_code(ordered_nodes: list, edges: list, parameters: dict) -> str:
+    """
+    Auto-generate glue code by wiring node outputs to inputs
+    in topological order using edges and parameters.
+    """
+    # Build a map of node -> its predecessor (the node feeding into it)
+    predecessor = {}
+    for source, target in edges:
+        predecessor[target] = source
+
+    lines = []
+    lines.append("if __name__ == '__main__':")
+
+    for node_name in ordered_nodes:
+        func_name = _to_snake_case(node_name)
+        out_var = _output_var(node_name)
+        params = parameters.get(node_name, {})
+
+        # Build argument list
+        args = []
+
+        # If this node has a predecessor, pipe its output as first argument
+        if node_name in predecessor:
+            pred = predecessor[node_name]
+            args.append(_output_var(pred))
+
+        # Append static parameters as keyword arguments
+        for key, value in params.items():
+            args.append(f'{key}="{value}"')
+
+        arg_str = ", ".join(args)
+        lines.append(f"    {out_var} = {func_name}({arg_str})")
+
+    # Print the final output
+    last_var = _output_var(ordered_nodes[-1])
+    lines.append(f"    print({last_var})")
+
+    return "\n".join(lines)
 
 
 def compile_output(plan: dict) -> str:
@@ -13,9 +64,10 @@ def compile_output(plan: dict) -> str:
 
     nodes = plan.get("nodes", [])
     edges = plan.get("edges", [])
+    parameters = plan.get("parameters", {})
 
     ordered_nodes = topological_sort(nodes, edges)
-    glue_code = plan.get("glue_code", "")
+    glue_code = plan.get("glue_code", "").strip()
 
     output_parts: list[str] = []
 
@@ -40,15 +92,13 @@ def compile_output(plan: dict) -> str:
         output_parts.append(template_code.strip() + "\n")
         output_parts.append("")
 
-    # Execution section
-    output_parts.append("# --- Execution Stub ---")
-    output_parts.append("if __name__ == '__main__':")
-    output_parts.append("    print('Pipeline compiled successfully')")
-
-    # Optional glue code override
+    # Use LLM glue code if provided, otherwise auto-generate
     if glue_code:
-        output_parts.append("\n# --- Execution Glue Code ---")
+        output_parts.append("# --- Execution (LLM-generated) ---")
         output_parts.append(glue_code)
+    else:
+        output_parts.append("# --- Execution (auto-generated) ---")
+        output_parts.append(auto_glue_code(ordered_nodes, edges, parameters))
 
     return "\n".join(output_parts)
 
