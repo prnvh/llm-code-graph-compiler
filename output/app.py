@@ -14,38 +14,50 @@ def csv_parser(file_path: str) -> pd.DataFrame:
     return df
 
 
-# --- Node: SQLiteConnector ---
-import sqlite3
+# --- Node: DataFilter ---
 import pandas as pd
 
-def sqlite_connector(df: pd.DataFrame, db_path: str, table_name: str):
+def data_filter(df: pd.DataFrame, condition: str) -> pd.DataFrame:
     """
-    Stores DataFrame into SQLite and returns connection.
-    Node: SQLiteConnector
+    Filters rows using pandas query syntax.
+    Example condition: "age > 30 and salary < 50000"
+    Node: DataFilter
     """
-    conn = sqlite3.connect(db_path)
-    df.to_sql(table_name, conn, if_exists="replace", index=False)
-    print(f"[SQLiteConnector] Stored table '{table_name}' in {db_path}")
-    return conn
+    filtered = df.query(condition)
+    print(f"[DataFilter] Applied condition: {condition}")
+    return filtered
 
 
-# --- Node: QueryEngine ---
+# --- Node: DataSorter ---
 import pandas as pd
-import sqlite3
 
-def query_engine(conn: sqlite3.Connection, query: str) -> pd.DataFrame:
+def data_sorter(df: pd.DataFrame, by: str, ascending: bool = True) -> pd.DataFrame:
     """
-    Executes SQL query on DBHandle.
-    Node: QueryEngine
+    Sorts DataFrame by column.
+    Node: DataSorter
     """
-    df = pd.read_sql_query(query, conn)
-    print("[QueryEngine] Query executed")
-    return df
+    sorted_df = df.sort_values(by=by, ascending=ascending)
+    print(f"[DataSorter] Sorted by {by}, ascending={ascending}")
+    return sorted_df
+
+
+# --- Node: CSVExporter ---
+import pandas as pd
+
+def csv_exporter(df: pd.DataFrame, output_path: str) -> str:
+    """
+    Exports DataFrame to CSV.
+    Node: CSVExporter
+    """
+    df.to_csv(output_path, index=False)
+    print(f"[CSVExporter] Exported to {output_path}")
+    return output_path
 
 
 # --- Execution (auto-generated) ---
 if __name__ == '__main__':
-    out_csv_parser = csv_parser(file_path="path/to/csv/file.csv")
-    out_sqlite_connector = sqlite_connector(out_csv_parser, db_path="path/to/database.db", table_name="my_table")
-    out_query_engine = query_engine(out_sqlite_connector, query="SELECT * FROM my_table")
-    print(out_query_engine)
+    out_csv_parser = csv_parser(file_path="data.csv")
+    out_data_filter = data_filter(out_csv_parser, condition="age > 25")
+    out_data_sorter = data_sorter(out_data_filter, by="age", ascending="True")
+    out_csv_exporter = csv_exporter(out_data_sorter, output_path="output.csv")
+    print(out_csv_exporter)

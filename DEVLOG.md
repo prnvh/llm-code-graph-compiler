@@ -12,3 +12,9 @@
 - created core/ and tests/
 - implemented compiler.py
 - implemented validator.py
+
+### 28/02/2026
+- Normalized LLM output
+- fix OpenAI integration
+- Updated registry.py to have function names for easier recall
+- Updated compiler and planner to auto generate glue code.

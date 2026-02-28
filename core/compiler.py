@@ -22,12 +22,14 @@ def auto_glue_code(ordered_nodes: list, edges: list, parameters: dict) -> str:
 
         args = []
 
+        # Pass previous node output
         if node_name in predecessor:
             pred = predecessor[node_name]
             args.append(_output_var(pred))
 
+        # Pass explicit parameters safely
         for key, value in params.items():
-            args.append(f'{key}="{value}"')
+            args.append(f"{key}={repr(value)}")
 
         arg_str = ", ".join(args)
         lines.append(f"    {out_var} = {func_name}({arg_str})")
