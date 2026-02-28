@@ -1,4 +1,5 @@
 import json
+import re
 from openai import OpenAI
 from nodes.registry import NODE_REGISTRY
 
@@ -97,18 +98,37 @@ Task:
     plan = json.loads(raw)
     return normalize_plan(plan)
 
+
+def _to_snake_case(name: str) -> str:
+    s = re.sub(r'([a-z0-9])([A-Z])', r'\1_\2', name)
+    s = re.sub(r'([A-Z]+)([A-Z][a-z])', r'\1_\2', s)
+    print(f"DEBUG snake_case: {name} -> {s.lower()}")
+    return s.lower()
+
 def normalize_plan(plan: dict) -> dict:
-    # Normalize nodes: [{"type": "CSVParser", "params": {...}}] -> ["CSVParser"]
+    # Build snake_case -> CamelCase reverse map from registry
+    snake_to_camel = {_to_snake_case(name): name for name in NODE_REGISTRY.keys()}
+
+    # Normalize nodes
     raw_nodes = plan.get("nodes", [])
     if raw_nodes and isinstance(raw_nodes[0], dict):
         plan["nodes"] = [n["type"] for n in raw_nodes]
-        # Move params into parameters if parameters is empty
         if not plan.get("parameters"):
             plan["parameters"] = {n["type"]: n.get("params", {}) for n in raw_nodes}
 
-    # Normalize edges: [{"from": "A", "to": "B"}] -> [["A", "B"]]
+    # Normalize edges: handle both dict format and snake_case string format
     raw_edges = plan.get("edges", [])
-    if raw_edges and isinstance(raw_edges[0], dict):
-        plan["edges"] = [[e["from"], e["to"]] for e in raw_edges]
+    normalized_edges = []
+    for edge in raw_edges:
+        if isinstance(edge, dict):
+            source = edge["from"]
+            target = edge["to"]
+        else:
+            source, target = edge[0], edge[1]
+        # Convert snake_case back to CamelCase if needed
+        source = snake_to_camel.get(source, source)
+        target = snake_to_camel.get(target, target)
+        normalized_edges.append([source, target])
+    plan["edges"] = normalized_edges
 
     return plan

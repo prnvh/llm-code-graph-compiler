@@ -45,7 +45,7 @@ def query_engine(conn: sqlite3.Connection, query: str) -> pd.DataFrame:
 
 # --- Execution (auto-generated) ---
 if __name__ == '__main__':
-    out_c_s_v_parser = c_s_v_parser(file_path="path/to/csv/file.csv")
-    out_s_q_lite_connector = s_q_lite_connector(out_c_s_v_parser, db_path="path/to/database.db", table_name="my_table")
-    out_query_engine = query_engine(out_s_q_lite_connector, query="SELECT * FROM my_table")
+    out_csv_parser = csv_parser(file_path="path/to/csv/file.csv")
+    out_sqlite_connector = sqlite_connector(out_csv_parser, db_path="path/to/database.db", table_name="my_table")
+    out_query_engine = query_engine(out_sqlite_connector, query="SELECT * FROM my_table")
     print(out_query_engine)

@@ -8,6 +8,7 @@ class Node(BaseModel):
     output_type: NodeType
     template_path: str
     required_params: list[str] = []
+    function_name: str
 
 NODE_REGISTRY = {
     "CSVParser": Node(
@@ -16,7 +17,8 @@ NODE_REGISTRY = {
         input_type=NodeType.FILE_PATH,
         output_type=NodeType.DATA_FRAME,
         template_path="nodes/templates/csv_parser.py",
-        required_params=["file_path"]
+        required_params=["file_path"],
+        function_name="csv_parser"
     ),
     "SchemaValidator": Node(
         name="SchemaValidator",
@@ -24,7 +26,8 @@ NODE_REGISTRY = {
         input_type=NodeType.DATA_FRAME,
         output_type=NodeType.DATA_FRAME,
         template_path="nodes/templates/schema_validator.py",
-        required_params=[]
+        required_params=[],
+        function_name="schema_validator"
     ),
     "DataTransformer": Node(
         name="DataTransformer",
@@ -32,7 +35,8 @@ NODE_REGISTRY = {
         input_type=NodeType.DATA_FRAME,
         output_type=NodeType.DATA_FRAME,
         template_path="nodes/templates/data_transformer.py",
-        required_params=[]
+        required_params=[],
+        function_name="data_transformer"
     ),
     "SQLiteConnector": Node(
         name="SQLiteConnector",
@@ -40,7 +44,8 @@ NODE_REGISTRY = {
         input_type=NodeType.DATA_FRAME,
         output_type=NodeType.DB_HANDLE,
         template_path="nodes/templates/sqlite_connector.py",
-        required_params=["db_path", "table_name"]
+        required_params=["db_path", "table_name"],
+        function_name="sqlite_connector"
     ),
     "QueryEngine": Node(
         name="QueryEngine",
@@ -48,7 +53,8 @@ NODE_REGISTRY = {
         input_type=NodeType.DB_HANDLE,
         output_type=NodeType.DATA_FRAME,
         template_path="nodes/templates/query_engine.py",
-        required_params=["query"]
+        required_params=["query"],
+        function_name="query_engine"
     ),
     "Aggregator": Node(
         name="Aggregator",
@@ -56,7 +62,8 @@ NODE_REGISTRY = {
         input_type=NodeType.DATA_FRAME,
         output_type=NodeType.DATA_FRAME,
         template_path="nodes/templates/aggregator.py",
-        required_params=["group_by", "agg_func"]
+        required_params=["group_by", "agg_func"],
+        function_name="aggregator"
     ),
     "RESTEndpoint": Node(
         name="RESTEndpoint",
@@ -64,7 +71,8 @@ NODE_REGISTRY = {
         input_type=NodeType.DB_HANDLE,
         output_type=NodeType.HTTP_RESPONSE,
         template_path="nodes/templates/rest_endpoint.py",
-        required_params=["route", "port"]
+        required_params=["route", "port"],
+        function_name="rest_endpoint"
     ),
     "AuthMiddleware": Node(
         name="AuthMiddleware",
@@ -72,7 +80,8 @@ NODE_REGISTRY = {
         input_type=NodeType.HTTP_RESPONSE,
         output_type=NodeType.HTTP_RESPONSE,
         template_path="nodes/templates/auth_middleware.py",
-        required_params=["api_key_env_var"]
+        required_params=["api_key_env_var"],
+        function_name="auth_middleware"
     ),
     "ErrorHandler": Node(
         name="ErrorHandler",
@@ -80,6 +89,7 @@ NODE_REGISTRY = {
         input_type=NodeType.ANY,
         output_type=NodeType.HTTP_RESPONSE,
         template_path="nodes/templates/error_handler.py",
-        required_params=[]
+        required_params=[],
+        function_name="error_handler"
     ),
 }
