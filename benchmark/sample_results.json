@@ -1,0 +1,935 @@
+{
+  "run_at": "2026-03-02T13:31:46.028228",
+  "task_count": 10,
+  "compiler_first_pass_rate": 0.9,
+  "results": [
+    {
+      "task_id": "employees_clean_filter_aggregate",
+      "description": "Read data.csv, drop null values, remove duplicate rows, filter employees where salary is greater than 50000, sort by salary in descending order, compute a count of employees grouped by department, cast the result using an empty mapping, and export to dept_summary.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataDeduplicator",
+          "DataFilter",
+          "DataSorter",
+          "Aggregator",
+          "TypeCaster",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "Aggregator"
+          ],
+          [
+            "Aggregator",
+            "TypeCaster"
+          ],
+          [
+            "TypeCaster",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataDeduplicator": {},
+          "DataFilter": {
+            "condition": "salary > 50000"
+          },
+          "DataSorter": {
+            "by": "salary"
+          },
+          "Aggregator": {
+            "group_by": "department",
+            "agg_func": "count"
+          },
+          "TypeCaster": {
+            "mapping": {}
+          },
+          "CSVExporter": {
+            "output_path": "dept_summary.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 23 rows from data.csv\n[NullHandler] Dropped null rows\n[DataDeduplicator] Removed duplicate rows\n[DataFilter] Applied condition: salary > 50000\n[DataSorter] Sorted by salary, ascending=True\n[Aggregator] Aggregated using count\n[TypeCaster] Cast columns: {}\n[CSVExporter] Exported to dept_summary.csv\ndept_summary.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 8.89,
+      "error": null,
+      "baseline_success": false,
+      "baseline_error": "Criteria failures:\nfile_has_column: column 'count' not in 'dept_summary.csv'",
+      "baseline_duration_seconds": 4.83
+    },
+    {
+      "task_id": "employees_select_aggregate_by_department",
+      "description": "Read data.csv, drop null values, remove duplicates, select only the name, department, and salary columns, filter rows where salary is greater than 40000, sort by salary ascending, group by department and count rows, then export the result to dept_counts.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataDeduplicator",
+          "ColumnSelector",
+          "DataFilter",
+          "DataSorter",
+          "Aggregator",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "ColumnSelector"
+          ],
+          [
+            "ColumnSelector",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "Aggregator"
+          ],
+          [
+            "Aggregator",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataDeduplicator": {},
+          "ColumnSelector": {
+            "columns": [
+              "name",
+              "department",
+              "salary"
+            ]
+          },
+          "DataFilter": {
+            "condition": "salary > 40000"
+          },
+          "DataSorter": {
+            "by": "salary"
+          },
+          "Aggregator": {
+            "group_by": "department",
+            "agg_func": "count"
+          },
+          "CSVExporter": {
+            "output_path": "dept_counts.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 23 rows from data.csv\n[NullHandler] Dropped null rows\n[DataDeduplicator] Removed duplicate rows\n[ColumnSelector] Selected columns: ['name', 'department', 'salary']\n[DataFilter] Applied condition: salary > 40000\n[DataSorter] Sorted by salary, ascending=True\n[Aggregator] Aggregated using count\n[CSVExporter] Exported to dept_counts.csv\ndept_counts.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 8.78,
+      "error": null,
+      "baseline_success": true,
+      "baseline_error": null,
+      "baseline_duration_seconds": 2.76
+    },
+    {
+      "task_id": "people_clean_filter_select_export",
+      "description": "Read data.csv, drop rows with null values, remove duplicate rows, cast column types using an empty mapping, filter rows where age is greater than 25, sort by salary in descending order, select only the name, age, and salary columns, then export to people_filtered.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataDeduplicator",
+          "TypeCaster",
+          "DataFilter",
+          "DataSorter",
+          "ColumnSelector",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "TypeCaster"
+          ],
+          [
+            "TypeCaster",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "ColumnSelector"
+          ],
+          [
+            "ColumnSelector",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataDeduplicator": {},
+          "TypeCaster": {
+            "mapping": {}
+          },
+          "DataFilter": {
+            "condition": "age > 25"
+          },
+          "DataSorter": {
+            "by": "salary"
+          },
+          "ColumnSelector": {
+            "columns": [
+              "name",
+              "age",
+              "salary"
+            ]
+          },
+          "CSVExporter": {
+            "output_path": "people_filtered.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 10 rows from data.csv\n[NullHandler] Dropped null rows\n[DataDeduplicator] Removed duplicate rows\n[TypeCaster] Cast columns: {}\n[DataFilter] Applied condition: age > 25\n[DataSorter] Sorted by salary, ascending=True\n[ColumnSelector] Selected columns: ['name', 'age', 'salary']\n[CSVExporter] Exported to people_filtered.csv\npeople_filtered.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 7.42,
+      "error": null,
+      "baseline_success": true,
+      "baseline_error": null,
+      "baseline_duration_seconds": 5.33
+    },
+    {
+      "task_id": "employees_tenure_region_aggregate",
+      "description": "Read data.csv, drop null values, remove duplicate rows, filter employees where tenure is greater than 5, sort by tenure in descending order, group by region and count employees per region, cast using empty mapping, then export the result to region_tenure.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataDeduplicator",
+          "DataFilter",
+          "DataSorter",
+          "Aggregator",
+          "TypeCaster",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "Aggregator"
+          ],
+          [
+            "Aggregator",
+            "TypeCaster"
+          ],
+          [
+            "TypeCaster",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataDeduplicator": {},
+          "DataFilter": {
+            "condition": "tenure > 5"
+          },
+          "DataSorter": {
+            "by": "tenure"
+          },
+          "Aggregator": {
+            "group_by": "region",
+            "agg_func": "count"
+          },
+          "TypeCaster": {
+            "mapping": {}
+          },
+          "CSVExporter": {
+            "output_path": "region_tenure.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 23 rows from data.csv\n[NullHandler] Dropped null rows\n[DataDeduplicator] Removed duplicate rows\n[DataFilter] Applied condition: tenure > 5\n[DataSorter] Sorted by tenure, ascending=True\n[Aggregator] Aggregated using count\n[TypeCaster] Cast columns: {}\n[CSVExporter] Exported to region_tenure.csv\nregion_tenure.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 7.85,
+      "error": null,
+      "baseline_success": false,
+      "baseline_error": "Criteria failures:\nfile_has_column: column 'count' not in 'region_tenure.csv'",
+      "baseline_duration_seconds": 3.08
+    },
+    {
+      "task_id": "predictions_filter_sqlite_query_export",
+      "description": "Read data.csv, drop null values, remove duplicate rows, filter rows where score is greater than 0.5, sort by score in descending order, cast column types using an empty mapping, store into a SQLite database called scores.db in a table called results, run a SQL query to retrieve all rows from results, then export to high_scores.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": false,
+      "first_pass_success": false,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataDeduplicator",
+          "DataFilter",
+          "DataSorter",
+          "TypeCaster",
+          "SQLiteConnector",
+          "QueryEngine",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "TypeCaster"
+          ],
+          [
+            "TypeCaster",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataDeduplicator": {},
+          "DataFilter": {
+            "condition": "score > 0.5"
+          },
+          "DataSorter": {
+            "by": "score"
+          },
+          "TypeCaster": {
+            "mapping": {}
+          },
+          "SQLiteConnector": {
+            "db_path": "scores.db",
+            "table_name": "results"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM results"
+          },
+          "CSVExporter": {
+            "output_path": "high_scores.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 30 rows from data.csv\n[NullHandler] Dropped null rows\n[DataDeduplicator] Removed duplicate rows\n[DataFilter] Applied condition: score > 0.5\n[DataSorter] Sorted by score, ascending=True\n[TypeCaster] Cast columns: {}\n[SQLiteConnector] Stored table 'results' in scores.db\n[QueryEngine] Query executed\n[CSVExporter] Exported to high_scores.csv\nhigh_scores.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [
+        "file_row_count: 'high_scores.csv' has 15 rows, expected 14"
+      ],
+      "duration_seconds": 7.41,
+      "error": null,
+      "baseline_success": false,
+      "baseline_error": "Criteria failures:\nfile_row_count: 'high_scores.csv' has 15 rows, expected 14",
+      "baseline_duration_seconds": 5.47
+    },
+    {
+      "task_id": "employees_region_salary_pipeline",
+      "description": "Read data.csv, drop null values, remove duplicate rows, filter employees where salary is greater than 35000, select only the name, region, and salary columns, sort by salary ascending, group by region and count employees, then export to region_salary.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataDeduplicator",
+          "DataFilter",
+          "ColumnSelector",
+          "DataSorter",
+          "Aggregator",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "ColumnSelector"
+          ],
+          [
+            "ColumnSelector",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "Aggregator"
+          ],
+          [
+            "Aggregator",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataDeduplicator": {},
+          "DataFilter": {
+            "condition": "salary > 35000"
+          },
+          "ColumnSelector": {
+            "columns": [
+              "name",
+              "region",
+              "salary"
+            ]
+          },
+          "DataSorter": {
+            "by": "salary"
+          },
+          "Aggregator": {
+            "group_by": "region",
+            "agg_func": "count"
+          },
+          "CSVExporter": {
+            "output_path": "region_salary.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 23 rows from data.csv\n[NullHandler] Dropped null rows\n[DataDeduplicator] Removed duplicate rows\n[DataFilter] Applied condition: salary > 35000\n[ColumnSelector] Selected columns: ['name', 'region', 'salary']\n[DataSorter] Sorted by salary, ascending=True\n[Aggregator] Aggregated using count\n[CSVExporter] Exported to region_salary.csv\nregion_salary.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 5.78,
+      "error": null,
+      "baseline_success": false,
+      "baseline_error": "Criteria failures:\nfile_has_column: column 'count' not in 'region_salary.csv'",
+      "baseline_duration_seconds": 3.69
+    },
+    {
+      "task_id": "events_json_sqlite_aggregate_export",
+      "description": "Read input.json, validate the schema, apply a data transformation with no operations, drop null values, store into a SQLite database called events.db in table raw_events, run a SQL query to retrieve all rows, group by event_type and count occurrences, then export the result to event_counts.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "JSONParser",
+          "SchemaValidator",
+          "DataTransformer",
+          "NullHandler",
+          "SQLiteConnector",
+          "QueryEngine",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "JSONParser",
+            "SchemaValidator"
+          ],
+          [
+            "SchemaValidator",
+            "DataTransformer"
+          ],
+          [
+            "DataTransformer",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "JSONParser": {
+            "file_path": "input.json"
+          },
+          "SchemaValidator": {},
+          "DataTransformer": {},
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "SQLiteConnector": {
+            "db_path": "events.db",
+            "table_name": "raw_events"
+          },
+          "QueryEngine": {
+            "query": "SELECT event_type, COUNT(*) as occurrences FROM raw_events GROUP BY event_type"
+          },
+          "CSVExporter": {
+            "output_path": "event_counts.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[JSONParser] Loaded 50 rows from input.json\n[SchemaValidator] Schema validated\n[DataTransformer] Transformations applied\n[NullHandler] Dropped null rows\n[SQLiteConnector] Stored table 'raw_events' in events.db\n[QueryEngine] Query executed\n[CSVExporter] Exported to event_counts.csv\nevent_counts.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 7.42,
+      "error": null,
+      "baseline_success": false,
+      "baseline_error": "Criteria failures:\nfile_has_column: column 'occurrences' not in 'event_counts.csv'",
+      "baseline_duration_seconds": 3.59
+    },
+    {
+      "task_id": "people_select_sqlite_query_export",
+      "description": "Read data.csv, drop null values, remove duplicate rows, select only the name, age, and region columns, cast column types using an empty mapping, store into a SQLite database called people.db in table contacts, run a SQL query to retrieve all rows, then export to contacts.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataDeduplicator",
+          "ColumnSelector",
+          "TypeCaster",
+          "SQLiteConnector",
+          "QueryEngine",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "ColumnSelector"
+          ],
+          [
+            "ColumnSelector",
+            "TypeCaster"
+          ],
+          [
+            "TypeCaster",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataDeduplicator": {},
+          "ColumnSelector": {
+            "columns": [
+              "name",
+              "age",
+              "region"
+            ]
+          },
+          "TypeCaster": {
+            "mapping": {}
+          },
+          "SQLiteConnector": {
+            "db_path": "people.db",
+            "table_name": "contacts"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM contacts"
+          },
+          "CSVExporter": {
+            "output_path": "contacts.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 10 rows from data.csv\n[NullHandler] Dropped null rows\n[DataDeduplicator] Removed duplicate rows\n[ColumnSelector] Selected columns: ['name', 'age', 'region']\n[TypeCaster] Cast columns: {}\n[SQLiteConnector] Stored table 'contacts' in people.db\n[QueryEngine] Query executed\n[CSVExporter] Exported to contacts.csv\ncontacts.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 9.67,
+      "error": null,
+      "baseline_success": true,
+      "baseline_error": null,
+      "baseline_duration_seconds": 3.33
+    },
+    {
+      "task_id": "predictions_label_aggregate_pipeline",
+      "description": "Read data.csv, drop null values, remove duplicate rows, filter rows where score is greater than 0.3, cast column types using an empty mapping, group by label and count occurrences, sort by count in descending order, then export to label_counts.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataDeduplicator",
+          "DataFilter",
+          "TypeCaster",
+          "Aggregator",
+          "DataSorter",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "TypeCaster"
+          ],
+          [
+            "TypeCaster",
+            "Aggregator"
+          ],
+          [
+            "Aggregator",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataDeduplicator": {},
+          "DataFilter": {
+            "condition": "score > 0.3"
+          },
+          "TypeCaster": {
+            "mapping": {}
+          },
+          "Aggregator": {
+            "group_by": "label",
+            "agg_func": "count"
+          },
+          "DataSorter": {
+            "by": "count"
+          },
+          "CSVExporter": {
+            "output_path": "label_counts.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 30 rows from data.csv\n[NullHandler] Dropped null rows\n[DataDeduplicator] Removed duplicate rows\n[DataFilter] Applied condition: score > 0.3\n[TypeCaster] Cast columns: {}\n[Aggregator] Aggregated using count\n[DataSorter] Sorted by count, ascending=True\n[CSVExporter] Exported to label_counts.csv\nlabel_counts.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 7.87,
+      "error": null,
+      "baseline_success": true,
+      "baseline_error": null,
+      "baseline_duration_seconds": 4.0
+    },
+    {
+      "task_id": "customers_active_sqlite_json_export",
+      "description": "Read data.csv, drop null values, filter rows where status equals active, remove duplicate rows, sort by signup_date ascending, select only the name, status, and signup_date columns, store into a SQLite database called customers.db in table active_customers, run a SQL query to retrieve all rows, then export to active_customers.json.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataFilter",
+          "DataDeduplicator",
+          "DataSorter",
+          "ColumnSelector",
+          "SQLiteConnector",
+          "QueryEngine",
+          "JSONExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "ColumnSelector"
+          ],
+          [
+            "ColumnSelector",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "JSONExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataFilter": {
+            "condition": "status == 'active'"
+          },
+          "DataDeduplicator": {},
+          "DataSorter": {
+            "by": "signup_date"
+          },
+          "ColumnSelector": {
+            "columns": [
+              "name",
+              "status",
+              "signup_date"
+            ]
+          },
+          "SQLiteConnector": {
+            "db_path": "customers.db",
+            "table_name": "active_customers"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM active_customers"
+          },
+          "JSONExporter": {
+            "output_path": "active_customers.json"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 20 rows from data.csv\n[NullHandler] Dropped null rows\n[DataFilter] Applied condition: status == 'active'\n[DataDeduplicator] Removed duplicate rows\n[DataSorter] Sorted by signup_date, ascending=True\n[ColumnSelector] Selected columns: ['name', 'status', 'signup_date']\n[SQLiteConnector] Stored table 'active_customers' in customers.db\n[QueryEngine] Query executed\n[JSONExporter] Exported to active_customers.json\nactive_customers.json\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 9.48,
+      "error": null,
+      "baseline_success": true,
+      "baseline_error": null,
+      "baseline_duration_seconds": 4.8
+    }
+  ],
+  "baseline_first_pass_rate": 0.5
+}

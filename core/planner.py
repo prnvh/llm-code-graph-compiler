@@ -3,8 +3,8 @@ import os
 import re
 from openai import OpenAI
 from nodes.registry import NODE_REGISTRY
-
 from dotenv import load_dotenv
+
 load_dotenv()
 client = OpenAI(timeout=30.0, max_retries=1)
 
@@ -93,6 +93,7 @@ Task:
         "Content-Type": "application/json",
         "Authorization": f"Bearer {os.environ.get('OPENAI_API_KEY', '')}",
     }
+
     payload = {
         "model": "gpt-4o-mini",
         "messages": [
@@ -110,23 +111,38 @@ Task:
                 json=payload,
                 timeout=45,
             )
+
             if resp.status_code == 429:
                 wait = 10 * (attempt + 1)
                 print(f"  [planner] rate limited, waiting {wait}s (attempt {attempt+1}/4)...")
                 time.sleep(wait)
                 continue
+
+            if 500 <= resp.status_code < 600:
+                wait = 5 * (attempt + 1)
+                print(f"  [planner] server error {resp.status_code}, waiting {wait}s (attempt {attempt+1}/4)...")
+                time.sleep(wait)
+                continue
+
             resp.raise_for_status()
+
             raw = resp.json()["choices"][0]["message"]["content"].strip()
             break
+
         except req.exceptions.Timeout:
             if attempt == 3:
                 raise RuntimeError("Planner API call timed out after 45 seconds")
             print(f"  [planner] timeout, retrying (attempt {attempt+1}/4)...")
             time.sleep(5)
-        except Exception as e:
-            raise RuntimeError(f"Planner API call failed: {e}") from e
+
+        except req.exceptions.RequestException as e:
+            if attempt == 3:
+                raise RuntimeError(f"Planner API call failed: {e}") from e
+            print(f"  [planner] network error, retrying (attempt {attempt+1}/4)...")
+            time.sleep(5)
+
     else:
-        raise RuntimeError("Planner failed after 4 attempts (rate limited)")
+        raise RuntimeError("Planner failed after 4 attempts")
 
     plan = json.loads(raw)
     return normalize_plan(plan)
@@ -137,19 +153,16 @@ def _to_snake_case(name: str) -> str:
     s = re.sub(r'([A-Z]+)([A-Z][a-z])', r'\1_\2', s)
     return s.lower()
 
+
 def normalize_plan(plan: dict) -> dict:
-    # Build snake_case -> CamelCase reverse map from registry using explicit function_name
-    # Do NOT use _to_snake_case() here — it mangles names like SQLiteConnector -> sq_lite_connector
     snake_to_camel = {node.function_name: name for name, node in NODE_REGISTRY.items()}
 
-    # Normalize nodes
     raw_nodes = plan.get("nodes", [])
     if raw_nodes and isinstance(raw_nodes[0], dict):
         plan["nodes"] = [n["type"] for n in raw_nodes]
         if not plan.get("parameters"):
             plan["parameters"] = {n["type"]: n.get("params", {}) for n in raw_nodes}
 
-    # Normalize edges: handle dict format, list pairs, arrow strings, and numeric indices
     raw_nodes = plan.get("nodes", [])
     raw_edges = plan.get("edges", [])
     normalized_edges = []
@@ -158,12 +171,11 @@ def normalize_plan(plan: dict) -> dict:
         if ref is None:
             return None
         if isinstance(ref, int):
-            # Try 0-based first, then 1-based
-            if 0 <= ref < len(nodes_list):
-                return nodes_list[ref]
             idx = ref - 1
             if 0 <= idx < len(nodes_list):
                 return nodes_list[idx]
+            if 0 <= ref < len(nodes_list):
+                return nodes_list[ref]
             return None
         if isinstance(ref, str) and ref.isdigit():
             return resolve_node_ref(int(ref), nodes_list)
@@ -175,44 +187,37 @@ def normalize_plan(plan: dict) -> dict:
                 source = edge.get("from") or edge.get("source") or edge.get("start")
                 target = edge.get("to") or edge.get("target") or edge.get("end")
             elif isinstance(edge, (list, tuple)) and len(edge) == 2:
-                source, target = edge[0], edge[1]
+                source, target = edge
             elif isinstance(edge, str) and "->" in edge:
                 parts = edge.split("->")
                 source, target = parts[0].strip(), parts[1].strip()
             else:
-                print(f"WARNING: Skipping unrecognized edge format: {edge!r}")
                 continue
 
             source = resolve_node_ref(source, raw_nodes)
             target = resolve_node_ref(target, raw_nodes)
 
             if source is None or target is None:
-                print(f"WARNING: Skipping edge with unresolvable ref: {edge!r}")
                 continue
 
             normalized_edges.append([source, target])
 
-        except Exception as e:
-            print(f"WARNING: Could not normalize edge {edge!r}: {e}")
+        except Exception:
             continue
 
-    plan["edges"] = normalized_edges
+    plan["edges"] = [e for e in normalized_edges if e[0] != e[1]]
 
-    # Strip self-loops — LLM sometimes adds a spurious last edge pointing a node to itself
-    plan["edges"] = [e for e in plan["edges"] if e[0] != e[1]]
+    # 🔥 STRICT LINEAR REPAIR (critical fix)
+    if len(plan["nodes"]) > 1:
+        expected_edges = len(plan["nodes"]) - 1
 
-    # If first node is not in any edge but second node has no incoming edge,
-    # the LLM dropped the first edge — reconnect it
-    nodes_in_edges = set()
-    for e in plan["edges"]:
-        nodes_in_edges.add(e[0])
-        nodes_in_edges.add(e[1])
-    
-    raw_nodes = plan.get("nodes", [])
-    if len(raw_nodes) >= 2:
-        first = raw_nodes[0]
-        second = raw_nodes[1]
-        if first not in nodes_in_edges and second in nodes_in_edges:
-            plan["edges"].insert(0, [first, second])
+        if len(plan["edges"]) != expected_edges:
+            repaired_edges = []
+            for i in range(len(plan["nodes"]) - 1):
+                repaired_edges.append([
+                    plan["nodes"][i],
+                    plan["nodes"][i + 1]
+                ])
+            plan["edges"] = repaired_edges
 
     return plan

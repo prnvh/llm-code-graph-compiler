@@ -29,6 +29,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 from core.planner import get_plan
 from core.validator import validate_plan
 from core.compiler import compile_output
+from benchmark.criteria import check_criteria
 from benchmark.baseline import run_baseline
 
 
@@ -67,71 +68,6 @@ def empty_result(task_id: str, description: str) -> dict:
         "baseline_error": None,
         "baseline_duration_seconds": None,
     }
-
-
-# ─────────────────────────────────────────────────────────────────────
-# Success criteria checker
-# ─────────────────────────────────────────────────────────────────────
-
-def _read_tabular(path: str):
-    """Read CSV or JSON file into a DataFrame for criteria checking."""
-    import pandas as pd
-    if path.endswith(".json"):
-        return pd.read_json(path)
-    return pd.read_csv(path)
-
-
-def check_criteria(criteria: list[dict], stdout: str, run_dir: str) -> tuple[bool, list[str]]:
-    """
-    Evaluates a list of criteria against run output.
-
-    Supported criterion types:
-        { "type": "stdout_contains", "value": "some string" }
-        { "type": "file_exists",     "path": "output.csv" }
-        { "type": "file_row_count",  "path": "output.csv", "expected": 42 }
-        { "type": "file_has_column", "path": "output.csv", "column": "age" }
-        { "type": "exit_code",       "expected": 0 }  — checked implicitly, not needed here
-    """
-    failures = []
-
-    for c in criteria:
-        ctype = c["type"]
-
-        if ctype == "stdout_contains":
-            if c["value"] not in stdout:
-                failures.append(f"stdout_contains: expected '{c['value']}' not found in output")
-
-        elif ctype == "file_exists":
-            full_path = os.path.join(run_dir, c["path"])
-            if not os.path.exists(full_path):
-                failures.append(f"file_exists: '{c['path']}' was not created")
-
-        elif ctype == "file_row_count":
-            full_path = os.path.join(run_dir, c["path"])
-            try:
-                df = _read_tabular(full_path)
-                if len(df) != c["expected"]:
-                    failures.append(
-                        f"file_row_count: '{c['path']}' has {len(df)} rows, expected {c['expected']}"
-                    )
-            except Exception as e:
-                failures.append(f"file_row_count: could not read '{c['path']}': {e}")
-
-        elif ctype == "file_has_column":
-            full_path = os.path.join(run_dir, c["path"])
-            try:
-                df = _read_tabular(full_path)
-                if c["column"] not in df.columns:
-                    failures.append(
-                        f"file_has_column: column '{c['column']}' not in '{c['path']}'"
-                    )
-            except Exception as e:
-                failures.append(f"file_has_column: could not read '{c['path']}': {e}")
-
-        else:
-            failures.append(f"Unknown criterion type: '{ctype}'")
-
-    return len(failures) == 0, failures
 
 
 # ─────────────────────────────────────────────────────────────────────

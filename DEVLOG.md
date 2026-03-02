@@ -23,10 +23,16 @@
 
 ### 28/02/2026
 - Normalized LLM output
-- fix OpenAI integration
+- Fixed OpenAI integration
 - Updated registry.py to have function names for easier recall
 - Updated compiler to auto generate glue code.
-- added 13 new nodes in same domain (data pipeline) and updated registry
+- Added 13 new nodes in same domain (data pipeline) and updated registry
 
 ### 1/03/2026
 - Created benchmarking system
+
+### 2/03/2026
+- Updated benchmarking system
+- Updated validator to now include an extra test for input arity
+- Fixed compiler issues
+- Ran sample test, achieved 40% increase from gpt-4o (Compiler=9/10, GPT=5/10)

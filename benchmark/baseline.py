@@ -124,7 +124,7 @@ def run_baseline(task: dict) -> tuple[bool, str | None]:
         if not criteria:
             return True, None
 
-        from benchmark.harness import check_criteria
+        from benchmark.criteria import check_criteria
         passed, failures = check_criteria(criteria, stdout, run_dir)
         if not passed:
             return False, "Criteria failures:\n" + "\n".join(failures)

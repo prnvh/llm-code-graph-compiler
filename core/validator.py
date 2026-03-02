@@ -71,7 +71,24 @@ def validate_plan(plan: dict) -> tuple[bool, list[str]]:
         if len(nodes) > 1 and node not in connected:
             errors.append(f"ORPHAN_NODE: '{node}' is disconnected.")
 
-    # ---- CHECK 6: Required parameters present ----
+    # ---- CHECK 6: Input arity (branch-safe structural integrity) ----
+    # Recompute in-degree cleanly (cycle step mutated it)
+    in_degree = {node: 0 for node in nodes}
+    for source, target in edges:
+        in_degree[target] += 1
+
+    for node_name in nodes:
+        node = NODE_REGISTRY[node_name]
+
+        # Nodes that require an input must have exactly one inbound edge
+        if node.input_type != NodeType.FILE_PATH:
+            if in_degree[node_name] != 1:
+                errors.append(
+                    f"INVALID_ARITY: '{node_name}' expects 1 inbound edge "
+                    f"(input_type={node.input_type}), got {in_degree[node_name]}."
+                )
+
+    # ---- CHECK 7: Required parameters present ----
     for node_name in nodes:
         node = NODE_REGISTRY[node_name]
         provided = parameters.get(node_name, {})
