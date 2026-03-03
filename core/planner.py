@@ -75,6 +75,38 @@ Rules:
 """
 
 
+
+
+def _task_requests_http(task_description: str) -> bool:
+    text = (task_description or "").lower()
+    http_keywords = ["api", "rest", "http", "endpoint", "flask", "server"]
+    return any(k in text for k in http_keywords)
+
+
+def _strip_blocking_http_nodes(plan: dict, task_description: str) -> dict:
+    """
+    Remove long-running HTTP server nodes unless the user explicitly asks for API behavior.
+    This prevents generated pipelines from blocking indefinitely during benchmark runs.
+    """
+    if _task_requests_http(task_description):
+        return plan
+
+    blocking_nodes = {"RESTEndpoint", "AuthMiddleware"}
+    nodes = [n for n in plan.get("nodes", []) if n not in blocking_nodes]
+    plan["nodes"] = nodes
+
+    # Drop params for removed nodes
+    params = plan.get("parameters", {})
+    plan["parameters"] = {k: v for k, v in params.items() if k in nodes}
+
+    # Rebuild as a strict linear chain for deterministic execution.
+    if len(nodes) > 1:
+        plan["edges"] = [[nodes[i], nodes[i + 1]] for i in range(len(nodes) - 1)]
+    else:
+        plan["edges"] = []
+
+    return plan
+
 def get_plan(task_description: str) -> dict:
     node_summary = build_node_summary()
 
@@ -145,7 +177,8 @@ Task:
         raise RuntimeError("Planner failed after 4 attempts")
 
     plan = json.loads(raw)
-    return normalize_plan(plan)
+    plan = normalize_plan(plan)
+    return _strip_blocking_http_nodes(plan, task_description)
 
 
 def _to_snake_case(name: str) -> str:
@@ -207,17 +240,26 @@ def normalize_plan(plan: dict) -> dict:
 
     plan["edges"] = [e for e in normalized_edges if e[0] != e[1]]
 
-    # 🔥 STRICT LINEAR REPAIR (critical fix)
-    if len(plan["nodes"]) > 1:
+    # Strictly linearize edges for benchmark stability.
+    # Some model outputs create back-edges/cycles that can stall execution planning.
+    # For this compiler, tasks are modeled as ordered pipelines, so we enforce
+    # node[i] -> node[i+1] regardless of model-proposed edge shape.
+    if len(plan.get("nodes", [])) > 1:
+        index = {name: i for i, name in enumerate(plan["nodes"])}
         expected_edges = len(plan["nodes"]) - 1
 
-        if len(plan["edges"]) != expected_edges:
-            repaired_edges = []
-            for i in range(len(plan["nodes"]) - 1):
-                repaired_edges.append([
-                    plan["nodes"][i],
-                    plan["nodes"][i + 1]
-                ])
-            plan["edges"] = repaired_edges
+        def is_forward_edge(edge: list[str]) -> bool:
+            source, target = edge
+            if source not in index or target not in index:
+                return False
+            return index[source] < index[target]
+
+        has_non_forward = any(not is_forward_edge(e) for e in plan["edges"])
+
+        if len(plan["edges"]) != expected_edges or has_non_forward:
+            plan["edges"] = [
+                [plan["nodes"][i], plan["nodes"][i + 1]]
+                for i in range(len(plan["nodes"]) - 1)
+            ]
 
     return plan

@@ -33,6 +33,14 @@ from benchmark.criteria import check_criteria
 from benchmark.baseline import run_baseline
 
 
+def _task_deadline_exceeded(start: float, task: dict) -> bool:
+    """Hard wall-clock guard to avoid apparent indefinite hangs."""
+    hard_limit = task.get("max_task_duration_seconds")
+    if hard_limit is None:
+        hard_limit = task.get("timeout_seconds", 30) + 120
+    return (time.time() - start) > hard_limit
+
+
 # ─────────────────────────────────────────────────────────────────────
 # Result structure
 # ─────────────────────────────────────────────────────────────────────
@@ -79,6 +87,11 @@ def run_task(task: dict, skip_baseline: bool = False) -> dict:
     start = time.time()
 
     with tempfile.TemporaryDirectory() as run_dir:
+        if _task_deadline_exceeded(start, task):
+            result["error"] = "Task exceeded wall-clock deadline before planning"
+            result["duration_seconds"] = round(time.time() - start, 2)
+            return result
+
         try:
             # ── Stage 1: Plan ──────────────────────────────────────────
             plan = get_plan(task["description"])
@@ -87,6 +100,11 @@ def run_task(task: dict, skip_baseline: bool = False) -> dict:
 
         except Exception as e:
             result["error"] = f"Planner error: {e}"
+            result["duration_seconds"] = round(time.time() - start, 2)
+            return result
+
+        if _task_deadline_exceeded(start, task):
+            result["error"] = "Task exceeded wall-clock deadline before validation"
             result["duration_seconds"] = round(time.time() - start, 2)
             return result
 
@@ -105,6 +123,11 @@ def run_task(task: dict, skip_baseline: bool = False) -> dict:
             result["duration_seconds"] = round(time.time() - start, 2)
             return result
 
+        if _task_deadline_exceeded(start, task):
+            result["error"] = "Task exceeded wall-clock deadline before compile"
+            result["duration_seconds"] = round(time.time() - start, 2)
+            return result
+
         try:
             # ── Stage 3: Compile ───────────────────────────────────────
             code = compile_output(plan)
@@ -115,6 +138,11 @@ def run_task(task: dict, skip_baseline: bool = False) -> dict:
 
         except Exception as e:
             result["compile_error"] = str(e)
+            result["duration_seconds"] = round(time.time() - start, 2)
+            return result
+
+        if _task_deadline_exceeded(start, task):
+            result["error"] = "Task exceeded wall-clock deadline before execution"
             result["duration_seconds"] = round(time.time() - start, 2)
             return result
 
@@ -187,6 +215,11 @@ def run_task(task: dict, skip_baseline: bool = False) -> dict:
     )
 
     result["duration_seconds"] = round(time.time() - start, 2)
+
+    if _task_deadline_exceeded(start, task):
+        result["error"] = "Task exceeded wall-clock deadline before baseline"
+        result["duration_seconds"] = round(time.time() - start, 2)
+        return result
 
     # ── Baseline ───────────────────────────────────────────────────────
     if not skip_baseline:
