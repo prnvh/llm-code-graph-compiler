@@ -120,6 +120,16 @@ NODE_REGISTRY = {
         function_name="type_caster"
     ),
 
+    "DataFrameJoin": Node(
+        name="DataFrameJoin",
+        description="Joins two DataFrames on a key",
+        input_type=NodeType.DATA_FRAME,  # you will allow multi-input validation
+        output_type=NodeType.DATA_FRAME,
+        template_path="nodes/templates/dataframe_join.py",
+        required_params=["on", "how"],
+        function_name="dataframe_join"
+    ),
+
     "StatsSummary": Node(
         name="StatsSummary",
         description="Generates descriptive statistics for a DataFrame",
@@ -162,6 +172,16 @@ NODE_REGISTRY = {
         template_path="nodes/templates/sqlite_connector.py",
         required_params=["db_path", "table_name"],
         function_name="sqlite_connector"
+    ),
+
+    "SQLiteReader": Node(
+        name="SQLiteReader",
+        description="Connects to an existing SQLite database and returns a DB handle",
+        input_type=NodeType.FILE_PATH,
+        output_type=NodeType.DB_HANDLE,
+        template_path="nodes/templates/sqlite_reader.py",
+        required_params=["db_path"],
+        function_name="sqlite_reader"
     ),
 
     "PostgresConnector": Node(
@@ -254,5 +274,18 @@ NODE_REGISTRY = {
         template_path="nodes/templates/logger.py",
         required_params=[],
         function_name="logger"
+    ),
+    # -------------------------
+    # ADAPTERS / TYPE BRIDGES
+    # -------------------------
+    
+    "HTTPToDataFrame": Node(
+        name="HTTPToDataFrame",
+        description="Converts HTTP JSON response into a DataFrame",
+        input_type=NodeType.HTTP_RESPONSE,
+        output_type=NodeType.DATA_FRAME,
+        template_path="nodes/templates/http_to_dataframe.py",
+        required_params=[],
+        function_name="http_to_dataframe"
     ),
 }

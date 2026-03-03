@@ -1,0 +1,1123 @@
+[
+  {
+    "task_id": "json_schema_validate_export",
+    "description": "Read input.json, validate the schema, then export the validated data to validated_output.json.",
+    "fixtures": {
+      "input.json": "benchmark/fixtures/events.json"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "validated_output.json"
+      },
+      {
+        "type": "file_row_count",
+        "path": "validated_output.json",
+        "expected": 50
+      }
+    ],
+    "timeout_seconds": 40
+  },
+  {
+    "task_id": "csv_typecast_stats_export",
+    "description": "Read data.csv, cast numeric columns using an empty mapping, compute a statistical summary of numeric fields, then export the summary to stats.json.",
+    "fixtures": {
+      "data.csv": "benchmark/fixtures/predictions.csv"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "stats.json"
+      },
+      {
+        "type": "file_row_count",
+        "path": "stats.json",
+        "expected": 8
+      },
+      {
+        "type": "file_has_column",
+        "path": "stats.json",
+        "column": "score"
+      }
+    ],
+    "timeout_seconds": 40
+  },
+  {
+    "task_id": "sqlite_direct_query_export",
+    "description": "Connect to an existing SQLite database called existing.db, run a SQL query to select all rows from table records where value is greater than 10, then export the result to filtered_records.csv.",
+    "fixtures": {
+      "existing.db": "benchmark/fixtures/existing.db"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "filtered_records.csv"
+      },
+      {
+        "type": "file_row_count",
+        "path": "filtered_records.csv",
+        "expected": 15
+      },
+      {
+        "type": "file_has_column",
+        "path": "filtered_records.csv",
+        "column": "value"
+      }
+    ],
+    "timeout_seconds": 40
+  },
+  {
+    "task_id": "csv_sqlite_sql_filter_aggregate",
+    "description": "Read data.csv, drop null values, store into a SQLite database called analytics.db in table employees, run a SQL query to filter employees where salary is greater than 45000 and group by department counting rows, then export the result to dept_sql_counts.csv.",
+    "fixtures": {
+      "data.csv": "benchmark/fixtures/employees.csv"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "dept_sql_counts.csv"
+      },
+      {
+        "type": "file_has_column",
+        "path": "dept_sql_counts.csv",
+        "column": "department"
+      }
+    ],
+    "timeout_seconds": 40
+  },
+  {
+    "task_id": "json_transform_validate_pipeline",
+    "description": "Read input.json, apply a transformation with no operations, validate the schema, drop null values, then export to transformed_validated.csv.",
+    "fixtures": {
+      "input.json": "benchmark/fixtures/events.json"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "transformed_validated.csv"
+      }
+    ],
+    "timeout_seconds": 40
+  },
+  {
+    "task_id": "full_analytics_deep_pipeline",
+    "description": "Read data.csv, drop null values, remove duplicate rows, cast column types using an empty mapping, filter rows where score is greater than 0.4, apply a transformation with no operations, store into a SQLite database called deep.db in table predictions, run a SQL query to group by label and count rows, generate a statistical summary of the grouped results, sort by count descending, select only label and count columns, then export to deep_label_summary.csv.",
+    "fixtures": {
+      "data.csv": "benchmark/fixtures/predictions.csv"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "deep_label_summary.csv"
+      },
+      {
+        "type": "file_has_column",
+        "path": "deep_label_summary.csv",
+        "column": "label"
+      },
+      {
+        "type": "file_has_column",
+        "path": "deep_label_summary.csv",
+        "column": "count"
+      }
+    ],
+    "timeout_seconds": 80
+  },
+  {
+    "task_id": "csv_passthrough_export",
+    "description": "Read data.csv and export it as-is to output.csv.",
+    "fixtures": {
+      "data.csv": "benchmark/fixtures/predictions.csv"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "output.csv"
+      },
+      {
+        "type": "file_row_count",
+        "path": "output.csv",
+        "expected": 30
+      },
+      {
+        "type": "file_has_column",
+        "path": "output.csv",
+        "column": "label"
+      }
+    ],
+    "timeout_seconds": 30
+  },
+  {
+    "task_id": "csv_sort_by_score",
+    "description": "Read data.csv, sort rows by score ascending, then export to sorted.csv.",
+    "fixtures": {
+      "data.csv": "benchmark/fixtures/predictions.csv"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "sorted.csv"
+      },
+      {
+        "type": "file_row_count",
+        "path": "sorted.csv",
+        "expected": 30
+      },
+      {
+        "type": "file_has_column",
+        "path": "sorted.csv",
+        "column": "score"
+      }
+    ],
+    "timeout_seconds": 30
+  },
+  {
+    "task_id": "csv_dedup_predictions",
+    "description": "Read data.csv, remove duplicate rows, then export to dedup.csv.",
+    "fixtures": {
+      "data.csv": "benchmark/fixtures/predictions.csv"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "dedup.csv"
+      },
+      {
+        "type": "file_has_column",
+        "path": "dedup.csv",
+        "column": "label"
+      }
+    ],
+    "timeout_seconds": 30
+  },
+  {
+    "task_id": "csv_select_label_score",
+    "description": "Read data.csv, select only the label and score columns, then export to selected.csv.",
+    "fixtures": {
+      "data.csv": "benchmark/fixtures/predictions.csv"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "selected.csv"
+      },
+      {
+        "type": "file_row_count",
+        "path": "selected.csv",
+        "expected": 30
+      },
+      {
+        "type": "file_has_column",
+        "path": "selected.csv",
+        "column": "label"
+      },
+      {
+        "type": "file_has_column",
+        "path": "selected.csv",
+        "column": "score"
+      }
+    ],
+    "timeout_seconds": 30
+  },
+  {
+    "task_id": "csv_filter_high_score",
+    "description": "Read data.csv, filter rows where score is greater than 0.4, then export to filtered.csv.",
+    "fixtures": {
+      "data.csv": "benchmark/fixtures/predictions.csv"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "filtered.csv"
+      },
+      {
+        "type": "file_has_column",
+        "path": "filtered.csv",
+        "column": "score"
+      },
+      {
+        "type": "file_row_count_gte",
+        "path": "filtered.csv",
+        "expected": 1
+      }
+    ],
+    "timeout_seconds": 30
+  },
+  {
+    "task_id": "csv_transform_passthrough",
+    "description": "Read data.csv, apply a transformation with no operations, then export to transformed.csv.",
+    "fixtures": {
+      "data.csv": "benchmark/fixtures/predictions.csv"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "transformed.csv"
+      },
+      {
+        "type": "file_row_count",
+        "path": "transformed.csv",
+        "expected": 30
+      }
+    ],
+    "timeout_seconds": 30
+  },
+  {
+    "task_id": "csv_null_drop_predictions",
+    "description": "Read data.csv, drop null values, then export to clean.csv.",
+    "fixtures": {
+      "data.csv": "benchmark/fixtures/predictions.csv"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "clean.csv"
+      },
+      {
+        "type": "file_has_column",
+        "path": "clean.csv",
+        "column": "label"
+      },
+      {
+        "type": "file_row_count_gte",
+        "path": "clean.csv",
+        "expected": 1
+      }
+    ],
+    "timeout_seconds": 30
+  },
+  {
+    "task_id": "csv_to_json_simple",
+    "description": "Read data.csv and export it as-is to output.json.",
+    "fixtures": {
+      "data.csv": "benchmark/fixtures/predictions.csv"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "output.json"
+      },
+      {
+        "type": "file_row_count",
+        "path": "output.json",
+        "expected": 30
+      },
+      {
+        "type": "file_has_column",
+        "path": "output.json",
+        "column": "label"
+      }
+    ],
+    "timeout_seconds": 30
+  },
+  {
+    "task_id": "csv_stats_json_export",
+    "description": "Read data.csv, compute a statistical summary of numeric fields, then export the summary to stats.json.",
+    "fixtures": {
+      "data.csv": "benchmark/fixtures/predictions.csv"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "stats.json"
+      },
+      {
+        "type": "file_row_count",
+        "path": "stats.json",
+        "expected": 8
+      },
+      {
+        "type": "file_has_column",
+        "path": "stats.json",
+        "column": "score"
+      }
+    ],
+    "timeout_seconds": 30
+  },
+  {
+    "task_id": "csv_filter_to_json",
+    "description": "Read data.csv, filter rows where score is greater than 0.4, then export to filtered.json.",
+    "fixtures": {
+      "data.csv": "benchmark/fixtures/predictions.csv"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "filtered.json"
+      },
+      {
+        "type": "file_has_column",
+        "path": "filtered.json",
+        "column": "score"
+      }
+    ],
+    "timeout_seconds": 30
+  },
+  {
+    "task_id": "csv_select_to_json",
+    "description": "Read data.csv, select only the label and score columns, then export to selected.json.",
+    "fixtures": {
+      "data.csv": "benchmark/fixtures/predictions.csv"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "selected.json"
+      },
+      {
+        "type": "file_row_count",
+        "path": "selected.json",
+        "expected": 30
+      },
+      {
+        "type": "file_has_column",
+        "path": "selected.json",
+        "column": "label"
+      }
+    ],
+    "timeout_seconds": 30
+  },
+  {
+    "task_id": "json_parse_to_csv",
+    "description": "Read input.json and export it as-is to events.csv.",
+    "fixtures": {
+      "input.json": "benchmark/fixtures/events.json"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "events.csv"
+      },
+      {
+        "type": "file_row_count",
+        "path": "events.csv",
+        "expected": 50
+      }
+    ],
+    "timeout_seconds": 30
+  },
+  {
+    "task_id": "json_validate_export",
+    "description": "Read input.json, validate the schema, then export to validated.json.",
+    "fixtures": {
+      "input.json": "benchmark/fixtures/events.json"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "validated.json"
+      },
+      {
+        "type": "file_row_count",
+        "path": "validated.json",
+        "expected": 50
+      }
+    ],
+    "timeout_seconds": 30
+  },
+  {
+    "task_id": "json_null_drop_to_csv",
+    "description": "Read input.json, drop null values, then export to clean.csv.",
+    "fixtures": {
+      "input.json": "benchmark/fixtures/events.json"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "clean.csv"
+      },
+      {
+        "type": "file_row_count_gte",
+        "path": "clean.csv",
+        "expected": 1
+      }
+    ],
+    "timeout_seconds": 30
+  },
+  {
+    "task_id": "json_transform_to_json",
+    "description": "Read input.json, apply a transformation with no operations, then export to transformed.json.",
+    "fixtures": {
+      "input.json": "benchmark/fixtures/events.json"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "transformed.json"
+      },
+      {
+        "type": "file_row_count",
+        "path": "transformed.json",
+        "expected": 50
+      }
+    ],
+    "timeout_seconds": 30
+  },
+  {
+    "task_id": "json_validate_null_to_csv",
+    "description": "Read input.json, validate the schema, drop null values, then export to clean.csv.",
+    "fixtures": {
+      "input.json": "benchmark/fixtures/events.json"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "clean.csv"
+      },
+      {
+        "type": "file_row_count_gte",
+        "path": "clean.csv",
+        "expected": 1
+      }
+    ],
+    "timeout_seconds": 30
+  },
+  {
+    "task_id": "json_events_stats_export",
+    "description": "Read input.json, compute a statistical summary of numeric fields, then export the summary to stats.json.",
+    "fixtures": {
+      "input.json": "benchmark/fixtures/events.json"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "stats.json"
+      },
+      {
+        "type": "file_row_count",
+        "path": "stats.json",
+        "expected": 8
+      }
+    ],
+    "timeout_seconds": 30
+  },
+  {
+    "task_id": "json_products_passthrough",
+    "description": "Read products.json and export it as-is to products.csv.",
+    "fixtures": {
+      "products.json": "benchmark/fixtures/products.json"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "products.csv"
+      },
+      {
+        "type": "file_row_count",
+        "path": "products.csv",
+        "expected": 25
+      },
+      {
+        "type": "file_has_column",
+        "path": "products.csv",
+        "column": "price"
+      }
+    ],
+    "timeout_seconds": 30
+  },
+  {
+    "task_id": "json_products_filter_price",
+    "description": "Read products.json, filter rows where price is greater than 50, then export to expensive_products.json.",
+    "fixtures": {
+      "products.json": "benchmark/fixtures/products.json"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "expensive_products.json"
+      },
+      {
+        "type": "file_row_count",
+        "path": "expensive_products.json",
+        "expected": 15
+      },
+      {
+        "type": "file_has_column",
+        "path": "expensive_products.json",
+        "column": "price"
+      }
+    ],
+    "timeout_seconds": 30
+  },
+  {
+    "task_id": "json_products_select_columns",
+    "description": "Read products.json, select only the name, category, and price columns, then export to product_prices.json.",
+    "fixtures": {
+      "products.json": "benchmark/fixtures/products.json"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "product_prices.json"
+      },
+      {
+        "type": "file_row_count",
+        "path": "product_prices.json",
+        "expected": 25
+      },
+      {
+        "type": "file_has_column",
+        "path": "product_prices.json",
+        "column": "price"
+      }
+    ],
+    "timeout_seconds": 30
+  },
+  {
+    "task_id": "json_products_stats",
+    "description": "Read products.json, compute a statistical summary of numeric fields, then export the summary to product_stats.json.",
+    "fixtures": {
+      "products.json": "benchmark/fixtures/products.json"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "product_stats.json"
+      },
+      {
+        "type": "file_row_count",
+        "path": "product_stats.json",
+        "expected": 8
+      },
+      {
+        "type": "file_has_column",
+        "path": "product_stats.json",
+        "column": "price"
+      }
+    ],
+    "timeout_seconds": 30
+  },
+  {
+    "task_id": "json_products_sort_by_price",
+    "description": "Read products.json, sort rows by price ascending, then export to sorted_products.csv.",
+    "fixtures": {
+      "products.json": "benchmark/fixtures/products.json"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "sorted_products.csv"
+      },
+      {
+        "type": "file_row_count",
+        "path": "sorted_products.csv",
+        "expected": 25
+      },
+      {
+        "type": "file_has_column",
+        "path": "sorted_products.csv",
+        "column": "name"
+      }
+    ],
+    "timeout_seconds": 30
+  },
+  {
+    "task_id": "csv_emp_sort_department",
+    "description": "Read employees.csv, sort rows by department ascending, then export to sorted_employees.csv.",
+    "fixtures": {
+      "employees.csv": "benchmark/fixtures/employees.csv"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "sorted_employees.csv"
+      },
+      {
+        "type": "file_row_count",
+        "path": "sorted_employees.csv",
+        "expected": 23
+      },
+      {
+        "type": "file_has_column",
+        "path": "sorted_employees.csv",
+        "column": "department"
+      }
+    ],
+    "timeout_seconds": 30
+  },
+  {
+    "task_id": "csv_emp_select_dept_salary",
+    "description": "Read employees.csv, select only the department and salary columns, then export to dept_salary.csv.",
+    "fixtures": {
+      "employees.csv": "benchmark/fixtures/employees.csv"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "dept_salary.csv"
+      },
+      {
+        "type": "file_row_count",
+        "path": "dept_salary.csv",
+        "expected": 23
+      },
+      {
+        "type": "file_has_column",
+        "path": "dept_salary.csv",
+        "column": "department"
+      },
+      {
+        "type": "file_has_column",
+        "path": "dept_salary.csv",
+        "column": "salary"
+      }
+    ],
+    "timeout_seconds": 30
+  },
+  {
+    "task_id": "csv_emp_null_drop",
+    "description": "Read employees.csv, drop null values, then export to clean_employees.csv.",
+    "fixtures": {
+      "employees.csv": "benchmark/fixtures/employees.csv"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "clean_employees.csv"
+      },
+      {
+        "type": "file_has_column",
+        "path": "clean_employees.csv",
+        "column": "department"
+      },
+      {
+        "type": "file_row_count_gte",
+        "path": "clean_employees.csv",
+        "expected": 1
+      }
+    ],
+    "timeout_seconds": 30
+  },
+  {
+    "task_id": "csv_emp_stats",
+    "description": "Read employees.csv, compute a statistical summary of numeric fields, then export the summary to employee_stats.json.",
+    "fixtures": {
+      "employees.csv": "benchmark/fixtures/employees.csv"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "employee_stats.json"
+      },
+      {
+        "type": "file_row_count",
+        "path": "employee_stats.json",
+        "expected": 8
+      },
+      {
+        "type": "file_has_column",
+        "path": "employee_stats.json",
+        "column": "salary"
+      }
+    ],
+    "timeout_seconds": 30
+  },
+  {
+    "task_id": "csv_sales_passthrough",
+    "description": "Read sales.csv and export it as-is to all_sales.csv.",
+    "fixtures": {
+      "sales.csv": "benchmark/fixtures/sales.csv"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "all_sales.csv"
+      },
+      {
+        "type": "file_row_count",
+        "path": "all_sales.csv",
+        "expected": 40
+      },
+      {
+        "type": "file_has_column",
+        "path": "all_sales.csv",
+        "column": "category"
+      }
+    ],
+    "timeout_seconds": 30
+  },
+  {
+    "task_id": "csv_sales_filter_revenue",
+    "description": "Read sales.csv, filter rows where revenue is greater than 100, then export to high_revenue_sales.csv.",
+    "fixtures": {
+      "sales.csv": "benchmark/fixtures/sales.csv"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "high_revenue_sales.csv"
+      },
+      {
+        "type": "file_row_count",
+        "path": "high_revenue_sales.csv",
+        "expected": 27
+      },
+      {
+        "type": "file_has_column",
+        "path": "high_revenue_sales.csv",
+        "column": "revenue"
+      }
+    ],
+    "timeout_seconds": 30
+  },
+  {
+    "task_id": "csv_sales_dedup",
+    "description": "Read sales.csv, remove duplicate rows, then export to dedup_sales.csv.",
+    "fixtures": {
+      "sales.csv": "benchmark/fixtures/sales.csv"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "dedup_sales.csv"
+      },
+      {
+        "type": "file_has_column",
+        "path": "dedup_sales.csv",
+        "column": "product"
+      },
+      {
+        "type": "file_row_count_gte",
+        "path": "dedup_sales.csv",
+        "expected": 1
+      }
+    ],
+    "timeout_seconds": 30
+  },
+  {
+    "task_id": "csv_sales_select_columns",
+    "description": "Read sales.csv, select only the product, category, and revenue columns, then export to sales_summary.csv.",
+    "fixtures": {
+      "sales.csv": "benchmark/fixtures/sales.csv"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "sales_summary.csv"
+      },
+      {
+        "type": "file_row_count",
+        "path": "sales_summary.csv",
+        "expected": 40
+      },
+      {
+        "type": "file_has_column",
+        "path": "sales_summary.csv",
+        "column": "revenue"
+      }
+    ],
+    "timeout_seconds": 30
+  },
+  {
+    "task_id": "csv_sales_stats",
+    "description": "Read sales.csv, compute a statistical summary of numeric fields, then export the summary to sales_stats.json.",
+    "fixtures": {
+      "sales.csv": "benchmark/fixtures/sales.csv"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "sales_stats.json"
+      },
+      {
+        "type": "file_row_count",
+        "path": "sales_stats.json",
+        "expected": 8
+      },
+      {
+        "type": "file_has_column",
+        "path": "sales_stats.json",
+        "column": "revenue"
+      }
+    ],
+    "timeout_seconds": 30
+  },
+  {
+    "task_id": "csv_sqlite_query_all_predictions",
+    "description": "Read data.csv, store into a SQLite database called pred.db in table predictions, run a SQL query to retrieve all rows from predictions, then export to all_predictions.csv.",
+    "fixtures": {
+      "data.csv": "benchmark/fixtures/predictions.csv"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "all_predictions.csv"
+      },
+      {
+        "type": "file_row_count",
+        "path": "all_predictions.csv",
+        "expected": 30
+      },
+      {
+        "type": "file_has_column",
+        "path": "all_predictions.csv",
+        "column": "label"
+      }
+    ],
+    "timeout_seconds": 40
+  },
+  {
+    "task_id": "csv_sqlite_group_by_label",
+    "description": "Read data.csv, store into a SQLite database called pred.db in table predictions, run a SQL query to group by label and count rows, then export to label_counts.csv.",
+    "fixtures": {
+      "data.csv": "benchmark/fixtures/predictions.csv"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "label_counts.csv"
+      },
+      {
+        "type": "file_has_column",
+        "path": "label_counts.csv",
+        "column": "label"
+      },
+      {
+        "type": "file_has_column",
+        "path": "label_counts.csv",
+        "column": "count"
+      }
+    ],
+    "timeout_seconds": 40
+  },
+  {
+    "task_id": "csv_emp_sqlite_query_all",
+    "description": "Read employees.csv, drop null values, store into a SQLite database called emp.db in table employees, run a SQL query to retrieve all rows from employees, then export to all_employees.csv.",
+    "fixtures": {
+      "employees.csv": "benchmark/fixtures/employees.csv"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "all_employees.csv"
+      },
+      {
+        "type": "file_has_column",
+        "path": "all_employees.csv",
+        "column": "department"
+      },
+      {
+        "type": "file_row_count_gte",
+        "path": "all_employees.csv",
+        "expected": 1
+      }
+    ],
+    "timeout_seconds": 40
+  },
+  {
+    "task_id": "csv_emp_sqlite_group_by_dept",
+    "description": "Read employees.csv, drop null values, store into a SQLite database called emp.db in table employees, run a SQL query to group by department and count rows, then export to dept_counts.csv.",
+    "fixtures": {
+      "employees.csv": "benchmark/fixtures/employees.csv"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "dept_counts.csv"
+      },
+      {
+        "type": "file_has_column",
+        "path": "dept_counts.csv",
+        "column": "department"
+      },
+      {
+        "type": "file_has_column",
+        "path": "dept_counts.csv",
+        "column": "count"
+      }
+    ],
+    "timeout_seconds": 40
+  },
+  {
+    "task_id": "json_sqlite_query_all_events",
+    "description": "Read input.json, store into a SQLite database called events.db in table events, run a SQL query to retrieve all rows from events, then export to all_events.csv.",
+    "fixtures": {
+      "input.json": "benchmark/fixtures/events.json"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "all_events.csv"
+      },
+      {
+        "type": "file_row_count",
+        "path": "all_events.csv",
+        "expected": 50
+      }
+    ],
+    "timeout_seconds": 40
+  },
+  {
+    "task_id": "csv_sales_sqlite_group_by_category",
+    "description": "Read sales.csv, store into a SQLite database called sales.db in table sales, run a SQL query to group by category and count rows, then export to category_counts.csv.",
+    "fixtures": {
+      "sales.csv": "benchmark/fixtures/sales.csv"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "category_counts.csv"
+      },
+      {
+        "type": "file_row_count",
+        "path": "category_counts.csv",
+        "expected": 3
+      },
+      {
+        "type": "file_has_column",
+        "path": "category_counts.csv",
+        "column": "category"
+      }
+    ],
+    "timeout_seconds": 40
+  },
+  {
+    "task_id": "json_products_sqlite_filter_query",
+    "description": "Read products.json, store into a SQLite database called prod.db in table products, run a SQL query to retrieve all rows from products where price is greater than 50, then export to expensive_products.csv.",
+    "fixtures": {
+      "products.json": "benchmark/fixtures/products.json"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "expensive_products.csv"
+      },
+      {
+        "type": "file_row_count",
+        "path": "expensive_products.csv",
+        "expected": 15
+      },
+      {
+        "type": "file_has_column",
+        "path": "expensive_products.csv",
+        "column": "price"
+      }
+    ],
+    "timeout_seconds": 40
+  },
+  {
+    "task_id": "csv_filter_then_sqlite_query",
+    "description": "Read data.csv, filter rows where score is greater than 0.4, store into a SQLite database called pred.db in table predictions, run a SQL query to retrieve all rows from predictions, then export to high_score_predictions.csv.",
+    "fixtures": {
+      "data.csv": "benchmark/fixtures/predictions.csv"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "high_score_predictions.csv"
+      },
+      {
+        "type": "file_has_column",
+        "path": "high_score_predictions.csv",
+        "column": "score"
+      },
+      {
+        "type": "file_row_count_gte",
+        "path": "high_score_predictions.csv",
+        "expected": 1
+      }
+    ],
+    "timeout_seconds": 40
+  },
+  {
+    "task_id": "sqlite_read_all_records_csv",
+    "description": "Connect to an existing SQLite database called existing.db, run a SQL query to select all rows from table records, then export to all_records.csv.",
+    "fixtures": {
+      "existing.db": "benchmark/fixtures/existing.db"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "all_records.csv"
+      },
+      {
+        "type": "file_row_count",
+        "path": "all_records.csv",
+        "expected": 20
+      },
+      {
+        "type": "file_has_column",
+        "path": "all_records.csv",
+        "column": "value"
+      },
+      {
+        "type": "file_has_column",
+        "path": "all_records.csv",
+        "column": "category"
+      }
+    ],
+    "timeout_seconds": 30
+  },
+  {
+    "task_id": "sqlite_read_all_records_json",
+    "description": "Connect to an existing SQLite database called existing.db, run a SQL query to select all rows from table records, then export to all_records.json.",
+    "fixtures": {
+      "existing.db": "benchmark/fixtures/existing.db"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "all_records.json"
+      },
+      {
+        "type": "file_row_count",
+        "path": "all_records.json",
+        "expected": 20
+      },
+      {
+        "type": "file_has_column",
+        "path": "all_records.json",
+        "column": "value"
+      }
+    ],
+    "timeout_seconds": 30
+  },
+  {
+    "task_id": "sqlite_read_sort_by_value",
+    "description": "Connect to an existing SQLite database called existing.db, run a SQL query to select all rows from table records, sort by value ascending, then export to sorted_records.csv.",
+    "fixtures": {
+      "existing.db": "benchmark/fixtures/existing.db"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "sorted_records.csv"
+      },
+      {
+        "type": "file_row_count",
+        "path": "sorted_records.csv",
+        "expected": 20
+      },
+      {
+        "type": "file_has_column",
+        "path": "sorted_records.csv",
+        "column": "value"
+      }
+    ],
+    "timeout_seconds": 30
+  },
+  {
+    "task_id": "sqlite_read_stats_export",
+    "description": "Connect to an existing SQLite database called existing.db, run a SQL query to select all rows from table records, compute a statistical summary of numeric fields, then export the summary to record_stats.json.",
+    "fixtures": {
+      "existing.db": "benchmark/fixtures/existing.db"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "record_stats.json"
+      },
+      {
+        "type": "file_row_count",
+        "path": "record_stats.json",
+        "expected": 8
+      },
+      {
+        "type": "file_has_column",
+        "path": "record_stats.json",
+        "column": "value"
+      }
+    ],
+    "timeout_seconds": 30
+  }
+]

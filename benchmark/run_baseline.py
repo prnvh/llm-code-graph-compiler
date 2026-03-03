@@ -79,8 +79,8 @@ def main():
             json.dump(data, f, indent=2)
 
         if i < n - 1:
-            print(f"  [waiting 20s before next baseline call...]")
-            time.sleep(20)
+            print(f"  [waiting 2s before next baseline call...]")
+            time.sleep(2)
 
     # Final summary
     baseline_passes  = sum(1 for r in results if r.get("baseline_success"))
