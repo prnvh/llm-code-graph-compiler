@@ -1,238 +1,11 @@
 {
-  "run_at": "2026-03-03T22:37:08.336712",
-  "task_count": 10,
-  "compiler_first_pass_rate": 1.0,
+  "run_at": "2026-03-04T17:43:30.314075",
+  "task_count": 40,
+  "compiler_first_pass_rate": 0.775,
   "results": [
     {
-      "task_id": "set_f_01_missing_required_field",
-      "description": "Schema trap task 1: read input.json, validate the schema, apply a data transformation with no operations, then export to f_schema_report_01.csv.",
-      "plan_success": true,
-      "validation_success": true,
-      "compile_success": true,
-      "run_success": true,
-      "criteria_passed": true,
-      "first_pass_success": true,
-      "plan": {
-        "nodes": [
-          "JSONParser",
-          "SchemaValidator",
-          "DataTransformer",
-          "CSVExporter"
-        ],
-        "edges": [
-          [
-            "JSONParser",
-            "SchemaValidator"
-          ],
-          [
-            "SchemaValidator",
-            "DataTransformer"
-          ],
-          [
-            "DataTransformer",
-            "CSVExporter"
-          ]
-        ],
-        "parameters": {
-          "JSONParser": {
-            "file_path": "input.json"
-          },
-          "SchemaValidator": {},
-          "DataTransformer": {},
-          "CSVExporter": {
-            "output_path": "f_schema_report_01.csv"
-          }
-        },
-        "flags": [],
-        "glue_code": ""
-      },
-      "validation_errors": [],
-      "compile_error": null,
-      "run_stdout": "[JSONParser] Loaded 50 rows from input.json\n[SchemaValidator] Schema validated\n[DataTransformer] Transformations applied\n[CSVExporter] Exported to f_schema_report_01.csv\nf_schema_report_01.csv\n",
-      "run_stderr": "",
-      "run_returncode": 0,
-      "criteria_failures": [],
-      "duration_seconds": 4.9,
-      "error": null,
-      "baseline_success": null,
-      "baseline_error": null,
-      "baseline_duration_seconds": null
-    },
-    {
-      "task_id": "set_f_02_wrong_primitive_type",
-      "description": "Schema trap task 2: read input.json, validate the schema, drop null values, then export to f_schema_report_02.csv.",
-      "plan_success": true,
-      "validation_success": true,
-      "compile_success": true,
-      "run_success": true,
-      "criteria_passed": true,
-      "first_pass_success": true,
-      "plan": {
-        "nodes": [
-          "JSONParser",
-          "SchemaValidator",
-          "NullHandler",
-          "CSVExporter"
-        ],
-        "edges": [
-          [
-            "JSONParser",
-            "SchemaValidator"
-          ],
-          [
-            "SchemaValidator",
-            "NullHandler"
-          ],
-          [
-            "NullHandler",
-            "CSVExporter"
-          ]
-        ],
-        "parameters": {
-          "JSONParser": {
-            "file_path": "input.json"
-          },
-          "SchemaValidator": {},
-          "NullHandler": {
-            "strategy": "drop"
-          },
-          "CSVExporter": {
-            "output_path": "f_schema_report_02.csv"
-          }
-        },
-        "flags": [],
-        "glue_code": ""
-      },
-      "validation_errors": [],
-      "compile_error": null,
-      "run_stdout": "[JSONParser] Loaded 50 rows from input.json\n[SchemaValidator] Schema validated\n[NullHandler] Dropped null rows\n[CSVExporter] Exported to f_schema_report_02.csv\nf_schema_report_02.csv\n",
-      "run_stderr": "",
-      "run_returncode": 0,
-      "criteria_failures": [],
-      "duration_seconds": 5.51,
-      "error": null,
-      "baseline_success": null,
-      "baseline_error": null,
-      "baseline_duration_seconds": null
-    },
-    {
-      "task_id": "set_f_03_enum_trap",
-      "description": "Schema trap task 3: read input.json, validate the schema, group by event_type and count rows, then export to f_schema_report_03.csv.",
-      "plan_success": true,
-      "validation_success": true,
-      "compile_success": true,
-      "run_success": true,
-      "criteria_passed": true,
-      "first_pass_success": true,
-      "plan": {
-        "nodes": [
-          "JSONParser",
-          "SchemaValidator",
-          "Aggregator",
-          "CSVExporter"
-        ],
-        "edges": [
-          [
-            "JSONParser",
-            "SchemaValidator"
-          ],
-          [
-            "SchemaValidator",
-            "Aggregator"
-          ],
-          [
-            "Aggregator",
-            "CSVExporter"
-          ]
-        ],
-        "parameters": {
-          "JSONParser": {
-            "file_path": "input.json"
-          },
-          "SchemaValidator": {},
-          "Aggregator": {
-            "group_by": "event_type",
-            "agg_func": "count"
-          },
-          "CSVExporter": {
-            "output_path": "f_schema_report_03.csv"
-          }
-        },
-        "flags": [],
-        "glue_code": ""
-      },
-      "validation_errors": [],
-      "compile_error": null,
-      "run_stdout": "[JSONParser] Loaded 50 rows from input.json\n[SchemaValidator] Schema validated\n[Aggregator] Aggregated using count\n[CSVExporter] Exported to f_schema_report_03.csv\nf_schema_report_03.csv\n",
-      "run_stderr": "",
-      "run_returncode": 0,
-      "criteria_failures": [],
-      "duration_seconds": 5.25,
-      "error": null,
-      "baseline_success": null,
-      "baseline_error": null,
-      "baseline_duration_seconds": null
-    },
-    {
-      "task_id": "set_f_04_additional_properties",
-      "description": "Schema trap task 4: read input.json, validate the schema, cast column types using an empty mapping, then export to f_schema_report_04.csv.",
-      "plan_success": true,
-      "validation_success": true,
-      "compile_success": true,
-      "run_success": true,
-      "criteria_passed": true,
-      "first_pass_success": true,
-      "plan": {
-        "nodes": [
-          "JSONParser",
-          "SchemaValidator",
-          "TypeCaster",
-          "CSVExporter"
-        ],
-        "edges": [
-          [
-            "JSONParser",
-            "SchemaValidator"
-          ],
-          [
-            "SchemaValidator",
-            "TypeCaster"
-          ],
-          [
-            "TypeCaster",
-            "CSVExporter"
-          ]
-        ],
-        "parameters": {
-          "JSONParser": {
-            "file_path": "input.json"
-          },
-          "SchemaValidator": {},
-          "TypeCaster": {
-            "mapping": {}
-          },
-          "CSVExporter": {
-            "output_path": "f_schema_report_04.csv"
-          }
-        },
-        "flags": [],
-        "glue_code": ""
-      },
-      "validation_errors": [],
-      "compile_error": null,
-      "run_stdout": "[JSONParser] Loaded 50 rows from input.json\n[SchemaValidator] Schema validated\n[TypeCaster] Cast columns: {}\n[CSVExporter] Exported to f_schema_report_04.csv\nf_schema_report_04.csv\n",
-      "run_stderr": "",
-      "run_returncode": 0,
-      "criteria_failures": [],
-      "duration_seconds": 5.3,
-      "error": null,
-      "baseline_success": null,
-      "baseline_error": null,
-      "baseline_duration_seconds": null
-    },
-    {
-      "task_id": "set_f_05_nullability_trap",
-      "description": "Schema trap task 5: read data.csv, drop null values, cast column types using an empty mapping, then export to f_schema_report_05.csv.",
+      "task_id": "set_f_01_json_sqlite_json_parity",
+      "description": "SQLite roundtrip task 1: read data.csv, drop null values, remove duplicate rows, store into a SQLite database called g_roundtrip1.db in table people_rows, run a SQL query to retrieve all rows from people_rows, then export to g_roundtrip1.csv.",
       "plan_success": true,
       "validation_success": true,
       "compile_success": true,
@@ -243,7 +16,9 @@
         "nodes": [
           "CSVParser",
           "NullHandler",
-          "TypeCaster",
+          "DataDeduplicator",
+          "SQLiteConnector",
+          "QueryEngine",
           "CSVExporter"
         ],
         "edges": [
@@ -253,66 +28,10 @@
           ],
           [
             "NullHandler",
-            "TypeCaster"
+            "DataDeduplicator"
           ],
           [
-            "TypeCaster",
-            "CSVExporter"
-          ]
-        ],
-        "parameters": {
-          "CSVParser": {
-            "file_path": "data.csv"
-          },
-          "NullHandler": {
-            "strategy": "drop"
-          },
-          "TypeCaster": {
-            "mapping": {}
-          },
-          "CSVExporter": {
-            "output_path": "f_schema_report_05.csv"
-          }
-        },
-        "flags": [],
-        "glue_code": ""
-      },
-      "validation_errors": [],
-      "compile_error": null,
-      "run_stdout": "[CSVParser] Loaded 30 rows from data.csv\n[NullHandler] Dropped null rows\n[TypeCaster] Cast columns: {}\n[CSVExporter] Exported to f_schema_report_05.csv\nf_schema_report_05.csv\n",
-      "run_stderr": "",
-      "run_returncode": 0,
-      "criteria_failures": [],
-      "duration_seconds": 5.06,
-      "error": null,
-      "baseline_success": null,
-      "baseline_error": null,
-      "baseline_duration_seconds": null
-    },
-    {
-      "task_id": "set_f_06_recursive_depth",
-      "description": "Schema trap task 6: read input.json, validate schema, store into a SQLite database called f_trap.db in table raw_events, run a SQL query to retrieve all rows, then export to f_schema_report_06.csv.",
-      "plan_success": true,
-      "validation_success": true,
-      "compile_success": true,
-      "run_success": true,
-      "criteria_passed": true,
-      "first_pass_success": true,
-      "plan": {
-        "nodes": [
-          "JSONParser",
-          "SchemaValidator",
-          "SQLiteConnector",
-          "QueryEngine",
-          "CSVExporter"
-        ],
-        "edges": [
-          [
-            "JSONParser",
-            "SchemaValidator"
-          ],
-          [
-            "SchemaValidator",
+            "DataDeduplicator",
             "SQLiteConnector"
           ],
           [
@@ -325,130 +44,82 @@
           ]
         ],
         "parameters": {
-          "JSONParser": {
-            "file_path": "input.json"
-          },
-          "SchemaValidator": {},
-          "SQLiteConnector": {
-            "db_path": "f_trap.db",
-            "table_name": "raw_events"
-          },
-          "QueryEngine": {
-            "query": "SELECT * FROM raw_events"
-          },
-          "CSVExporter": {
-            "output_path": "f_schema_report_06.csv"
-          }
-        },
-        "flags": [],
-        "glue_code": ""
-      },
-      "validation_errors": [],
-      "compile_error": null,
-      "run_stdout": "[JSONParser] Loaded 50 rows from input.json\n[SchemaValidator] Schema validated\n[SQLiteConnector] Stored table 'raw_events' in f_trap.db\n[QueryEngine] Query executed\n[CSVExporter] Exported to f_schema_report_06.csv\nf_schema_report_06.csv\n",
-      "run_stderr": "",
-      "run_returncode": 0,
-      "criteria_failures": [],
-      "duration_seconds": 6.62,
-      "error": null,
-      "baseline_success": null,
-      "baseline_error": null,
-      "baseline_duration_seconds": null
-    },
-    {
-      "task_id": "set_f_07_id_uniqueness",
-      "description": "Schema trap task 7: read data.csv, remove duplicate rows, group by department and count rows, then export to f_schema_report_07.csv.",
-      "plan_success": true,
-      "validation_success": true,
-      "compile_success": true,
-      "run_success": true,
-      "criteria_passed": true,
-      "first_pass_success": true,
-      "plan": {
-        "nodes": [
-          "CSVParser",
-          "DataDeduplicator",
-          "Aggregator",
-          "CSVExporter"
-        ],
-        "edges": [
-          [
-            "CSVParser",
-            "DataDeduplicator"
-          ],
-          [
-            "DataDeduplicator",
-            "Aggregator"
-          ],
-          [
-            "Aggregator",
-            "CSVExporter"
-          ]
-        ],
-        "parameters": {
-          "CSVParser": {
-            "file_path": "data.csv"
-          },
-          "DataDeduplicator": {},
-          "Aggregator": {
-            "group_by": "department",
-            "agg_func": "count"
-          },
-          "CSVExporter": {
-            "output_path": "f_schema_report_07.csv"
-          }
-        },
-        "flags": [],
-        "glue_code": ""
-      },
-      "validation_errors": [],
-      "compile_error": null,
-      "run_stdout": "[CSVParser] Loaded 23 rows from data.csv\n[DataDeduplicator] Removed duplicate rows\n[Aggregator] Aggregated using count\n[CSVExporter] Exported to f_schema_report_07.csv\nf_schema_report_07.csv\n",
-      "run_stderr": "",
-      "run_returncode": 0,
-      "criteria_failures": [],
-      "duration_seconds": 5.19,
-      "error": null,
-      "baseline_success": null,
-      "baseline_error": null,
-      "baseline_duration_seconds": null
-    },
-    {
-      "task_id": "set_f_08_foreign_key_trap",
-      "description": "Schema trap task 8: read data.csv, drop null values, select name, department, region, salary, then export to f_schema_report_08.csv.",
-      "plan_success": true,
-      "validation_success": true,
-      "compile_success": true,
-      "run_success": true,
-      "criteria_passed": true,
-      "first_pass_success": true,
-      "plan": {
-        "nodes": [
-          "CSVParser",
-          "NullHandler",
-          "ColumnSelector",
-          "CSVExporter"
-        ],
-        "edges": [
-          [
-            "CSVParser",
-            "NullHandler"
-          ],
-          [
-            "NullHandler",
-            "ColumnSelector"
-          ],
-          [
-            "ColumnSelector",
-            "CSVExporter"
-          ]
-        ],
-        "parameters": {
           "CSVParser": {
             "file_path": "data.csv"
           },
           "NullHandler": {
             "strategy": "drop"
+          },
+          "DataDeduplicator": {},
+          "SQLiteConnector": {
+            "db_path": "g_roundtrip1.db",
+            "table_name": "people_rows"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM people_rows"
+          },
+          "CSVExporter": {
+            "output_path": "g_roundtrip1.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 10 rows from data.csv\n[NullHandler] Dropped null rows\n[DataDeduplicator] Removed duplicate rows\n[SQLiteConnector] Stored table 'people_rows' in g_roundtrip1.db\n[QueryEngine] Query executed\n[CSVExporter] Exported to g_roundtrip1.csv\ng_roundtrip1.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 8.37,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_f_02_node_normalization_roundtrip",
+      "description": "SQLite roundtrip task 2: read data.csv, select name, department, region, salary, cast column types using an empty mapping, store into a SQLite database called g_roundtrip2.db in table employee_rows, run a SQL query to retrieve all rows from employee_rows, then export to g_roundtrip2.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "ColumnSelector",
+          "TypeCaster",
+          "SQLiteConnector",
+          "QueryEngine",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "ColumnSelector"
+          ],
+          [
+            "ColumnSelector",
+            "TypeCaster"
+          ],
+          [
+            "TypeCaster",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
           },
           "ColumnSelector": {
             "columns": [
@@ -458,8 +129,18 @@
               "salary"
             ]
           },
+          "TypeCaster": {
+            "mapping": {}
+          },
+          "SQLiteConnector": {
+            "db_path": "g_roundtrip2.db",
+            "table_name": "employee_rows"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM employee_rows"
+          },
           "CSVExporter": {
-            "output_path": "f_schema_report_08.csv"
+            "output_path": "g_roundtrip2.csv"
           }
         },
         "flags": [],
@@ -467,25 +148,573 @@
       },
       "validation_errors": [],
       "compile_error": null,
-      "run_stdout": "[CSVParser] Loaded 23 rows from data.csv\n[NullHandler] Dropped null rows\n[ColumnSelector] Selected columns: ['name', 'department', 'region', 'salary']\n[CSVExporter] Exported to f_schema_report_08.csv\nf_schema_report_08.csv\n",
+      "run_stdout": "[CSVParser] Loaded 23 rows from data.csv\n[ColumnSelector] Selected columns: ['name', 'department', 'region', 'salary']\n[TypeCaster] Cast columns: {}\n[SQLiteConnector] Stored table 'employee_rows' in g_roundtrip2.db\n[QueryEngine] Query executed\n[CSVExporter] Exported to g_roundtrip2.csv\ng_roundtrip2.csv\n",
       "run_stderr": "",
       "run_returncode": 0,
       "criteria_failures": [],
-      "duration_seconds": 5.55,
+      "duration_seconds": 9.13,
       "error": null,
       "baseline_success": null,
       "baseline_error": null,
       "baseline_duration_seconds": null
     },
     {
-      "task_id": "set_f_09_version_skew",
-      "description": "Schema trap task 9: read input.json, validate the schema, apply a data transformation with no operations, store into a SQLite database called f_version.db in table events, run a SQL query to retrieve all rows, then export to f_schema_report_09.csv.",
+      "task_id": "set_f_03_edge_integrity_roundtrip",
+      "description": "SQLite roundtrip task 3: read data.csv, drop null values, filter rows where score is greater than 0.2, store into a SQLite database called g_roundtrip3.db in table score_rows, run a SQL query to retrieve all rows from score_rows, then export to g_roundtrip3.csv.",
       "plan_success": true,
       "validation_success": true,
       "compile_success": true,
       "run_success": true,
       "criteria_passed": true,
       "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataFilter",
+          "SQLiteConnector",
+          "QueryEngine",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataFilter": {
+            "condition": "score > 0.2"
+          },
+          "SQLiteConnector": {
+            "db_path": "g_roundtrip3.db",
+            "table_name": "score_rows"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM score_rows"
+          },
+          "CSVExporter": {
+            "output_path": "g_roundtrip3.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 30 rows from data.csv\n[NullHandler] Dropped null rows\n[DataFilter] Applied condition: score > 0.2\n[SQLiteConnector] Stored table 'score_rows' in g_roundtrip3.db\n[QueryEngine] Query executed\n[CSVExporter] Exported to g_roundtrip3.csv\ng_roundtrip3.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 8.1,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_f_04_tx_rollback_roundtrip",
+      "description": "SQLite roundtrip task 4: read data.csv, drop null values, remove duplicate rows, select name, status, signup_date, store into a SQLite database called g_roundtrip4.db in table customer_rows, run a SQL query to retrieve all rows from customer_rows, then export to g_roundtrip4.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataDeduplicator",
+          "ColumnSelector",
+          "SQLiteConnector",
+          "QueryEngine",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "ColumnSelector"
+          ],
+          [
+            "ColumnSelector",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataDeduplicator": {},
+          "ColumnSelector": {
+            "columns": [
+              "name",
+              "status",
+              "signup_date"
+            ]
+          },
+          "SQLiteConnector": {
+            "db_path": "g_roundtrip4.db",
+            "table_name": "customer_rows"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM customer_rows"
+          },
+          "CSVExporter": {
+            "output_path": "g_roundtrip4.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 20 rows from data.csv\n[NullHandler] Dropped null rows\n[DataDeduplicator] Removed duplicate rows\n[ColumnSelector] Selected columns: ['name', 'status', 'signup_date']\n[SQLiteConnector] Stored table 'customer_rows' in g_roundtrip4.db\n[QueryEngine] Query executed\n[CSVExporter] Exported to g_roundtrip4.csv\ng_roundtrip4.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 9.67,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_f_05_index_impact_roundtrip",
+      "description": "SQLite roundtrip task 5: read input.json, validate schema, store into a SQLite database called g_roundtrip5.db in table raw_events, run a SQL query to retrieve all rows from raw_events, then export to g_roundtrip5.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "JSONParser",
+          "SchemaValidator",
+          "SQLiteConnector",
+          "QueryEngine",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "JSONParser",
+            "SchemaValidator"
+          ],
+          [
+            "SchemaValidator",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "JSONParser": {
+            "file_path": "input.json"
+          },
+          "SchemaValidator": {},
+          "SQLiteConnector": {
+            "db_path": "g_roundtrip5.db",
+            "table_name": "raw_events"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM raw_events"
+          },
+          "CSVExporter": {
+            "output_path": "g_roundtrip5.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[JSONParser] Loaded 50 rows from input.json\n[SchemaValidator] Schema validated\n[SQLiteConnector] Stored table 'raw_events' in g_roundtrip5.db\n[QueryEngine] Query executed\n[CSVExporter] Exported to g_roundtrip5.csv\ng_roundtrip5.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 6.81,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_f_06_utf8_roundtrip",
+      "description": "SQLite roundtrip task 6: read data.csv, drop null values, cast column types using an empty mapping, store into a SQLite database called g_roundtrip6.db in table people_rows, run a SQL query to retrieve all rows from people_rows, then export to g_roundtrip6.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "TypeCaster",
+          "SQLiteConnector",
+          "QueryEngine",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "TypeCaster"
+          ],
+          [
+            "TypeCaster",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "TypeCaster": {
+            "mapping": {}
+          },
+          "SQLiteConnector": {
+            "db_path": "g_roundtrip6.db",
+            "table_name": "people_rows"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM people_rows"
+          },
+          "CSVExporter": {
+            "output_path": "g_roundtrip6.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 10 rows from data.csv\n[NullHandler] Dropped null rows\n[TypeCaster] Cast columns: {}\n[SQLiteConnector] Stored table 'people_rows' in g_roundtrip6.db\n[QueryEngine] Query executed\n[CSVExporter] Exported to g_roundtrip6.csv\ng_roundtrip6.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 9.17,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_f_07_deterministic_order_roundtrip",
+      "description": "SQLite roundtrip task 7: read data.csv, drop null values, remove duplicate rows, sort by salary descending, store into a SQLite database called g_roundtrip7.db in table employee_rows, run a SQL query to retrieve all rows from employee_rows, then export to g_roundtrip7.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataDeduplicator",
+          "DataSorter",
+          "SQLiteConnector",
+          "QueryEngine",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataDeduplicator": {},
+          "DataSorter": {
+            "by": "salary",
+            "ascending": false
+          },
+          "SQLiteConnector": {
+            "db_path": "g_roundtrip7.db",
+            "table_name": "employee_rows"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM employee_rows"
+          },
+          "CSVExporter": {
+            "output_path": "g_roundtrip7.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 23 rows from data.csv\n[NullHandler] Dropped null rows\n[DataDeduplicator] Removed duplicate rows\n[DataSorter] Sorted by 'salary' (descending)\n[SQLiteConnector] Stored table 'employee_rows' in g_roundtrip7.db\n[QueryEngine] Query executed\n[CSVExporter] Exported to g_roundtrip7.csv\ng_roundtrip7.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 10.67,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_f_08_incremental_upsert_roundtrip",
+      "description": "SQLite roundtrip task 8: read data.csv, drop null values, filter rows where score is greater than 0.4, cast column types using an empty mapping, store into a SQLite database called g_roundtrip8.db in table score_rows, run a SQL query to retrieve all rows from score_rows, then export to g_roundtrip8.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataFilter",
+          "TypeCaster",
+          "SQLiteConnector",
+          "QueryEngine",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "TypeCaster"
+          ],
+          [
+            "TypeCaster",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataFilter": {
+            "condition": "score > 0.4"
+          },
+          "TypeCaster": {
+            "mapping": {}
+          },
+          "SQLiteConnector": {
+            "db_path": "g_roundtrip8.db",
+            "table_name": "score_rows"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM score_rows"
+          },
+          "CSVExporter": {
+            "output_path": "g_roundtrip8.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 30 rows from data.csv\n[NullHandler] Dropped null rows\n[DataFilter] Applied condition: score > 0.4\n[TypeCaster] Cast columns: {}\n[SQLiteConnector] Stored table 'score_rows' in g_roundtrip8.db\n[QueryEngine] Query executed\n[CSVExporter] Exported to g_roundtrip8.csv\ng_roundtrip8.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 13.56,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_f_09_corruption_detection_roundtrip",
+      "description": "SQLite roundtrip task 9: read data.csv, filter rows where status equals active, sort by signup_date ascending, store into a SQLite database called g_roundtrip9.db in table active_customers, run a SQL query to retrieve all rows from active_customers, then export to g_roundtrip9.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "DataFilter",
+          "DataSorter",
+          "SQLiteConnector",
+          "QueryEngine",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "DataFilter": {
+            "condition": "status == 'active'"
+          },
+          "DataSorter": {
+            "by": "signup_date",
+            "ascending": true
+          },
+          "SQLiteConnector": {
+            "db_path": "g_roundtrip9.db",
+            "table_name": "active_customers"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM active_customers"
+          },
+          "CSVExporter": {
+            "output_path": "g_roundtrip9.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 20 rows from data.csv\n[DataFilter] Applied condition: status == 'active'\n[DataSorter] Sorted by 'signup_date' (ascending)\n[SQLiteConnector] Stored table 'active_customers' in g_roundtrip9.db\n[QueryEngine] Query executed\n[CSVExporter] Exported to g_roundtrip9.csv\ng_roundtrip9.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 9.28,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_f_10_schema_migration_roundtrip",
+      "description": "SQLite roundtrip task 10: read input.json, validate schema, apply a data transformation with no operations, store into a SQLite database called g_roundtrip10.db in table events, run a SQL query to retrieve all rows from events, group by event_type and count rows, then export to g_roundtrip10.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": false,
+      "first_pass_success": false,
       "plan": {
         "nodes": [
           "JSONParser",
@@ -524,14 +753,14 @@
           "SchemaValidator": {},
           "DataTransformer": {},
           "SQLiteConnector": {
-            "db_path": "f_version.db",
+            "db_path": "g_roundtrip10.db",
             "table_name": "events"
           },
           "QueryEngine": {
-            "query": "SELECT * FROM events"
+            "query": "SELECT event_type, COUNT(*) FROM events GROUP BY event_type"
           },
           "CSVExporter": {
-            "output_path": "f_schema_report_09.csv"
+            "output_path": "g_roundtrip10.csv"
           }
         },
         "flags": [],
@@ -539,7 +768,297 @@
       },
       "validation_errors": [],
       "compile_error": null,
-      "run_stdout": "[JSONParser] Loaded 50 rows from input.json\n[SchemaValidator] Schema validated\n[DataTransformer] Transformations applied\n[SQLiteConnector] Stored table 'events' in f_version.db\n[QueryEngine] Query executed\n[CSVExporter] Exported to f_schema_report_09.csv\nf_schema_report_09.csv\n",
+      "run_stdout": "[JSONParser] Loaded 50 rows from input.json\n[SchemaValidator] Schema validated\n[DataTransformer] Transformations applied\n[SQLiteConnector] Stored table 'events' in g_roundtrip10.db\n[QueryEngine] Query executed\n[CSVExporter] Exported to g_roundtrip10.csv\ng_roundtrip10.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [
+        "file_has_column: column 'count' not in 'g_roundtrip10.csv'"
+      ],
+      "duration_seconds": 7.45,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_f_11_sales_filter_roundtrip",
+      "description": "SQLite roundtrip task 11: read data.csv, drop null values, filter rows where revenue is greater than 100, store into a SQLite database called g_roundtrip11.db in table high_revenue, run a SQL query to retrieve all rows from high_revenue, then export to g_roundtrip11.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": false,
+      "first_pass_success": false,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataFilter",
+          "SQLiteConnector",
+          "QueryEngine",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataFilter": {
+            "condition": "revenue > 100"
+          },
+          "SQLiteConnector": {
+            "db_path": "g_roundtrip11.db",
+            "table_name": "high_revenue"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM high_revenue"
+          },
+          "CSVExporter": {
+            "output_path": "g_roundtrip11.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 40 rows from data.csv\n[NullHandler] Dropped null rows\n[DataFilter] Applied condition: revenue > 100\n[SQLiteConnector] Stored table 'high_revenue' in g_roundtrip11.db\n[QueryEngine] Query executed\n[CSVExporter] Exported to g_roundtrip11.csv\ng_roundtrip11.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [
+        "file_row_count: 'g_roundtrip11.csv' has 27 rows, expected 25"
+      ],
+      "duration_seconds": 7.52,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_f_12_products_full_roundtrip",
+      "description": "SQLite roundtrip task 12: read input.json, drop null values, store into a SQLite database called g_roundtrip12.db in table products, run a SQL query to retrieve all rows from products, then export to g_roundtrip12.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "JSONParser",
+          "NullHandler",
+          "SQLiteConnector",
+          "QueryEngine",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "JSONParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "JSONParser": {
+            "file_path": "input.json"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "SQLiteConnector": {
+            "db_path": "g_roundtrip12.db",
+            "table_name": "products"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM products"
+          },
+          "CSVExporter": {
+            "output_path": "g_roundtrip12.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[JSONParser] Loaded 25 rows from input.json\n[NullHandler] Dropped null rows\n[SQLiteConnector] Stored table 'products' in g_roundtrip12.db\n[QueryEngine] Query executed\n[CSVExporter] Exported to g_roundtrip12.csv\ng_roundtrip12.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 5.92,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_f_13_sales_dedup_roundtrip",
+      "description": "SQLite roundtrip task 13: read data.csv, drop null values, remove duplicate rows, store into a SQLite database called g_roundtrip13.db in table sales, run a SQL query to retrieve all rows from sales, then export to g_roundtrip13.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataDeduplicator",
+          "SQLiteConnector",
+          "QueryEngine",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataDeduplicator": {},
+          "SQLiteConnector": {
+            "db_path": "g_roundtrip13.db",
+            "table_name": "sales"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM sales"
+          },
+          "CSVExporter": {
+            "output_path": "g_roundtrip13.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 40 rows from data.csv\n[NullHandler] Dropped null rows\n[DataDeduplicator] Removed duplicate rows\n[SQLiteConnector] Stored table 'sales' in g_roundtrip13.db\n[QueryEngine] Query executed\n[CSVExporter] Exported to g_roundtrip13.csv\ng_roundtrip13.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 6.3,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_f_14_products_filter_roundtrip",
+      "description": "SQLite roundtrip task 14: read input.json, filter rows where price is greater than 50, store into a SQLite database called g_roundtrip14.db in table expensive, run a SQL query to retrieve all rows from expensive, then export to g_roundtrip14.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "JSONParser",
+          "DataFilter",
+          "SQLiteConnector",
+          "QueryEngine",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "JSONParser",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "JSONParser": {
+            "file_path": "input.json"
+          },
+          "DataFilter": {
+            "condition": "price > 50"
+          },
+          "SQLiteConnector": {
+            "db_path": "g_roundtrip14.db",
+            "table_name": "expensive"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM expensive"
+          },
+          "CSVExporter": {
+            "output_path": "g_roundtrip14.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[JSONParser] Loaded 25 rows from input.json\n[DataFilter] Applied condition: price > 50\n[SQLiteConnector] Stored table 'expensive' in g_roundtrip14.db\n[QueryEngine] Query executed\n[CSVExporter] Exported to g_roundtrip14.csv\ng_roundtrip14.csv\n",
       "run_stderr": "",
       "run_returncode": 0,
       "criteria_failures": [],
@@ -550,8 +1069,245 @@
       "baseline_duration_seconds": null
     },
     {
-      "task_id": "set_f_10_oversized_payload",
-      "description": "Schema trap task 10: read data.csv, drop null values, remove duplicate rows, filter rows where score is greater than 0.1, then export to f_schema_report_10.csv.",
+      "task_id": "set_f_15_sales_typecast_roundtrip",
+      "description": "SQLite roundtrip task 15: read data.csv, drop null values, cast column types using an empty mapping, store into a SQLite database called g_roundtrip15.db in table sales, run a SQL query to retrieve all rows from sales, then export to g_roundtrip15.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "TypeCaster",
+          "SQLiteConnector",
+          "QueryEngine",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "TypeCaster"
+          ],
+          [
+            "TypeCaster",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "TypeCaster": {
+            "mapping": {}
+          },
+          "SQLiteConnector": {
+            "db_path": "g_roundtrip15.db",
+            "table_name": "sales"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM sales"
+          },
+          "CSVExporter": {
+            "output_path": "g_roundtrip15.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 40 rows from data.csv\n[NullHandler] Dropped null rows\n[TypeCaster] Cast columns: {}\n[SQLiteConnector] Stored table 'sales' in g_roundtrip15.db\n[QueryEngine] Query executed\n[CSVExporter] Exported to g_roundtrip15.csv\ng_roundtrip15.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 7.24,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_f_16_sales_sqlite_post_agg",
+      "description": "SQLite roundtrip task 16: read data.csv, drop null values, remove duplicate rows, store into a SQLite database called g_roundtrip16.db in table sales, run a SQL query to retrieve all rows from sales, group by category and count rows, then export to g_roundtrip16.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": false,
+      "first_pass_success": false,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataDeduplicator",
+          "SQLiteConnector",
+          "QueryEngine",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataDeduplicator": {},
+          "SQLiteConnector": {
+            "db_path": "g_roundtrip16.db",
+            "table_name": "sales"
+          },
+          "QueryEngine": {
+            "query": "SELECT category, COUNT(*) FROM sales GROUP BY category"
+          },
+          "CSVExporter": {
+            "output_path": "g_roundtrip16.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 40 rows from data.csv\n[NullHandler] Dropped null rows\n[DataDeduplicator] Removed duplicate rows\n[SQLiteConnector] Stored table 'sales' in g_roundtrip16.db\n[QueryEngine] Query executed\n[CSVExporter] Exported to g_roundtrip16.csv\ng_roundtrip16.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [
+        "file_has_column: column 'count' not in 'g_roundtrip16.csv'"
+      ],
+      "duration_seconds": 6.91,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_f_17_products_filter_sqlite_sort",
+      "description": "SQLite roundtrip task 17: read input.json, drop null values, filter rows where price is greater than 50, store into a SQLite database called g_roundtrip17.db in table products, run a SQL query to retrieve all rows from products, sort by price descending, then export to g_roundtrip17.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "JSONParser",
+          "NullHandler",
+          "DataFilter",
+          "SQLiteConnector",
+          "QueryEngine",
+          "DataSorter",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "JSONParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "JSONParser": {
+            "file_path": "input.json"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataFilter": {
+            "condition": "price > 50"
+          },
+          "SQLiteConnector": {
+            "db_path": "g_roundtrip17.db",
+            "table_name": "products"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM products"
+          },
+          "DataSorter": {
+            "by": "price",
+            "ascending": false
+          },
+          "CSVExporter": {
+            "output_path": "g_roundtrip17.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[JSONParser] Loaded 25 rows from input.json\n[NullHandler] Dropped null rows\n[DataFilter] Applied condition: price > 50\n[SQLiteConnector] Stored table 'products' in g_roundtrip17.db\n[QueryEngine] Query executed\n[DataSorter] Sorted by 'price' (descending)\n[CSVExporter] Exported to g_roundtrip17.csv\ng_roundtrip17.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 9.08,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_f_18_employees_dedup_typecast_roundtrip",
+      "description": "SQLite roundtrip task 18: read data.csv, drop null values, remove duplicate rows, cast column types using an empty mapping, store into a SQLite database called g_roundtrip18.db in table employees, run a SQL query to retrieve all rows from employees, then export to g_roundtrip18.csv.",
       "plan_success": true,
       "validation_success": true,
       "compile_success": true,
@@ -563,7 +1319,1393 @@
           "CSVParser",
           "NullHandler",
           "DataDeduplicator",
+          "TypeCaster",
+          "SQLiteConnector",
+          "QueryEngine",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "TypeCaster"
+          ],
+          [
+            "TypeCaster",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataDeduplicator": {},
+          "TypeCaster": {
+            "mapping": {}
+          },
+          "SQLiteConnector": {
+            "db_path": "g_roundtrip18.db",
+            "table_name": "employees"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM employees"
+          },
+          "CSVExporter": {
+            "output_path": "g_roundtrip18.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 23 rows from data.csv\n[NullHandler] Dropped null rows\n[DataDeduplicator] Removed duplicate rows\n[TypeCaster] Cast columns: {}\n[SQLiteConnector] Stored table 'employees' in g_roundtrip18.db\n[QueryEngine] Query executed\n[CSVExporter] Exported to g_roundtrip18.csv\ng_roundtrip18.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 9.21,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_f_19_predictions_filter_sqlite_sort",
+      "description": "SQLite roundtrip task 19: read data.csv, drop null values, filter rows where score is greater than 0.5, store into a SQLite database called g_roundtrip19.db in table scores, run a SQL query to retrieve all rows from scores, sort by score descending, then export to g_roundtrip19.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
           "DataFilter",
+          "SQLiteConnector",
+          "QueryEngine",
+          "DataSorter",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataFilter": {
+            "condition": "score > 0.5"
+          },
+          "SQLiteConnector": {
+            "db_path": "g_roundtrip19.db",
+            "table_name": "scores"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM scores"
+          },
+          "DataSorter": {
+            "by": "score",
+            "ascending": false
+          },
+          "CSVExporter": {
+            "output_path": "g_roundtrip19.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 30 rows from data.csv\n[NullHandler] Dropped null rows\n[DataFilter] Applied condition: score > 0.5\n[SQLiteConnector] Stored table 'scores' in g_roundtrip19.db\n[QueryEngine] Query executed\n[DataSorter] Sorted by 'score' (descending)\n[CSVExporter] Exported to g_roundtrip19.csv\ng_roundtrip19.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 8.16,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_f_20_customers_active_sqlite_sort",
+      "description": "SQLite roundtrip task 20: read data.csv, filter rows where status equals active, cast column types using an empty mapping, store into a SQLite database called g_roundtrip20.db in table customers, run a SQL query to retrieve all rows from customers, sort by signup_date ascending, then export to g_roundtrip20.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "DataFilter",
+          "TypeCaster",
+          "SQLiteConnector",
+          "QueryEngine",
+          "DataSorter",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "TypeCaster"
+          ],
+          [
+            "TypeCaster",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "DataFilter": {
+            "condition": "status == 'active'"
+          },
+          "TypeCaster": {
+            "mapping": {}
+          },
+          "SQLiteConnector": {
+            "db_path": "g_roundtrip20.db",
+            "table_name": "customers"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM customers"
+          },
+          "DataSorter": {
+            "by": "signup_date",
+            "ascending": true
+          },
+          "CSVExporter": {
+            "output_path": "g_roundtrip20.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 20 rows from data.csv\n[DataFilter] Applied condition: status == 'active'\n[TypeCaster] Cast columns: {}\n[SQLiteConnector] Stored table 'customers' in g_roundtrip20.db\n[QueryEngine] Query executed\n[DataSorter] Sorted by 'signup_date' (ascending)\n[CSVExporter] Exported to g_roundtrip20.csv\ng_roundtrip20.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 9.32,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_f_11_sales_filter_roundtrip",
+      "description": "SQLite roundtrip task 11: read data.csv, drop null values, filter rows where revenue is greater than 100, store into a SQLite database called g_roundtrip11.db in table high_revenue, run a SQL query to retrieve all rows from high_revenue, then export to g_roundtrip11.csv.",
+      "plan_success": true,
+      "validation_success": false,
+      "compile_success": false,
+      "run_success": false,
+      "criteria_passed": false,
+      "first_pass_success": false,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataFilter",
+          "SQLiteConnector",
+          "SQLiteReader",
+          "QueryEngine",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "SQLiteReader"
+          ],
+          [
+            "SQLiteReader",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataFilter": {
+            "condition": "revenue > 100"
+          },
+          "SQLiteConnector": {
+            "db_path": "g_roundtrip11.db",
+            "table_name": "high_revenue"
+          },
+          "SQLiteReader": {
+            "db_path": "g_roundtrip11.db"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM high_revenue"
+          },
+          "CSVExporter": {
+            "output_path": "g_roundtrip11.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [
+        "TYPE_MISMATCH: [SQLiteConnector -> SQLiteReader] NodeType.DB_HANDLE != NodeType.FILE_PATH"
+      ],
+      "compile_error": null,
+      "run_stdout": "",
+      "run_stderr": "",
+      "run_returncode": null,
+      "criteria_failures": [],
+      "duration_seconds": 9.34,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_f_12_products_full_roundtrip",
+      "description": "SQLite roundtrip task 12: read input.json, drop null values, store into a SQLite database called g_roundtrip12.db in table products, run a SQL query to retrieve all rows from products, then export to g_roundtrip12.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "JSONParser",
+          "NullHandler",
+          "SQLiteConnector",
+          "QueryEngine",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "JSONParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "JSONParser": {
+            "file_path": "input.json"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "SQLiteConnector": {
+            "db_path": "g_roundtrip12.db",
+            "table_name": "products"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM products"
+          },
+          "CSVExporter": {
+            "output_path": "g_roundtrip12.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[JSONParser] Loaded 25 rows from input.json\n[NullHandler] Dropped null rows\n[SQLiteConnector] Stored table 'products' in g_roundtrip12.db\n[QueryEngine] Query executed\n[CSVExporter] Exported to g_roundtrip12.csv\ng_roundtrip12.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 7.27,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_f_13_sales_dedup_roundtrip",
+      "description": "SQLite roundtrip task 13: read data.csv, drop null values, remove duplicate rows, store into a SQLite database called g_roundtrip13.db in table sales, run a SQL query to retrieve all rows from sales, then export to g_roundtrip13.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataDeduplicator",
+          "SQLiteConnector",
+          "QueryEngine",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataDeduplicator": {},
+          "SQLiteConnector": {
+            "db_path": "g_roundtrip13.db",
+            "table_name": "sales"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM sales"
+          },
+          "CSVExporter": {
+            "output_path": "g_roundtrip13.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 40 rows from data.csv\n[NullHandler] Dropped null rows\n[DataDeduplicator] Removed duplicate rows\n[SQLiteConnector] Stored table 'sales' in g_roundtrip13.db\n[QueryEngine] Query executed\n[CSVExporter] Exported to g_roundtrip13.csv\ng_roundtrip13.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 7.55,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_f_14_products_filter_roundtrip",
+      "description": "SQLite roundtrip task 14: read input.json, filter rows where price is greater than 50, store into a SQLite database called g_roundtrip14.db in table expensive, run a SQL query to retrieve all rows from expensive, then export to g_roundtrip14.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "JSONParser",
+          "DataFilter",
+          "SQLiteConnector",
+          "QueryEngine",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "JSONParser",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "JSONParser": {
+            "file_path": "input.json"
+          },
+          "DataFilter": {
+            "condition": "price > 50"
+          },
+          "SQLiteConnector": {
+            "db_path": "g_roundtrip14.db",
+            "table_name": "expensive"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM expensive"
+          },
+          "CSVExporter": {
+            "output_path": "g_roundtrip14.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[JSONParser] Loaded 25 rows from input.json\n[DataFilter] Applied condition: price > 50\n[SQLiteConnector] Stored table 'expensive' in g_roundtrip14.db\n[QueryEngine] Query executed\n[CSVExporter] Exported to g_roundtrip14.csv\ng_roundtrip14.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 10.97,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_f_15_sales_typecast_roundtrip",
+      "description": "SQLite roundtrip task 15: read data.csv, drop null values, cast column types using an empty mapping, store into a SQLite database called g_roundtrip15.db in table sales, run a SQL query to retrieve all rows from sales, then export to g_roundtrip15.csv.",
+      "plan_success": true,
+      "validation_success": false,
+      "compile_success": false,
+      "run_success": false,
+      "criteria_passed": false,
+      "first_pass_success": false,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "TypeCaster",
+          "SQLiteConnector",
+          "SQLiteReader",
+          "QueryEngine",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "TypeCaster"
+          ],
+          [
+            "TypeCaster",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "SQLiteReader"
+          ],
+          [
+            "SQLiteReader",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "TypeCaster": {
+            "mapping": {}
+          },
+          "SQLiteConnector": {
+            "db_path": "g_roundtrip15.db",
+            "table_name": "sales"
+          },
+          "SQLiteReader": {
+            "db_path": "g_roundtrip15.db"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM sales"
+          },
+          "CSVExporter": {
+            "output_path": "g_roundtrip15.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [
+        "TYPE_MISMATCH: [SQLiteConnector -> SQLiteReader] NodeType.DB_HANDLE != NodeType.FILE_PATH"
+      ],
+      "compile_error": null,
+      "run_stdout": "",
+      "run_stderr": "",
+      "run_returncode": null,
+      "criteria_failures": [],
+      "duration_seconds": 7.31,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_f_16_sales_sqlite_post_agg",
+      "description": "SQLite roundtrip task 16: read data.csv, drop null values, remove duplicate rows, store into a SQLite database called g_roundtrip16.db in table sales, run a SQL query to retrieve all rows from sales, group by category and count rows, then export to g_roundtrip16.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": false,
+      "first_pass_success": false,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataDeduplicator",
+          "SQLiteConnector",
+          "QueryEngine",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataDeduplicator": {},
+          "SQLiteConnector": {
+            "db_path": "g_roundtrip16.db",
+            "table_name": "sales"
+          },
+          "QueryEngine": {
+            "query": "SELECT category, COUNT(*) FROM sales GROUP BY category"
+          },
+          "CSVExporter": {
+            "output_path": "g_roundtrip16.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 40 rows from data.csv\n[NullHandler] Dropped null rows\n[DataDeduplicator] Removed duplicate rows\n[SQLiteConnector] Stored table 'sales' in g_roundtrip16.db\n[QueryEngine] Query executed\n[CSVExporter] Exported to g_roundtrip16.csv\ng_roundtrip16.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [
+        "file_has_column: column 'count' not in 'g_roundtrip16.csv'"
+      ],
+      "duration_seconds": 8.72,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_f_17_products_filter_sqlite_sort",
+      "description": "SQLite roundtrip task 17: read input.json, drop null values, filter rows where price is greater than 50, store into a SQLite database called g_roundtrip17.db in table products, run a SQL query to retrieve all rows from products, sort by price descending, then export to g_roundtrip17.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "JSONParser",
+          "NullHandler",
+          "DataFilter",
+          "SQLiteConnector",
+          "QueryEngine",
+          "DataSorter",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "JSONParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "JSONParser": {
+            "file_path": "input.json"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataFilter": {
+            "condition": "price > 50"
+          },
+          "SQLiteConnector": {
+            "db_path": "g_roundtrip17.db",
+            "table_name": "products"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM products"
+          },
+          "DataSorter": {
+            "by": "price",
+            "ascending": false
+          },
+          "CSVExporter": {
+            "output_path": "g_roundtrip17.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[JSONParser] Loaded 25 rows from input.json\n[NullHandler] Dropped null rows\n[DataFilter] Applied condition: price > 50\n[SQLiteConnector] Stored table 'products' in g_roundtrip17.db\n[QueryEngine] Query executed\n[DataSorter] Sorted by 'price' (descending)\n[CSVExporter] Exported to g_roundtrip17.csv\ng_roundtrip17.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 10.51,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_f_18_employees_dedup_typecast_roundtrip",
+      "description": "SQLite roundtrip task 18: read data.csv, drop null values, remove duplicate rows, cast column types using an empty mapping, store into a SQLite database called g_roundtrip18.db in table employees, run a SQL query to retrieve all rows from employees, then export to g_roundtrip18.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataDeduplicator",
+          "TypeCaster",
+          "SQLiteConnector",
+          "QueryEngine",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "TypeCaster"
+          ],
+          [
+            "TypeCaster",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataDeduplicator": {},
+          "TypeCaster": {
+            "mapping": {}
+          },
+          "SQLiteConnector": {
+            "db_path": "g_roundtrip18.db",
+            "table_name": "employees"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM employees"
+          },
+          "CSVExporter": {
+            "output_path": "g_roundtrip18.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 23 rows from data.csv\n[NullHandler] Dropped null rows\n[DataDeduplicator] Removed duplicate rows\n[TypeCaster] Cast columns: {}\n[SQLiteConnector] Stored table 'employees' in g_roundtrip18.db\n[QueryEngine] Query executed\n[CSVExporter] Exported to g_roundtrip18.csv\ng_roundtrip18.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 10.41,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_f_19_predictions_filter_sqlite_sort",
+      "description": "SQLite roundtrip task 19: read data.csv, drop null values, filter rows where score is greater than 0.5, store into a SQLite database called g_roundtrip19.db in table scores, run a SQL query to retrieve all rows from scores, sort by score descending, then export to g_roundtrip19.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataFilter",
+          "SQLiteConnector",
+          "QueryEngine",
+          "DataSorter",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataFilter": {
+            "condition": "score > 0.5"
+          },
+          "SQLiteConnector": {
+            "db_path": "g_roundtrip19.db",
+            "table_name": "scores"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM scores"
+          },
+          "DataSorter": {
+            "by": "score",
+            "ascending": false
+          },
+          "CSVExporter": {
+            "output_path": "g_roundtrip19.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 30 rows from data.csv\n[NullHandler] Dropped null rows\n[DataFilter] Applied condition: score > 0.5\n[SQLiteConnector] Stored table 'scores' in g_roundtrip19.db\n[QueryEngine] Query executed\n[DataSorter] Sorted by 'score' (descending)\n[CSVExporter] Exported to g_roundtrip19.csv\ng_roundtrip19.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 9.28,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_f_20_customers_active_sqlite_sort",
+      "description": "SQLite roundtrip task 20: read data.csv, filter rows where status equals active, cast column types using an empty mapping, store into a SQLite database called g_roundtrip20.db in table customers, run a SQL query to retrieve all rows from customers, sort by signup_date ascending, then export to g_roundtrip20.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "DataFilter",
+          "TypeCaster",
+          "SQLiteConnector",
+          "QueryEngine",
+          "DataSorter",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "TypeCaster"
+          ],
+          [
+            "TypeCaster",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "DataFilter": {
+            "condition": "status == 'active'"
+          },
+          "TypeCaster": {
+            "mapping": {}
+          },
+          "SQLiteConnector": {
+            "db_path": "g_roundtrip20.db",
+            "table_name": "customers"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM customers"
+          },
+          "DataSorter": {
+            "by": "signup_date",
+            "ascending": true
+          },
+          "CSVExporter": {
+            "output_path": "g_roundtrip20.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 20 rows from data.csv\n[DataFilter] Applied condition: status == 'active'\n[TypeCaster] Cast columns: {}\n[SQLiteConnector] Stored table 'customers' in g_roundtrip20.db\n[QueryEngine] Query executed\n[DataSorter] Sorted by 'signup_date' (ascending)\n[CSVExporter] Exported to g_roundtrip20.csv\ng_roundtrip20.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 9.59,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_f_21_events_dedup_sort_roundtrip",
+      "description": "SQLite roundtrip task 21: read input.json, drop null values, remove duplicate rows, store into a SQLite database called g_roundtrip21.db in table events, run a SQL query to retrieve all rows from events, sort by event_type ascending, then export to g_roundtrip21.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "JSONParser",
+          "NullHandler",
+          "DataDeduplicator",
+          "SQLiteConnector",
+          "QueryEngine",
+          "DataSorter",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "JSONParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "JSONParser": {
+            "file_path": "input.json"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataDeduplicator": {},
+          "SQLiteConnector": {
+            "db_path": "g_roundtrip21.db",
+            "table_name": "events"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM events"
+          },
+          "DataSorter": {
+            "by": "event_type",
+            "ascending": true
+          },
+          "CSVExporter": {
+            "output_path": "g_roundtrip21.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[JSONParser] Loaded 50 rows from input.json\n[NullHandler] Dropped null rows\n[DataDeduplicator] Removed duplicate rows\n[SQLiteConnector] Stored table 'events' in g_roundtrip21.db\n[QueryEngine] Query executed\n[DataSorter] Sorted by 'event_type' (ascending)\n[CSVExporter] Exported to g_roundtrip21.csv\ng_roundtrip21.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 9.74,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_f_22_sales_filter_sort_roundtrip",
+      "description": "SQLite roundtrip task 22: read data.csv, drop null values, filter rows where revenue is greater than 100, sort by revenue ascending, store into a SQLite database called g_roundtrip22.db in table sales, run a SQL query to retrieve all rows from sales, then export to g_roundtrip22.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataFilter",
+          "DataSorter",
+          "SQLiteConnector",
+          "QueryEngine",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataFilter": {
+            "condition": "revenue > 100"
+          },
+          "DataSorter": {
+            "by": "revenue",
+            "ascending": true
+          },
+          "SQLiteConnector": {
+            "db_path": "g_roundtrip22.db",
+            "table_name": "sales"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM sales"
+          },
+          "CSVExporter": {
+            "output_path": "g_roundtrip22.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 40 rows from data.csv\n[NullHandler] Dropped null rows\n[DataFilter] Applied condition: revenue > 100\n[DataSorter] Sorted by 'revenue' (ascending)\n[SQLiteConnector] Stored table 'sales' in g_roundtrip22.db\n[QueryEngine] Query executed\n[CSVExporter] Exported to g_roundtrip22.csv\ng_roundtrip22.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 10.48,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_f_23_products_validate_filter_sqlite_sort",
+      "description": "SQLite roundtrip task 23: read input.json, validate schema, filter rows where price is greater than 50, store into a SQLite database called g_roundtrip23.db in table products, run a SQL query to retrieve all rows from products, sort by price ascending, then export to g_roundtrip23.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "JSONParser",
+          "SchemaValidator",
+          "DataFilter",
+          "SQLiteConnector",
+          "QueryEngine",
+          "DataSorter",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "JSONParser",
+            "SchemaValidator"
+          ],
+          [
+            "SchemaValidator",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "JSONParser": {
+            "file_path": "input.json"
+          },
+          "SchemaValidator": {},
+          "DataFilter": {
+            "condition": "price > 50"
+          },
+          "SQLiteConnector": {
+            "db_path": "g_roundtrip23.db",
+            "table_name": "products"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM products"
+          },
+          "DataSorter": {
+            "by": "price",
+            "ascending": true
+          },
+          "CSVExporter": {
+            "output_path": "g_roundtrip23.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[JSONParser] Loaded 25 rows from input.json\n[SchemaValidator] Schema validated\n[DataFilter] Applied condition: price > 50\n[SQLiteConnector] Stored table 'products' in g_roundtrip23.db\n[QueryEngine] Query executed\n[DataSorter] Sorted by 'price' (ascending)\n[CSVExporter] Exported to g_roundtrip23.csv\ng_roundtrip23.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 9.09,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_f_24_people_null_typecast_sqlite_sort",
+      "description": "SQLite roundtrip task 24: read data.csv, drop null values, cast column types using an empty mapping, store into a SQLite database called g_roundtrip24.db in table people, run a SQL query to retrieve all rows from people, sort by age ascending, then export to g_roundtrip24.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "TypeCaster",
+          "SQLiteConnector",
+          "QueryEngine",
+          "DataSorter",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "TypeCaster"
+          ],
+          [
+            "TypeCaster",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "TypeCaster": {
+            "mapping": {}
+          },
+          "SQLiteConnector": {
+            "db_path": "g_roundtrip24.db",
+            "table_name": "people"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM people"
+          },
+          "DataSorter": {
+            "by": "age",
+            "ascending": true
+          },
+          "CSVExporter": {
+            "output_path": "g_roundtrip24.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 10 rows from data.csv\n[NullHandler] Dropped null rows\n[TypeCaster] Cast columns: {}\n[SQLiteConnector] Stored table 'people' in g_roundtrip24.db\n[QueryEngine] Query executed\n[DataSorter] Sorted by 'age' (ascending)\n[CSVExporter] Exported to g_roundtrip24.csv\ng_roundtrip24.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 9.09,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_f_25_employees_filter_dedup_sqlite_roundtrip",
+      "description": "SQLite roundtrip task 25: read data.csv, drop null values, remove duplicate rows, filter rows where salary is greater than 35000, store into a SQLite database called g_roundtrip25.db in table employees, run a SQL query to retrieve all rows from employees, then export to g_roundtrip25.csv.",
+      "plan_success": true,
+      "validation_success": false,
+      "compile_success": false,
+      "run_success": false,
+      "criteria_passed": false,
+      "first_pass_success": false,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataDeduplicator",
+          "DataFilter",
+          "SQLiteConnector",
+          "SQLiteReader",
+          "QueryEngine",
           "CSVExporter"
         ],
         "edges": [
@@ -581,6 +2723,18 @@
           ],
           [
             "DataFilter",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "SQLiteReader"
+          ],
+          [
+            "SQLiteReader",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
             "CSVExporter"
           ]
         ],
@@ -593,10 +2747,110 @@
           },
           "DataDeduplicator": {},
           "DataFilter": {
-            "condition": "score > 0.1"
+            "condition": "salary > 35000"
+          },
+          "SQLiteConnector": {
+            "db_path": "g_roundtrip25.db",
+            "table_name": "employees"
+          },
+          "SQLiteReader": {
+            "db_path": "g_roundtrip25.db"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM employees"
           },
           "CSVExporter": {
-            "output_path": "f_schema_report_10.csv"
+            "output_path": "g_roundtrip25.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [
+        "TYPE_MISMATCH: [SQLiteConnector -> SQLiteReader] NodeType.DB_HANDLE != NodeType.FILE_PATH"
+      ],
+      "compile_error": null,
+      "run_stdout": "",
+      "run_stderr": "",
+      "run_returncode": null,
+      "criteria_failures": [],
+      "duration_seconds": 8.78,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_f_26_sales_filter_select_sqlite_roundtrip",
+      "description": "SQLite roundtrip task 26: read data.csv, drop null values, filter rows where revenue is greater than 100, select only product, category, and revenue, store into a SQLite database called g_roundtrip26.db in table sales, run a SQL query to retrieve all rows from sales, then export to g_roundtrip26.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataFilter",
+          "ColumnSelector",
+          "SQLiteConnector",
+          "QueryEngine",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "ColumnSelector"
+          ],
+          [
+            "ColumnSelector",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataFilter": {
+            "condition": "revenue > 100"
+          },
+          "ColumnSelector": {
+            "columns": [
+              "product",
+              "category",
+              "revenue"
+            ]
+          },
+          "SQLiteConnector": {
+            "db_path": "g_roundtrip26.db",
+            "table_name": "sales"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM sales"
+          },
+          "CSVExporter": {
+            "output_path": "g_roundtrip26.csv"
           }
         },
         "flags": [],
@@ -604,11 +2858,367 @@
       },
       "validation_errors": [],
       "compile_error": null,
-      "run_stdout": "[CSVParser] Loaded 30 rows from data.csv\n[NullHandler] Dropped null rows\n[DataDeduplicator] Removed duplicate rows\n[DataFilter] Applied condition: score > 0.1\n[CSVExporter] Exported to f_schema_report_10.csv\nf_schema_report_10.csv\n",
+      "run_stdout": "[CSVParser] Loaded 40 rows from data.csv\n[NullHandler] Dropped null rows\n[DataFilter] Applied condition: revenue > 100\n[ColumnSelector] Selected columns: ['product', 'category', 'revenue']\n[SQLiteConnector] Stored table 'sales' in g_roundtrip26.db\n[QueryEngine] Query executed\n[CSVExporter] Exported to g_roundtrip26.csv\ng_roundtrip26.csv\n",
       "run_stderr": "",
       "run_returncode": 0,
       "criteria_failures": [],
-      "duration_seconds": 6.92,
+      "duration_seconds": 8.87,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_f_27_products_dedup_typecast_roundtrip",
+      "description": "SQLite roundtrip task 27: read input.json, remove duplicate rows, cast column types using an empty mapping, store into a SQLite database called g_roundtrip27.db in table products, run a SQL query to retrieve all rows from products, then export to g_roundtrip27.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "JSONParser",
+          "DataDeduplicator",
+          "TypeCaster",
+          "SQLiteConnector",
+          "QueryEngine",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "JSONParser",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "TypeCaster"
+          ],
+          [
+            "TypeCaster",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "JSONParser": {
+            "file_path": "input.json"
+          },
+          "DataDeduplicator": {},
+          "TypeCaster": {
+            "mapping": {}
+          },
+          "SQLiteConnector": {
+            "db_path": "g_roundtrip27.db",
+            "table_name": "products"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM products"
+          },
+          "CSVExporter": {
+            "output_path": "g_roundtrip27.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[JSONParser] Loaded 25 rows from input.json\n[DataDeduplicator] Removed duplicate rows\n[TypeCaster] Cast columns: {}\n[SQLiteConnector] Stored table 'products' in g_roundtrip27.db\n[QueryEngine] Query executed\n[CSVExporter] Exported to g_roundtrip27.csv\ng_roundtrip27.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 7.55,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_f_28_events_validate_sqlite_agg",
+      "description": "SQLite roundtrip task 28: read input.json, validate schema, drop null values, store into a SQLite database called g_roundtrip28.db in table events, run a SQL query to retrieve all rows from events, group by event_type and count rows, then export to g_roundtrip28.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": false,
+      "first_pass_success": false,
+      "plan": {
+        "nodes": [
+          "JSONParser",
+          "SchemaValidator",
+          "NullHandler",
+          "SQLiteConnector",
+          "QueryEngine",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "JSONParser",
+            "SchemaValidator"
+          ],
+          [
+            "SchemaValidator",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "JSONParser": {
+            "file_path": "input.json"
+          },
+          "SchemaValidator": {},
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "SQLiteConnector": {
+            "db_path": "g_roundtrip28.db",
+            "table_name": "events"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM events GROUP BY event_type"
+          },
+          "CSVExporter": {
+            "output_path": "g_roundtrip28.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[JSONParser] Loaded 50 rows from input.json\n[SchemaValidator] Schema validated\n[NullHandler] Dropped null rows\n[SQLiteConnector] Stored table 'events' in g_roundtrip28.db\n[QueryEngine] Query executed\n[CSVExporter] Exported to g_roundtrip28.csv\ng_roundtrip28.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [
+        "file_has_column: column 'count' not in 'g_roundtrip28.csv'"
+      ],
+      "duration_seconds": 7.34,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_f_29_customers_dedup_active_sqlite_sort",
+      "description": "SQLite roundtrip task 29: read data.csv, remove duplicate rows, filter rows where status equals active, cast column types using an empty mapping, store into a SQLite database called g_roundtrip29.db in table customers, run a SQL query to retrieve all rows from customers, sort by name ascending, then export to g_roundtrip29.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "DataDeduplicator",
+          "DataFilter",
+          "TypeCaster",
+          "SQLiteConnector",
+          "QueryEngine",
+          "DataSorter",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "TypeCaster"
+          ],
+          [
+            "TypeCaster",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "DataDeduplicator": {},
+          "DataFilter": {
+            "condition": "status == 'active'"
+          },
+          "TypeCaster": {
+            "mapping": {}
+          },
+          "SQLiteConnector": {
+            "db_path": "g_roundtrip29.db",
+            "table_name": "customers"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM customers"
+          },
+          "DataSorter": {
+            "by": "name",
+            "ascending": true
+          },
+          "CSVExporter": {
+            "output_path": "g_roundtrip29.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 20 rows from data.csv\n[DataDeduplicator] Removed duplicate rows\n[DataFilter] Applied condition: status == 'active'\n[TypeCaster] Cast columns: {}\n[SQLiteConnector] Stored table 'customers' in g_roundtrip29.db\n[QueryEngine] Query executed\n[DataSorter] Sorted by 'name' (ascending)\n[CSVExporter] Exported to g_roundtrip29.csv\ng_roundtrip29.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 11.33,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_f_30_sales_full_roundtrip",
+      "description": "SQLite roundtrip task 30: read data.csv, validate schema, drop null values, remove duplicate rows, filter rows where revenue is greater than 100, cast column types using an empty mapping, store into a SQLite database called g_roundtrip30.db in table sales, run a SQL query to retrieve all rows from sales, sort by revenue descending, then export to g_roundtrip30.csv.",
+      "plan_success": true,
+      "validation_success": false,
+      "compile_success": false,
+      "run_success": false,
+      "criteria_passed": false,
+      "first_pass_success": false,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "SchemaValidator",
+          "NullHandler",
+          "DataDeduplicator",
+          "DataFilter",
+          "TypeCaster",
+          "SQLiteConnector",
+          "SQLiteReader",
+          "QueryEngine",
+          "DataSorter",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "SchemaValidator"
+          ],
+          [
+            "SchemaValidator",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "TypeCaster"
+          ],
+          [
+            "TypeCaster",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "SQLiteReader"
+          ],
+          [
+            "SQLiteReader",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "SchemaValidator": {},
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataDeduplicator": {},
+          "DataFilter": {
+            "condition": "revenue > 100"
+          },
+          "TypeCaster": {
+            "mapping": {}
+          },
+          "SQLiteConnector": {
+            "db_path": "g_roundtrip30.db",
+            "table_name": "sales"
+          },
+          "SQLiteReader": {
+            "db_path": "g_roundtrip30.db"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM sales"
+          },
+          "DataSorter": {
+            "by": "revenue",
+            "ascending": false
+          },
+          "CSVExporter": {
+            "output_path": "g_roundtrip30.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [
+        "TYPE_MISMATCH: [SQLiteConnector -> SQLiteReader] NodeType.DB_HANDLE != NodeType.FILE_PATH"
+      ],
+      "compile_error": null,
+      "run_stdout": "",
+      "run_stderr": "",
+      "run_returncode": null,
+      "criteria_failures": [],
+      "duration_seconds": 12.38,
       "error": null,
       "baseline_success": null,
       "baseline_error": null,

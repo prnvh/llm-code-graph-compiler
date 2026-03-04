@@ -243,5 +243,545 @@
       }
     ],
     "timeout_seconds": 40
+  },
+  {
+    "task_id": "set_a_11_filter_low_salary",
+    "description": "Using a 3-node workflow, read data.csv, filter rows where salary is less than 70000, then export to a_low_salary.csv.",
+    "fixtures": {
+      "data.csv": "benchmark/fixtures/employees.csv"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "a_low_salary.csv"
+      },
+      {
+        "type": "file_has_column",
+        "path": "a_low_salary.csv",
+        "column": "name"
+      },
+      {
+        "type": "file_has_column",
+        "path": "a_low_salary.csv",
+        "column": "salary"
+      }
+    ],
+    "timeout_seconds": 40
+  },
+  {
+    "task_id": "set_a_12_sort_by_name_asc",
+    "description": "Using a 3-node workflow, read data.csv, sort by name ascending, then export to a_name_sorted.csv.",
+    "fixtures": {
+      "data.csv": "benchmark/fixtures/employees.csv"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "a_name_sorted.csv"
+      },
+      {
+        "type": "file_has_column",
+        "path": "a_name_sorted.csv",
+        "column": "name"
+      },
+      {
+        "type": "file_has_column",
+        "path": "a_name_sorted.csv",
+        "column": "department"
+      }
+    ],
+    "timeout_seconds": 40
+  },
+  {
+    "task_id": "set_a_13_active_customers_filter",
+    "description": "Using a 3-node workflow, read data.csv, filter rows where status equals active, then export to a_active_customers.csv.",
+    "fixtures": {
+      "data.csv": "benchmark/fixtures/customers.csv"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "a_active_customers.csv"
+      },
+      {
+        "type": "file_has_column",
+        "path": "a_active_customers.csv",
+        "column": "name"
+      },
+      {
+        "type": "file_has_column",
+        "path": "a_active_customers.csv",
+        "column": "region"
+      }
+    ],
+    "timeout_seconds": 40
+  },
+  {
+    "task_id": "set_a_14_region_aggregation",
+    "description": "Using a 3-node workflow, read data.csv, group by region and count rows, then export to a_region_counts.csv.",
+    "fixtures": {
+      "data.csv": "benchmark/fixtures/employees.csv"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "a_region_counts.csv"
+      },
+      {
+        "type": "file_has_column",
+        "path": "a_region_counts.csv",
+        "column": "region"
+      },
+      {
+        "type": "file_has_column",
+        "path": "a_region_counts.csv",
+        "column": "count"
+      }
+    ],
+    "timeout_seconds": 40
+  },
+  {
+    "task_id": "set_a_15_high_confidence_filter",
+    "description": "Using a 3-node workflow, read data.csv, filter rows where score is greater than 0.7, then export to a_high_confidence.csv.",
+    "fixtures": {
+      "data.csv": "benchmark/fixtures/predictions.csv"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "a_high_confidence.csv"
+      },
+      {
+        "type": "file_has_column",
+        "path": "a_high_confidence.csv",
+        "column": "name"
+      },
+      {
+        "type": "file_has_column",
+        "path": "a_high_confidence.csv",
+        "column": "score"
+      }
+    ],
+    "timeout_seconds": 40
+  },
+  {
+    "task_id": "set_a_16_select_name_city",
+    "description": "Using a 3-node workflow, read data.csv, select only name and city, then export to a_city_list.csv.",
+    "fixtures": {
+      "data.csv": "benchmark/fixtures/people.csv"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "a_city_list.csv"
+      },
+      {
+        "type": "file_has_column",
+        "path": "a_city_list.csv",
+        "column": "name"
+      },
+      {
+        "type": "file_has_column",
+        "path": "a_city_list.csv",
+        "column": "city"
+      }
+    ],
+    "timeout_seconds": 40
+  },
+  {
+    "task_id": "set_a_17_dedup_sort_salary_desc",
+    "description": "Using a 4-node workflow, read data.csv, remove duplicate rows, sort by salary descending, then export to a_salary_desc.csv.",
+    "fixtures": {
+      "data.csv": "benchmark/fixtures/employees.csv"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "a_salary_desc.csv"
+      },
+      {
+        "type": "file_has_column",
+        "path": "a_salary_desc.csv",
+        "column": "name"
+      },
+      {
+        "type": "file_has_column",
+        "path": "a_salary_desc.csv",
+        "column": "salary"
+      },
+      {
+        "type": "file_has_column",
+        "path": "a_salary_desc.csv",
+        "column": "department"
+      }
+    ],
+    "timeout_seconds": 40
+  },
+  {
+    "task_id": "set_a_18_events_dedup_export",
+    "description": "Using a 3-node workflow, read input.json, remove duplicate rows, then export to a_events_clean.json.",
+    "fixtures": {
+      "input.json": "benchmark/fixtures/events.json"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "a_events_clean.json"
+      },
+      {
+        "type": "file_has_column",
+        "path": "a_events_clean.json",
+        "column": "event_id"
+      },
+      {
+        "type": "file_has_column",
+        "path": "a_events_clean.json",
+        "column": "event_type"
+      }
+    ],
+    "timeout_seconds": 40
+  },
+  {
+    "task_id": "set_a_19_score_filter_select",
+    "description": "Using a 4-node workflow, read data.csv, filter rows where score is greater than 0.3, select name, score, and label, then export to a_label_scores.csv.",
+    "fixtures": {
+      "data.csv": "benchmark/fixtures/predictions.csv"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "a_label_scores.csv"
+      },
+      {
+        "type": "file_has_column",
+        "path": "a_label_scores.csv",
+        "column": "name"
+      },
+      {
+        "type": "file_has_column",
+        "path": "a_label_scores.csv",
+        "column": "score"
+      },
+      {
+        "type": "file_has_column",
+        "path": "a_label_scores.csv",
+        "column": "label"
+      }
+    ],
+    "timeout_seconds": 40
+  },
+  {
+    "task_id": "set_a_20_null_select_sort_salary_desc",
+    "description": "Using a 5-node workflow, read data.csv, drop null values, select name, city, and salary, sort by salary descending, then export to a_city_salary.csv.",
+    "fixtures": {
+      "data.csv": "benchmark/fixtures/people.csv"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "a_city_salary.csv"
+      },
+      {
+        "type": "file_has_column",
+        "path": "a_city_salary.csv",
+        "column": "name"
+      },
+      {
+        "type": "file_has_column",
+        "path": "a_city_salary.csv",
+        "column": "city"
+      },
+      {
+        "type": "file_has_column",
+        "path": "a_city_salary.csv",
+        "column": "salary"
+      }
+    ],
+    "timeout_seconds": 40
+  },
+  {
+    "task_id": "set_a_21_sales_high_revenue",
+    "description": "Using a 3-node workflow, read data.csv, filter rows where revenue is greater than 100, then export to a_high_revenue.csv.",
+    "fixtures": {
+      "data.csv": "benchmark/fixtures/sales.csv"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "a_high_revenue.csv"
+      },
+      {
+        "type": "file_has_column",
+        "path": "a_high_revenue.csv",
+        "column": "product"
+      },
+      {
+        "type": "file_has_column",
+        "path": "a_high_revenue.csv",
+        "column": "revenue"
+      },
+      {
+        "type": "file_row_count",
+        "path": "a_high_revenue.csv",
+        "expected": 27
+      }
+    ],
+    "timeout_seconds": 40
+  },
+  {
+    "task_id": "set_a_22_products_expensive_filter",
+    "description": "Using a 3-node workflow, read input.json, filter rows where price is greater than 50, then export to a_expensive_products.json.",
+    "fixtures": {
+      "input.json": "benchmark/fixtures/products.json"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "a_expensive_products.json"
+      },
+      {
+        "type": "file_has_column",
+        "path": "a_expensive_products.json",
+        "column": "name"
+      },
+      {
+        "type": "file_has_column",
+        "path": "a_expensive_products.json",
+        "column": "price"
+      },
+      {
+        "type": "file_row_count",
+        "path": "a_expensive_products.json",
+        "expected": 15
+      }
+    ],
+    "timeout_seconds": 40
+  },
+  {
+    "task_id": "set_a_23_sales_dedup_export",
+    "description": "Using a 3-node workflow, read data.csv, remove duplicate rows, then export to a_sales_dedup.csv.",
+    "fixtures": {
+      "data.csv": "benchmark/fixtures/sales.csv"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "a_sales_dedup.csv"
+      },
+      {
+        "type": "file_has_column",
+        "path": "a_sales_dedup.csv",
+        "column": "product"
+      },
+      {
+        "type": "file_has_column",
+        "path": "a_sales_dedup.csv",
+        "column": "category"
+      }
+    ],
+    "timeout_seconds": 40
+  },
+  {
+    "task_id": "set_a_24_sales_category_count",
+    "description": "Using a 3-node workflow, read data.csv, group by category and count rows, then export to a_sales_category_counts.csv.",
+    "fixtures": {
+      "data.csv": "benchmark/fixtures/sales.csv"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "a_sales_category_counts.csv"
+      },
+      {
+        "type": "file_has_column",
+        "path": "a_sales_category_counts.csv",
+        "column": "category"
+      },
+      {
+        "type": "file_has_column",
+        "path": "a_sales_category_counts.csv",
+        "column": "count"
+      }
+    ],
+    "timeout_seconds": 40
+  },
+  {
+    "task_id": "set_a_25_products_sort_price_desc",
+    "description": "Using a 3-node workflow, read input.json, sort by price descending, then export to a_products_sorted.json.",
+    "fixtures": {
+      "input.json": "benchmark/fixtures/products.json"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "a_products_sorted.json"
+      },
+      {
+        "type": "file_has_column",
+        "path": "a_products_sorted.json",
+        "column": "name"
+      },
+      {
+        "type": "file_has_column",
+        "path": "a_products_sorted.json",
+        "column": "price"
+      },
+      {
+        "type": "file_row_count",
+        "path": "a_products_sorted.json",
+        "expected": 25
+      }
+    ],
+    "timeout_seconds": 40
+  },
+  {
+    "task_id": "set_a_26_sales_sort_revenue_asc",
+    "description": "Using a 3-node workflow, read data.csv, sort by revenue ascending, then export to a_sales_revenue_asc.csv.",
+    "fixtures": {
+      "data.csv": "benchmark/fixtures/sales.csv"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "a_sales_revenue_asc.csv"
+      },
+      {
+        "type": "file_has_column",
+        "path": "a_sales_revenue_asc.csv",
+        "column": "product"
+      },
+      {
+        "type": "file_has_column",
+        "path": "a_sales_revenue_asc.csv",
+        "column": "revenue"
+      },
+      {
+        "type": "file_row_count",
+        "path": "a_sales_revenue_asc.csv",
+        "expected": 40
+      }
+    ],
+    "timeout_seconds": 40
+  },
+  {
+    "task_id": "set_a_27_products_select_cols",
+    "description": "Using a 3-node workflow, read input.json, select only name, category, and price, then export to a_product_cols.csv.",
+    "fixtures": {
+      "input.json": "benchmark/fixtures/products.json"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "a_product_cols.csv"
+      },
+      {
+        "type": "file_has_column",
+        "path": "a_product_cols.csv",
+        "column": "name"
+      },
+      {
+        "type": "file_has_column",
+        "path": "a_product_cols.csv",
+        "column": "category"
+      },
+      {
+        "type": "file_has_column",
+        "path": "a_product_cols.csv",
+        "column": "price"
+      }
+    ],
+    "timeout_seconds": 40
+  },
+  {
+    "task_id": "set_a_28_sales_filter_select",
+    "description": "Using a 4-node workflow, read data.csv, filter rows where revenue is greater than 100, select only product, category, and revenue, then export to a_revenue_filtered.csv.",
+    "fixtures": {
+      "data.csv": "benchmark/fixtures/sales.csv"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "a_revenue_filtered.csv"
+      },
+      {
+        "type": "file_has_column",
+        "path": "a_revenue_filtered.csv",
+        "column": "product"
+      },
+      {
+        "type": "file_has_column",
+        "path": "a_revenue_filtered.csv",
+        "column": "category"
+      },
+      {
+        "type": "file_has_column",
+        "path": "a_revenue_filtered.csv",
+        "column": "revenue"
+      },
+      {
+        "type": "file_row_count",
+        "path": "a_revenue_filtered.csv",
+        "expected": 27
+      }
+    ],
+    "timeout_seconds": 40
+  },
+  {
+    "task_id": "set_a_29_products_validate_export",
+    "description": "Using a 3-node workflow, read input.json, validate schema, then export to a_products_validated.csv.",
+    "fixtures": {
+      "input.json": "benchmark/fixtures/products.json"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "a_products_validated.csv"
+      },
+      {
+        "type": "file_has_column",
+        "path": "a_products_validated.csv",
+        "column": "name"
+      },
+      {
+        "type": "file_has_column",
+        "path": "a_products_validated.csv",
+        "column": "category"
+      },
+      {
+        "type": "file_row_count",
+        "path": "a_products_validated.csv",
+        "expected": 25
+      }
+    ],
+    "timeout_seconds": 40
+  },
+  {
+    "task_id": "set_a_30_sales_null_filter_sort",
+    "description": "Using a 5-node workflow, read data.csv, drop null values, filter rows where revenue is greater than 100, sort by revenue descending, then export to a_sales_top_revenue.csv.",
+    "fixtures": {
+      "data.csv": "benchmark/fixtures/sales.csv"
+    },
+    "success_criteria": [
+      {
+        "type": "file_exists",
+        "path": "a_sales_top_revenue.csv"
+      },
+      {
+        "type": "file_has_column",
+        "path": "a_sales_top_revenue.csv",
+        "column": "product"
+      },
+      {
+        "type": "file_has_column",
+        "path": "a_sales_top_revenue.csv",
+        "column": "revenue"
+      },
+      {
+        "type": "file_row_count",
+        "path": "a_sales_top_revenue.csv",
+        "expected": 27
+      }
+    ],
+    "timeout_seconds": 40
   }
 ]

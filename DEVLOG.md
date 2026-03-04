@@ -36,3 +36,13 @@
 - Updated validator to now include an extra test for input arity
 - Fixed compiler issues
 - Ran sample test, achieved 40% increase from gpt-4o (Compiler=9/10, GPT=5/10)
+- added GNU AGPL v3 license 
+
+### 3/03/2026
+- Ran initial tests with ~50 tasks.
+- Added benchmark tests for ~70 tests over 7 sets (n=10) 
+
+### 4/03/2026
+- Ran tests for 180 tasks, over 6 sets (n=30)
+- Updated criteria, planner, registry
+- Stabilized baseline test, added deadline.

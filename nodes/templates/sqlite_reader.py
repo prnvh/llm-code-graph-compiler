@@ -2,7 +2,9 @@ import sqlite3
 
 def sqlite_reader(db_path: str):
     """
-    Creates a SQLite DB handle without requiring a DataFrame input.
+    Opens a pre-existing .db file from disk and returns a DB handle. 
+    Input is a FilePath. Only use this to read a database that exists before the 
+    pipeline starts 
     Node: SQLiteReader
     """
 

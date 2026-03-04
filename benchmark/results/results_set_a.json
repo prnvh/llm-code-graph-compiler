@@ -1,6 +1,6 @@
 {
-  "run_at": "2026-03-03T22:17:07.239521",
-  "task_count": 10,
+  "run_at": "2026-03-04T17:38:35.583622",
+  "task_count": 30,
   "compiler_first_pass_rate": 1.0,
   "results": [
     {
@@ -48,11 +48,11 @@
       "run_stderr": "",
       "run_returncode": 0,
       "criteria_failures": [],
-      "duration_seconds": 5.69,
+      "duration_seconds": 4.49,
       "error": null,
-      "baseline_success": true,
+      "baseline_success": null,
       "baseline_error": null,
-      "baseline_duration_seconds": 2.39
+      "baseline_duration_seconds": null
     },
     {
       "task_id": "set_a_02_ingest_normalize_index",
@@ -106,11 +106,11 @@
       "run_stderr": "",
       "run_returncode": 0,
       "criteria_failures": [],
-      "duration_seconds": 6.23,
+      "duration_seconds": 6.03,
       "error": null,
-      "baseline_success": true,
+      "baseline_success": null,
       "baseline_error": null,
-      "baseline_duration_seconds": 2.52
+      "baseline_duration_seconds": null
     },
     {
       "task_id": "set_a_03_config_merge_compile",
@@ -157,11 +157,11 @@
       "run_stderr": "",
       "run_returncode": 0,
       "criteria_failures": [],
-      "duration_seconds": 6.87,
+      "duration_seconds": 4.95,
       "error": null,
-      "baseline_success": true,
+      "baseline_success": null,
       "baseline_error": null,
-      "baseline_duration_seconds": 2.12
+      "baseline_duration_seconds": null
     },
     {
       "task_id": "set_a_04_import_link",
@@ -212,11 +212,11 @@
       "run_stderr": "",
       "run_returncode": 0,
       "criteria_failures": [],
-      "duration_seconds": 4.7,
+      "duration_seconds": 4.87,
       "error": null,
-      "baseline_success": true,
+      "baseline_success": null,
       "baseline_error": null,
-      "baseline_duration_seconds": 2.33
+      "baseline_duration_seconds": null
     },
     {
       "task_id": "set_a_05_ast_nodes_edges",
@@ -269,11 +269,11 @@
       "run_stderr": "",
       "run_returncode": 0,
       "criteria_failures": [],
-      "duration_seconds": 5.5,
+      "duration_seconds": 6.35,
       "error": null,
-      "baseline_success": true,
+      "baseline_success": null,
       "baseline_error": null,
-      "baseline_duration_seconds": 2.21
+      "baseline_duration_seconds": null
     },
     {
       "task_id": "set_a_06_cache_check",
@@ -332,11 +332,11 @@
       "run_stderr": "",
       "run_returncode": 0,
       "criteria_failures": [],
-      "duration_seconds": 7.42,
+      "duration_seconds": 5.41,
       "error": null,
-      "baseline_success": true,
+      "baseline_success": null,
       "baseline_error": null,
-      "baseline_duration_seconds": 2.68
+      "baseline_duration_seconds": null
     },
     {
       "task_id": "set_a_07_symbol_export",
@@ -383,11 +383,11 @@
       "run_stderr": "",
       "run_returncode": 0,
       "criteria_failures": [],
-      "duration_seconds": 5.13,
+      "duration_seconds": 4.75,
       "error": null,
-      "baseline_success": true,
+      "baseline_success": null,
       "baseline_error": null,
-      "baseline_duration_seconds": 2.99
+      "baseline_duration_seconds": null
     },
     {
       "task_id": "set_a_08_token_detector",
@@ -443,11 +443,11 @@
       "run_stderr": "",
       "run_returncode": 0,
       "criteria_failures": [],
-      "duration_seconds": 6.65,
+      "duration_seconds": 5.9,
       "error": null,
-      "baseline_success": true,
+      "baseline_success": null,
       "baseline_error": null,
-      "baseline_duration_seconds": 2.22
+      "baseline_duration_seconds": null
     },
     {
       "task_id": "set_a_09_discover_queue",
@@ -492,11 +492,11 @@
       "run_stderr": "",
       "run_returncode": 0,
       "criteria_failures": [],
-      "duration_seconds": 5.47,
+      "duration_seconds": 4.89,
       "error": null,
-      "baseline_success": false,
-      "baseline_error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp0ff0f2h0\\app.py\", line 4, in <module>\n    from jsonschema import validate, ValidationError\nModuleNotFoundError: No module named 'jsonschema'\n",
-      "baseline_duration_seconds": 5.1
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
     },
     {
       "task_id": "set_a_10_integrity_summary",
@@ -544,12 +544,1106 @@
       "run_stderr": "",
       "run_returncode": 0,
       "criteria_failures": [],
-      "duration_seconds": 5.65,
+      "duration_seconds": 4.35,
       "error": null,
-      "baseline_success": true,
+      "baseline_success": null,
       "baseline_error": null,
-      "baseline_duration_seconds": 2.06
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_a_11_filter_low_salary",
+      "description": "Using a 3-node workflow, read data.csv, filter rows where salary is less than 70000, then export to a_low_salary.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "DataFilter",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "DataFilter": {
+            "condition": "salary < 70000"
+          },
+          "CSVExporter": {
+            "output_path": "a_low_salary.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 23 rows from data.csv\n[DataFilter] Applied condition: salary < 70000\n[CSVExporter] Exported to a_low_salary.csv\na_low_salary.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 4.83,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_a_12_sort_by_name_asc",
+      "description": "Using a 3-node workflow, read data.csv, sort by name ascending, then export to a_name_sorted.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "DataSorter",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "DataSorter": {
+            "by": "name",
+            "ascending": true
+          },
+          "CSVExporter": {
+            "output_path": "a_name_sorted.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 23 rows from data.csv\n[DataSorter] Sorted by 'name' (ascending)\n[CSVExporter] Exported to a_name_sorted.csv\na_name_sorted.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 5.09,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_a_13_active_customers_filter",
+      "description": "Using a 3-node workflow, read data.csv, filter rows where status equals active, then export to a_active_customers.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "DataFilter",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "DataFilter": {
+            "condition": "status == 'active'"
+          },
+          "CSVExporter": {
+            "output_path": "a_active_customers.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 20 rows from data.csv\n[DataFilter] Applied condition: status == 'active'\n[CSVExporter] Exported to a_active_customers.csv\na_active_customers.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 4.21,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_a_14_region_aggregation",
+      "description": "Using a 3-node workflow, read data.csv, group by region and count rows, then export to a_region_counts.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "Aggregator",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "Aggregator"
+          ],
+          [
+            "Aggregator",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "Aggregator": {
+            "group_by": "region",
+            "agg_func": "count"
+          },
+          "CSVExporter": {
+            "output_path": "a_region_counts.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 23 rows from data.csv\n[Aggregator] Aggregated using count\n[CSVExporter] Exported to a_region_counts.csv\na_region_counts.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 4.5,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_a_15_high_confidence_filter",
+      "description": "Using a 3-node workflow, read data.csv, filter rows where score is greater than 0.7, then export to a_high_confidence.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "DataFilter",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "DataFilter": {
+            "condition": "score > 0.7"
+          },
+          "CSVExporter": {
+            "output_path": "a_high_confidence.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 30 rows from data.csv\n[DataFilter] Applied condition: score > 0.7\n[CSVExporter] Exported to a_high_confidence.csv\na_high_confidence.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 4.64,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_a_16_select_name_city",
+      "description": "Using a 3-node workflow, read data.csv, select only name and city, then export to a_city_list.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "ColumnSelector",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "ColumnSelector"
+          ],
+          [
+            "ColumnSelector",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "ColumnSelector": {
+            "columns": [
+              "name",
+              "city"
+            ]
+          },
+          "CSVExporter": {
+            "output_path": "a_city_list.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 10 rows from data.csv\n[ColumnSelector] Selected columns: ['name', 'city']\n[CSVExporter] Exported to a_city_list.csv\na_city_list.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 5.18,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_a_17_dedup_sort_salary_desc",
+      "description": "Using a 4-node workflow, read data.csv, remove duplicate rows, sort by salary descending, then export to a_salary_desc.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "DataDeduplicator",
+          "DataSorter",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "DataDeduplicator": {},
+          "DataSorter": {
+            "by": "salary",
+            "ascending": false
+          },
+          "CSVExporter": {
+            "output_path": "a_salary_desc.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 23 rows from data.csv\n[DataDeduplicator] Removed duplicate rows\n[DataSorter] Sorted by 'salary' (descending)\n[CSVExporter] Exported to a_salary_desc.csv\na_salary_desc.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 6.52,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_a_18_events_dedup_export",
+      "description": "Using a 3-node workflow, read input.json, remove duplicate rows, then export to a_events_clean.json.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "JSONParser",
+          "DataDeduplicator",
+          "JSONExporter"
+        ],
+        "edges": [
+          [
+            "JSONParser",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "JSONExporter"
+          ]
+        ],
+        "parameters": {
+          "JSONParser": {
+            "file_path": "input.json"
+          },
+          "DataDeduplicator": {},
+          "JSONExporter": {
+            "output_path": "a_events_clean.json"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[JSONParser] Loaded 50 rows from input.json\n[DataDeduplicator] Removed duplicate rows\n[JSONExporter] Exported to a_events_clean.json\na_events_clean.json\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 3.95,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_a_19_score_filter_select",
+      "description": "Using a 4-node workflow, read data.csv, filter rows where score is greater than 0.3, select name, score, and label, then export to a_label_scores.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "DataFilter",
+          "ColumnSelector",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "ColumnSelector"
+          ],
+          [
+            "ColumnSelector",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "DataFilter": {
+            "condition": "score > 0.3"
+          },
+          "ColumnSelector": {
+            "columns": [
+              "name",
+              "score",
+              "label"
+            ]
+          },
+          "CSVExporter": {
+            "output_path": "a_label_scores.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 30 rows from data.csv\n[DataFilter] Applied condition: score > 0.3\n[ColumnSelector] Selected columns: ['name', 'score', 'label']\n[CSVExporter] Exported to a_label_scores.csv\na_label_scores.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 6.07,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_a_20_null_select_sort_salary_desc",
+      "description": "Using a 5-node workflow, read data.csv, drop null values, select name, city, and salary, sort by salary descending, then export to a_city_salary.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "ColumnSelector",
+          "DataSorter",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "ColumnSelector"
+          ],
+          [
+            "ColumnSelector",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "ColumnSelector": {
+            "columns": [
+              "name",
+              "city",
+              "salary"
+            ]
+          },
+          "DataSorter": {
+            "by": "salary",
+            "ascending": false
+          },
+          "CSVExporter": {
+            "output_path": "a_city_salary.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 10 rows from data.csv\n[NullHandler] Dropped null rows\n[ColumnSelector] Selected columns: ['name', 'city', 'salary']\n[DataSorter] Sorted by 'salary' (descending)\n[CSVExporter] Exported to a_city_salary.csv\na_city_salary.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 6.51,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_a_21_sales_high_revenue",
+      "description": "Using a 3-node workflow, read data.csv, filter rows where revenue is greater than 100, then export to a_high_revenue.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "DataFilter",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "DataFilter": {
+            "condition": "revenue > 100"
+          },
+          "CSVExporter": {
+            "output_path": "a_high_revenue.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 40 rows from data.csv\n[DataFilter] Applied condition: revenue > 100\n[CSVExporter] Exported to a_high_revenue.csv\na_high_revenue.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 3.88,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_a_22_products_expensive_filter",
+      "description": "Using a 3-node workflow, read input.json, filter rows where price is greater than 50, then export to a_expensive_products.json.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "JSONParser",
+          "DataFilter",
+          "JSONExporter"
+        ],
+        "edges": [
+          [
+            "JSONParser",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "JSONExporter"
+          ]
+        ],
+        "parameters": {
+          "JSONParser": {
+            "file_path": "input.json"
+          },
+          "DataFilter": {
+            "condition": "price > 50"
+          },
+          "JSONExporter": {
+            "output_path": "a_expensive_products.json"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[JSONParser] Loaded 25 rows from input.json\n[DataFilter] Applied condition: price > 50\n[JSONExporter] Exported to a_expensive_products.json\na_expensive_products.json\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 4.39,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_a_23_sales_dedup_export",
+      "description": "Using a 3-node workflow, read data.csv, remove duplicate rows, then export to a_sales_dedup.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "DataDeduplicator",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "DataDeduplicator": {},
+          "CSVExporter": {
+            "output_path": "a_sales_dedup.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 40 rows from data.csv\n[DataDeduplicator] Removed duplicate rows\n[CSVExporter] Exported to a_sales_dedup.csv\na_sales_dedup.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 4.1,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_a_24_sales_category_count",
+      "description": "Using a 3-node workflow, read data.csv, group by category and count rows, then export to a_sales_category_counts.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "Aggregator",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "Aggregator"
+          ],
+          [
+            "Aggregator",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "Aggregator": {
+            "group_by": "category",
+            "agg_func": "count"
+          },
+          "CSVExporter": {
+            "output_path": "a_sales_category_counts.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 40 rows from data.csv\n[Aggregator] Aggregated using count\n[CSVExporter] Exported to a_sales_category_counts.csv\na_sales_category_counts.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 4.89,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_a_25_products_sort_price_desc",
+      "description": "Using a 3-node workflow, read input.json, sort by price descending, then export to a_products_sorted.json.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "JSONParser",
+          "DataSorter",
+          "JSONExporter"
+        ],
+        "edges": [
+          [
+            "JSONParser",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "JSONExporter"
+          ]
+        ],
+        "parameters": {
+          "JSONParser": {
+            "file_path": "input.json"
+          },
+          "DataSorter": {
+            "by": "price",
+            "ascending": false
+          },
+          "JSONExporter": {
+            "output_path": "a_products_sorted.json"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[JSONParser] Loaded 25 rows from input.json\n[DataSorter] Sorted by 'price' (descending)\n[JSONExporter] Exported to a_products_sorted.json\na_products_sorted.json\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 4.9,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_a_26_sales_sort_revenue_asc",
+      "description": "Using a 3-node workflow, read data.csv, sort by revenue ascending, then export to a_sales_revenue_asc.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "DataSorter",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "DataSorter": {
+            "by": "revenue",
+            "ascending": true
+          },
+          "CSVExporter": {
+            "output_path": "a_sales_revenue_asc.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 40 rows from data.csv\n[DataSorter] Sorted by 'revenue' (ascending)\n[CSVExporter] Exported to a_sales_revenue_asc.csv\na_sales_revenue_asc.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 4.57,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_a_27_products_select_cols",
+      "description": "Using a 3-node workflow, read input.json, select only name, category, and price, then export to a_product_cols.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "JSONParser",
+          "ColumnSelector",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "JSONParser",
+            "ColumnSelector"
+          ],
+          [
+            "ColumnSelector",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "JSONParser": {
+            "file_path": "input.json"
+          },
+          "ColumnSelector": {
+            "columns": [
+              "name",
+              "category",
+              "price"
+            ]
+          },
+          "CSVExporter": {
+            "output_path": "a_product_cols.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[JSONParser] Loaded 25 rows from input.json\n[ColumnSelector] Selected columns: ['name', 'category', 'price']\n[CSVExporter] Exported to a_product_cols.csv\na_product_cols.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 5.73,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_a_28_sales_filter_select",
+      "description": "Using a 4-node workflow, read data.csv, filter rows where revenue is greater than 100, select only product, category, and revenue, then export to a_revenue_filtered.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "DataFilter",
+          "ColumnSelector",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "ColumnSelector"
+          ],
+          [
+            "ColumnSelector",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "DataFilter": {
+            "condition": "revenue > 100"
+          },
+          "ColumnSelector": {
+            "columns": [
+              "product",
+              "category",
+              "revenue"
+            ]
+          },
+          "CSVExporter": {
+            "output_path": "a_revenue_filtered.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 40 rows from data.csv\n[DataFilter] Applied condition: revenue > 100\n[ColumnSelector] Selected columns: ['product', 'category', 'revenue']\n[CSVExporter] Exported to a_revenue_filtered.csv\na_revenue_filtered.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 5.41,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_a_29_products_validate_export",
+      "description": "Using a 3-node workflow, read input.json, validate schema, then export to a_products_validated.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "JSONParser",
+          "SchemaValidator",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "JSONParser",
+            "SchemaValidator"
+          ],
+          [
+            "SchemaValidator",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "JSONParser": {
+            "file_path": "input.json"
+          },
+          "SchemaValidator": {},
+          "CSVExporter": {
+            "output_path": "a_products_validated.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[JSONParser] Loaded 25 rows from input.json\n[SchemaValidator] Schema validated\n[CSVExporter] Exported to a_products_validated.csv\na_products_validated.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 4.12,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_a_30_sales_null_filter_sort",
+      "description": "Using a 5-node workflow, read data.csv, drop null values, filter rows where revenue is greater than 100, sort by revenue descending, then export to a_sales_top_revenue.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataFilter",
+          "DataSorter",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataFilter": {
+            "condition": "revenue > 100"
+          },
+          "DataSorter": {
+            "by": "revenue",
+            "ascending": false
+          },
+          "CSVExporter": {
+            "output_path": "a_sales_top_revenue.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 40 rows from data.csv\n[NullHandler] Dropped null rows\n[DataFilter] Applied condition: revenue > 100\n[DataSorter] Sorted by 'revenue' (descending)\n[CSVExporter] Exported to a_sales_top_revenue.csv\na_sales_top_revenue.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 6.46,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
     }
-  ],
-  "baseline_first_pass_rate": 0.9
+  ]
 }

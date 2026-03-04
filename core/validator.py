@@ -33,7 +33,7 @@ def validate_plan(plan: dict) -> tuple[bool, list[str]]:
         source_output = NODE_REGISTRY[source].output_type
         target_input = NODE_REGISTRY[target].input_type
 
-        if target_input != NodeType.ANY and source_output != target_input:
+        if target_input != NodeType.ANY and source_output != NodeType.ANY and source_output != target_input:
             errors.append(
                 f"TYPE_MISMATCH: [{source} -> {target}] "
                 f"{source_output} != {target_input}"

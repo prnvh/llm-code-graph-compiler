@@ -84,8 +84,19 @@ def main():
     with open(args.results) as f:
         data = json.load(f)
 
-    with open(args.tasks) as f:
-        tasks = json.load(f)
+    from glob import glob
+
+    tasks = []
+
+    task_path = Path(args.tasks)
+
+    if task_path.is_dir():
+         for file in glob(str(task_path / "*.json")):
+             with open(file) as f:
+                 tasks.extend(json.load(f))
+    else:
+         with open(task_path) as f:
+             tasks = json.load(f)
 
     task_map = {t["task_id"]: t for t in tasks}
     results  = data["results"]

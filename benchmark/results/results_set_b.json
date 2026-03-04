@@ -1,10 +1,10 @@
 {
-  "run_at": "2026-03-03T22:37:02.070391",
-  "task_count": 10,
+  "run_at": "2026-03-04T17:39:53.684963",
+  "task_count": 30,
   "compiler_first_pass_rate": 1.0,
   "results": [
     {
-      "task_id": "set_b_01_multifile_compile",
+      "task_id": "set_b_01_employees_dept_agg",
       "description": "Using a 5-node workflow, read data.csv, drop null values, remove duplicate rows, group by department and count rows, then export to b_dept_summary.csv.",
       "plan_success": true,
       "validation_success": true,
@@ -63,14 +63,14 @@
       "run_stderr": "",
       "run_returncode": 0,
       "criteria_failures": [],
-      "duration_seconds": 5.96,
+      "duration_seconds": 7.17,
       "error": null,
       "baseline_success": null,
       "baseline_error": null,
       "baseline_duration_seconds": null
     },
     {
-      "task_id": "set_b_02_retry_fallback",
+      "task_id": "set_b_02_salary_typecast_select_sort",
       "description": "Using a 6-node workflow, read data.csv, drop null values, cast column types using an empty mapping, filter rows where age is greater than 30, sort by salary descending, then export to b_people_filtered.csv.",
       "plan_success": true,
       "validation_success": true,
@@ -139,14 +139,14 @@
       "run_stderr": "",
       "run_returncode": 0,
       "criteria_failures": [],
-      "duration_seconds": 7.48,
+      "duration_seconds": 7.97,
       "error": null,
       "baseline_success": null,
       "baseline_error": null,
       "baseline_duration_seconds": null
     },
     {
-      "task_id": "set_b_03_incremental_compile",
+      "task_id": "set_b_03_salary_filter_select_sort_asc",
       "description": "Using a 6-node workflow, read data.csv, remove duplicate rows, filter rows where salary is greater than 45000, select name, department, salary, sort by salary ascending, then export to b_salary_band.csv.",
       "plan_success": true,
       "validation_success": true,
@@ -217,14 +217,14 @@
       "run_stderr": "",
       "run_returncode": 0,
       "criteria_failures": [],
-      "duration_seconds": 7.46,
+      "duration_seconds": 7.07,
       "error": null,
       "baseline_success": null,
       "baseline_error": null,
       "baseline_duration_seconds": null
     },
     {
-      "task_id": "set_b_04_namespace_collision",
+      "task_id": "set_b_04_active_customers_sort_signup",
       "description": "Using a 5-node workflow, read data.csv, filter rows where status equals active, sort by signup_date ascending, select name, status, signup_date, then export to b_active_signup.csv.",
       "plan_success": true,
       "validation_success": true,
@@ -289,14 +289,14 @@
       "run_stderr": "",
       "run_returncode": 0,
       "criteria_failures": [],
-      "duration_seconds": 6.66,
+      "duration_seconds": 7.0,
       "error": null,
       "baseline_success": null,
       "baseline_error": null,
       "baseline_duration_seconds": null
     },
     {
-      "task_id": "set_b_05_dead_node_prune",
+      "task_id": "set_b_05_score_filter_null_export",
       "description": "Using a 5-node workflow, read data.csv, drop null values, filter rows where score is greater than 0.3, group by label and count rows, then export to b_label_counts.csv.",
       "plan_success": true,
       "validation_success": true,
@@ -357,14 +357,14 @@
       "run_stderr": "",
       "run_returncode": 0,
       "criteria_failures": [],
-      "duration_seconds": 6.57,
+      "duration_seconds": 7.25,
       "error": null,
       "baseline_success": null,
       "baseline_error": null,
       "baseline_duration_seconds": null
     },
     {
-      "task_id": "set_b_06_parallel_parse",
+      "task_id": "set_b_06_events_transform_agg_count",
       "description": "Using a 7-node workflow, read input.json, validate schema, apply a data transformation with no operations, drop null values, group by event_type and count rows, sort by count descending, then export to b_event_counts.csv.",
       "plan_success": true,
       "validation_success": true,
@@ -438,14 +438,14 @@
       "run_stderr": "",
       "run_returncode": 0,
       "criteria_failures": [],
-      "duration_seconds": 8.93,
+      "duration_seconds": 7.97,
       "error": null,
       "baseline_success": null,
       "baseline_error": null,
       "baseline_duration_seconds": null
     },
     {
-      "task_id": "set_b_07_edge_filtering",
+      "task_id": "set_b_07_employees_null_dedup_select",
       "description": "Using a 5-node workflow, read data.csv, drop null values, remove duplicate rows, select name, region, and salary, then export to b_region_salary.csv.",
       "plan_success": true,
       "validation_success": true,
@@ -507,14 +507,14 @@
       "run_stderr": "",
       "run_returncode": 0,
       "criteria_failures": [],
-      "duration_seconds": 6.52,
+      "duration_seconds": 6.24,
       "error": null,
       "baseline_success": null,
       "baseline_error": null,
       "baseline_duration_seconds": null
     },
     {
-      "task_id": "set_b_08_error_taxonomy",
+      "task_id": "set_b_08_employees_typecast_sort_desc",
       "description": "Using a 6-node workflow, read data.csv, drop null values, remove duplicate rows, cast column types using an empty mapping, group by region and count employees, then export to b_region_counts.csv.",
       "plan_success": true,
       "validation_success": true,
@@ -581,14 +581,14 @@
       "run_stderr": "",
       "run_returncode": 0,
       "criteria_failures": [],
-      "duration_seconds": 6.92,
+      "duration_seconds": 8.06,
       "error": null,
       "baseline_success": null,
       "baseline_error": null,
       "baseline_duration_seconds": null
     },
     {
-      "task_id": "set_b_09_graph_diff",
+      "task_id": "set_b_09_salary_filter_sqlite_query",
       "description": "Using a 7-node workflow, read data.csv, drop null values, filter rows where salary is greater than 35000, select name, age, region, store into a SQLite database called b_people.db in table contacts, run a SQL query to retrieve all rows, then export to b_contacts.csv.",
       "plan_success": true,
       "validation_success": true,
@@ -669,14 +669,14 @@
       "run_stderr": "",
       "run_returncode": 0,
       "criteria_failures": [],
-      "duration_seconds": 9.29,
+      "duration_seconds": 9.36,
       "error": null,
       "baseline_success": null,
       "baseline_error": null,
       "baseline_duration_seconds": null
     },
     {
-      "task_id": "set_b_10_chunked_writer",
+      "task_id": "set_b_10_employees_null_dedup_sort_asc",
       "description": "Using a 5-node workflow, read data.csv, drop null values, remove duplicate rows, sort by salary descending, then export to b_sorted.csv.",
       "plan_success": true,
       "validation_success": true,
@@ -735,7 +735,1496 @@
       "run_stderr": "",
       "run_returncode": 0,
       "criteria_failures": [],
-      "duration_seconds": 6.28,
+      "duration_seconds": 6.26,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_b_11_null_filter_sort_name_asc",
+      "description": "Using a 5-node workflow, read data.csv, drop null values, filter rows where salary is greater than 45000, sort by name ascending, then export to b_named_employees.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataFilter",
+          "DataSorter",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataFilter": {
+            "condition": "salary > 45000"
+          },
+          "DataSorter": {
+            "by": "name",
+            "ascending": true
+          },
+          "CSVExporter": {
+            "output_path": "b_named_employees.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 23 rows from data.csv\n[NullHandler] Dropped null rows\n[DataFilter] Applied condition: salary > 45000\n[DataSorter] Sorted by 'name' (ascending)\n[CSVExporter] Exported to b_named_employees.csv\nb_named_employees.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 5.91,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_b_12_score_filter_dedup_select",
+      "description": "Using a 6-node workflow, read data.csv, drop null values, filter rows where score is greater than 0.6, remove duplicate rows, select name, score, and label, then export to b_top_scores.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataFilter",
+          "DataDeduplicator",
+          "ColumnSelector",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "ColumnSelector"
+          ],
+          [
+            "ColumnSelector",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataFilter": {
+            "condition": "score > 0.6"
+          },
+          "DataDeduplicator": {},
+          "ColumnSelector": {
+            "columns": [
+              "name",
+              "score",
+              "label"
+            ]
+          },
+          "CSVExporter": {
+            "output_path": "b_top_scores.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 30 rows from data.csv\n[NullHandler] Dropped null rows\n[DataFilter] Applied condition: score > 0.6\n[DataDeduplicator] Removed duplicate rows\n[ColumnSelector] Selected columns: ['name', 'score', 'label']\n[CSVExporter] Exported to b_top_scores.csv\nb_top_scores.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 6.68,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_b_13_events_validate_dedup_sort_asc",
+      "description": "Using a 5-node workflow, read input.json, validate schema, remove duplicate rows, sort by event_type ascending, then export to b_events_sorted.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "JSONParser",
+          "SchemaValidator",
+          "DataDeduplicator",
+          "DataSorter",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "JSONParser",
+            "SchemaValidator"
+          ],
+          [
+            "SchemaValidator",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "JSONParser": {
+            "file_path": "input.json"
+          },
+          "SchemaValidator": {},
+          "DataDeduplicator": {},
+          "DataSorter": {
+            "by": "event_type",
+            "ascending": true
+          },
+          "CSVExporter": {
+            "output_path": "b_events_sorted.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[JSONParser] Loaded 50 rows from input.json\n[SchemaValidator] Schema validated\n[DataDeduplicator] Removed duplicate rows\n[DataSorter] Sorted by 'event_type' (ascending)\n[CSVExporter] Exported to b_events_sorted.csv\nb_events_sorted.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 6.76,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_b_14_dept_count_agg",
+      "description": "Using a 5-node workflow, read data.csv, drop null values, remove duplicate rows, group by department and count rows, then export to b_dept_ranked.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataDeduplicator",
+          "Aggregator",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "Aggregator"
+          ],
+          [
+            "Aggregator",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataDeduplicator": {},
+          "Aggregator": {
+            "group_by": "department",
+            "agg_func": "count"
+          },
+          "CSVExporter": {
+            "output_path": "b_dept_ranked.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 23 rows from data.csv\n[NullHandler] Dropped null rows\n[DataDeduplicator] Removed duplicate rows\n[Aggregator] Aggregated using count\n[CSVExporter] Exported to b_dept_ranked.csv\nb_dept_ranked.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 6.26,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_b_15_age_filter_city_select_sort_asc",
+      "description": "Using a 7-node workflow, read data.csv, drop null values, remove duplicate rows, filter rows where age is greater than 20, select name, age, city, and salary, sort by age ascending, then export to b_people_by_age.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataDeduplicator",
+          "DataFilter",
+          "ColumnSelector",
+          "DataSorter",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "ColumnSelector"
+          ],
+          [
+            "ColumnSelector",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataDeduplicator": {},
+          "DataFilter": {
+            "condition": "age > 20"
+          },
+          "ColumnSelector": {
+            "columns": [
+              "name",
+              "age",
+              "city",
+              "salary"
+            ]
+          },
+          "DataSorter": {
+            "by": "age",
+            "ascending": true
+          },
+          "CSVExporter": {
+            "output_path": "b_people_by_age.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 10 rows from data.csv\n[NullHandler] Dropped null rows\n[DataDeduplicator] Removed duplicate rows\n[DataFilter] Applied condition: age > 20\n[ColumnSelector] Selected columns: ['name', 'age', 'city', 'salary']\n[DataSorter] Sorted by 'age' (ascending)\n[CSVExporter] Exported to b_people_by_age.csv\nb_people_by_age.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 8.4,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_b_16_active_region_count",
+      "description": "Using a 5-node workflow, read data.csv, filter rows where status equals active, remove duplicate rows, group by region and count rows, then export to b_active_by_region.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "DataFilter",
+          "DataDeduplicator",
+          "Aggregator",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "Aggregator"
+          ],
+          [
+            "Aggregator",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "DataFilter": {
+            "condition": "status == 'active'"
+          },
+          "DataDeduplicator": {},
+          "Aggregator": {
+            "group_by": "region",
+            "agg_func": "count"
+          },
+          "CSVExporter": {
+            "output_path": "b_active_by_region.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 20 rows from data.csv\n[DataFilter] Applied condition: status == 'active'\n[DataDeduplicator] Removed duplicate rows\n[Aggregator] Aggregated using count\n[CSVExporter] Exported to b_active_by_region.csv\nb_active_by_region.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 6.14,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_b_17_high_salary_dept_count",
+      "description": "Using a 6-node workflow, read data.csv, drop null values, remove duplicate rows, filter rows where salary is greater than 55000, group by department and count rows, then export to b_high_salary_depts.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataDeduplicator",
+          "DataFilter",
+          "Aggregator",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "Aggregator"
+          ],
+          [
+            "Aggregator",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataDeduplicator": {},
+          "DataFilter": {
+            "condition": "salary > 55000"
+          },
+          "Aggregator": {
+            "group_by": "department",
+            "agg_func": "count"
+          },
+          "CSVExporter": {
+            "output_path": "b_high_salary_depts.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 23 rows from data.csv\n[NullHandler] Dropped null rows\n[DataDeduplicator] Removed duplicate rows\n[DataFilter] Applied condition: salary > 55000\n[Aggregator] Aggregated using count\n[CSVExporter] Exported to b_high_salary_depts.csv\nb_high_salary_depts.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 5.46,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_b_18_score_filter_dedup_select_sort_desc",
+      "description": "Using a 7-node workflow, read data.csv, drop null values, filter rows where score is greater than 0.4, remove duplicate rows, select name, score, and label, sort by score descending, then export to b_filtered_scores.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataFilter",
+          "DataDeduplicator",
+          "ColumnSelector",
+          "DataSorter",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "ColumnSelector"
+          ],
+          [
+            "ColumnSelector",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataFilter": {
+            "condition": "score > 0.4"
+          },
+          "DataDeduplicator": {},
+          "ColumnSelector": {
+            "columns": [
+              "name",
+              "score",
+              "label"
+            ]
+          },
+          "DataSorter": {
+            "by": "score",
+            "ascending": false
+          },
+          "CSVExporter": {
+            "output_path": "b_filtered_scores.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 30 rows from data.csv\n[NullHandler] Dropped null rows\n[DataFilter] Applied condition: score > 0.4\n[DataDeduplicator] Removed duplicate rows\n[ColumnSelector] Selected columns: ['name', 'score', 'label']\n[DataSorter] Sorted by 'score' (descending)\n[CSVExporter] Exported to b_filtered_scores.csv\nb_filtered_scores.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 8.86,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_b_19_salary_select_sort_desc",
+      "description": "Using a 7-node workflow, read data.csv, drop null values, remove duplicate rows, filter rows where salary is greater than 30000, select name, department, and salary, sort by salary descending, then export to b_dept_salary_sorted.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataDeduplicator",
+          "DataFilter",
+          "ColumnSelector",
+          "DataSorter",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "ColumnSelector"
+          ],
+          [
+            "ColumnSelector",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataDeduplicator": {},
+          "DataFilter": {
+            "condition": "salary > 30000"
+          },
+          "ColumnSelector": {
+            "columns": [
+              "name",
+              "department",
+              "salary"
+            ]
+          },
+          "DataSorter": {
+            "by": "salary",
+            "ascending": false
+          },
+          "CSVExporter": {
+            "output_path": "b_dept_salary_sorted.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 23 rows from data.csv\n[NullHandler] Dropped null rows\n[DataDeduplicator] Removed duplicate rows\n[DataFilter] Applied condition: salary > 30000\n[ColumnSelector] Selected columns: ['name', 'department', 'salary']\n[DataSorter] Sorted by 'salary' (descending)\n[CSVExporter] Exported to b_dept_salary_sorted.csv\nb_dept_salary_sorted.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 12.01,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_b_20_events_validate_dedup_agg",
+      "description": "Using a 5-node workflow, read input.json, validate schema, remove duplicate rows, group by event_type and count rows, then export to b_event_type_counts.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "JSONParser",
+          "SchemaValidator",
+          "DataDeduplicator",
+          "Aggregator",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "JSONParser",
+            "SchemaValidator"
+          ],
+          [
+            "SchemaValidator",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "Aggregator"
+          ],
+          [
+            "Aggregator",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "JSONParser": {
+            "file_path": "input.json"
+          },
+          "SchemaValidator": {},
+          "DataDeduplicator": {},
+          "Aggregator": {
+            "group_by": "event_type",
+            "agg_func": "count"
+          },
+          "CSVExporter": {
+            "output_path": "b_event_type_counts.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[JSONParser] Loaded 50 rows from input.json\n[SchemaValidator] Schema validated\n[DataDeduplicator] Removed duplicate rows\n[Aggregator] Aggregated using count\n[CSVExporter] Exported to b_event_type_counts.csv\nb_event_type_counts.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 5.77,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_b_21_sales_null_dedup_filter_export",
+      "description": "Using a 5-node workflow, read data.csv, drop null values, remove duplicate rows, filter rows where revenue is greater than 100, then export to b_sales_filtered.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataDeduplicator",
+          "DataFilter",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataDeduplicator": {},
+          "DataFilter": {
+            "condition": "revenue > 100"
+          },
+          "CSVExporter": {
+            "output_path": "b_sales_filtered.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 40 rows from data.csv\n[NullHandler] Dropped null rows\n[DataDeduplicator] Removed duplicate rows\n[DataFilter] Applied condition: revenue > 100\n[CSVExporter] Exported to b_sales_filtered.csv\nb_sales_filtered.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 5.53,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_b_22_sales_filter_select_sort_desc",
+      "description": "Using a 6-node workflow, read data.csv, drop null values, filter rows where revenue is greater than 100, select only product, category, and revenue, sort by revenue descending, then export to b_top_sales.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataFilter",
+          "ColumnSelector",
+          "DataSorter",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "ColumnSelector"
+          ],
+          [
+            "ColumnSelector",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataFilter": {
+            "condition": "revenue > 100"
+          },
+          "ColumnSelector": {
+            "columns": [
+              "product",
+              "category",
+              "revenue"
+            ]
+          },
+          "DataSorter": {
+            "by": "revenue",
+            "ascending": false
+          },
+          "CSVExporter": {
+            "output_path": "b_top_sales.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 40 rows from data.csv\n[NullHandler] Dropped null rows\n[DataFilter] Applied condition: revenue > 100\n[ColumnSelector] Selected columns: ['product', 'category', 'revenue']\n[DataSorter] Sorted by 'revenue' (descending)\n[CSVExporter] Exported to b_top_sales.csv\nb_top_sales.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 8.09,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_b_23_products_dedup_filter_select_sort",
+      "description": "Using a 6-node workflow, read input.json, drop null values, remove duplicate rows, filter rows where price is greater than 50, select only name, category, and price, then export to b_expensive_products.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "JSONParser",
+          "NullHandler",
+          "DataDeduplicator",
+          "DataFilter",
+          "ColumnSelector",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "JSONParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "ColumnSelector"
+          ],
+          [
+            "ColumnSelector",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "JSONParser": {
+            "file_path": "input.json"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataDeduplicator": {},
+          "DataFilter": {
+            "condition": "price > 50"
+          },
+          "ColumnSelector": {
+            "columns": [
+              "name",
+              "category",
+              "price"
+            ]
+          },
+          "CSVExporter": {
+            "output_path": "b_expensive_products.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[JSONParser] Loaded 25 rows from input.json\n[NullHandler] Dropped null rows\n[DataDeduplicator] Removed duplicate rows\n[DataFilter] Applied condition: price > 50\n[ColumnSelector] Selected columns: ['name', 'category', 'price']\n[CSVExporter] Exported to b_expensive_products.csv\nb_expensive_products.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 6.27,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_b_24_products_filter_agg_count",
+      "description": "Using a 5-node workflow, read input.json, drop null values, filter rows where price is greater than 50, group by category and count rows, then export to b_product_category_counts.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "JSONParser",
+          "NullHandler",
+          "DataFilter",
+          "Aggregator",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "JSONParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "Aggregator"
+          ],
+          [
+            "Aggregator",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "JSONParser": {
+            "file_path": "input.json"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataFilter": {
+            "condition": "price > 50"
+          },
+          "Aggregator": {
+            "group_by": "category",
+            "agg_func": "count"
+          },
+          "CSVExporter": {
+            "output_path": "b_product_category_counts.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[JSONParser] Loaded 25 rows from input.json\n[NullHandler] Dropped null rows\n[DataFilter] Applied condition: price > 50\n[Aggregator] Aggregated using count\n[CSVExporter] Exported to b_product_category_counts.csv\nb_product_category_counts.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 5.87,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_b_25_sales_filter_sqlite_query",
+      "description": "Using a 7-node workflow, read data.csv, drop null values, filter rows where revenue is greater than 100, select only product, category, and revenue, store into a SQLite database called b_sales_rt.db in table high_revenue, run a SQL query to retrieve all rows, then export to b_sales_sqlite.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataFilter",
+          "ColumnSelector",
+          "SQLiteConnector",
+          "QueryEngine",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "ColumnSelector"
+          ],
+          [
+            "ColumnSelector",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataFilter": {
+            "condition": "revenue > 100"
+          },
+          "ColumnSelector": {
+            "columns": [
+              "product",
+              "category",
+              "revenue"
+            ]
+          },
+          "SQLiteConnector": {
+            "db_path": "b_sales_rt.db",
+            "table_name": "high_revenue"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM high_revenue"
+          },
+          "CSVExporter": {
+            "output_path": "b_sales_sqlite.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 40 rows from data.csv\n[NullHandler] Dropped null rows\n[DataFilter] Applied condition: revenue > 100\n[ColumnSelector] Selected columns: ['product', 'category', 'revenue']\n[SQLiteConnector] Stored table 'high_revenue' in b_sales_rt.db\n[QueryEngine] Query executed\n[CSVExporter] Exported to b_sales_sqlite.csv\nb_sales_sqlite.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 8.86,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_b_26_products_validate_filter_agg",
+      "description": "Using a 5-node workflow, read input.json, validate schema, filter rows where price is greater than 50, group by category and count rows, then export to b_product_cat_counts.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "JSONParser",
+          "SchemaValidator",
+          "DataFilter",
+          "Aggregator",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "JSONParser",
+            "SchemaValidator"
+          ],
+          [
+            "SchemaValidator",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "Aggregator"
+          ],
+          [
+            "Aggregator",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "JSONParser": {
+            "file_path": "input.json"
+          },
+          "SchemaValidator": {},
+          "DataFilter": {
+            "condition": "price > 50"
+          },
+          "Aggregator": {
+            "group_by": "category",
+            "agg_func": "count"
+          },
+          "CSVExporter": {
+            "output_path": "b_product_cat_counts.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[JSONParser] Loaded 25 rows from input.json\n[SchemaValidator] Schema validated\n[DataFilter] Applied condition: price > 50\n[Aggregator] Aggregated using count\n[CSVExporter] Exported to b_product_cat_counts.csv\nb_product_cat_counts.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 7.61,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_b_27_sales_null_dedup_agg_sort_desc",
+      "description": "Using a 6-node workflow, read data.csv, drop null values, remove duplicate rows, group by category and count rows, sort by count descending, then export to b_category_ranked.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataDeduplicator",
+          "Aggregator",
+          "DataSorter",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "Aggregator"
+          ],
+          [
+            "Aggregator",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataDeduplicator": {},
+          "Aggregator": {
+            "group_by": "category",
+            "agg_func": "count"
+          },
+          "DataSorter": {
+            "by": "count",
+            "ascending": false
+          },
+          "CSVExporter": {
+            "output_path": "b_category_ranked.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 40 rows from data.csv\n[NullHandler] Dropped null rows\n[DataDeduplicator] Removed duplicate rows\n[Aggregator] Aggregated using count\n[DataSorter] Sorted by 'count' (descending)\n[CSVExporter] Exported to b_category_ranked.csv\nb_category_ranked.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 7.53,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_b_28_products_null_filter_sort_asc",
+      "description": "Using a 6-node workflow, read input.json, drop null values, remove duplicate rows, filter rows where price is greater than 50, sort by price ascending, then export to b_expensive_sorted_asc.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "JSONParser",
+          "NullHandler",
+          "DataDeduplicator",
+          "DataFilter",
+          "DataSorter",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "JSONParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "JSONParser": {
+            "file_path": "input.json"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataDeduplicator": {},
+          "DataFilter": {
+            "condition": "price > 50"
+          },
+          "DataSorter": {
+            "by": "price",
+            "ascending": true
+          },
+          "CSVExporter": {
+            "output_path": "b_expensive_sorted_asc.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[JSONParser] Loaded 25 rows from input.json\n[NullHandler] Dropped null rows\n[DataDeduplicator] Removed duplicate rows\n[DataFilter] Applied condition: price > 50\n[DataSorter] Sorted by 'price' (ascending)\n[CSVExporter] Exported to b_expensive_sorted_asc.csv\nb_expensive_sorted_asc.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 6.32,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_b_29_sales_null_filter_sqlite_query",
+      "description": "Using a 7-node workflow, read data.csv, drop null values, filter rows where revenue is greater than 100, cast column types using an empty mapping, store into a SQLite database called b_sales_cast.db in table sales_rows, run a SQL query to retrieve all rows, then export to b_sales_cast.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataFilter",
+          "TypeCaster",
+          "SQLiteConnector",
+          "QueryEngine",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "TypeCaster"
+          ],
+          [
+            "TypeCaster",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataFilter": {
+            "condition": "revenue > 100"
+          },
+          "TypeCaster": {
+            "mapping": {}
+          },
+          "SQLiteConnector": {
+            "db_path": "b_sales_cast.db",
+            "table_name": "sales_rows"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM sales_rows"
+          },
+          "CSVExporter": {
+            "output_path": "b_sales_cast.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 40 rows from data.csv\n[NullHandler] Dropped null rows\n[DataFilter] Applied condition: revenue > 100\n[TypeCaster] Cast columns: {}\n[SQLiteConnector] Stored table 'sales_rows' in b_sales_cast.db\n[QueryEngine] Query executed\n[CSVExporter] Exported to b_sales_cast.csv\nb_sales_cast.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 12.4,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_b_30_sales_validate_typecast_agg",
+      "description": "Using a 6-node workflow, read data.csv, validate schema, drop null values, cast column types using an empty mapping, group by category and count rows, then export to b_sales_cat_totals.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "SchemaValidator",
+          "NullHandler",
+          "TypeCaster",
+          "Aggregator",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "SchemaValidator"
+          ],
+          [
+            "SchemaValidator",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "TypeCaster"
+          ],
+          [
+            "TypeCaster",
+            "Aggregator"
+          ],
+          [
+            "Aggregator",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "SchemaValidator": {},
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "TypeCaster": {
+            "mapping": {}
+          },
+          "Aggregator": {
+            "group_by": "category",
+            "agg_func": "count"
+          },
+          "CSVExporter": {
+            "output_path": "b_sales_cat_totals.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 40 rows from data.csv\n[SchemaValidator] Schema validated\n[NullHandler] Dropped null rows\n[TypeCaster] Cast columns: {}\n[Aggregator] Aggregated using count\n[CSVExporter] Exported to b_sales_cat_totals.csv\nb_sales_cat_totals.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 8.83,
       "error": null,
       "baseline_success": null,
       "baseline_error": null,

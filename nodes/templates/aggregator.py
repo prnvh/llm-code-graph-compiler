@@ -2,7 +2,7 @@ import pandas as pd
 
 def aggregator(df: pd.DataFrame, group_by: str, agg_func: str) -> pd.DataFrame:
     """
-    Aggregates DataFrame.
+    Aggregates DataFrame. Use this for all grouping and counting 
     Node: Aggregator
     """
 

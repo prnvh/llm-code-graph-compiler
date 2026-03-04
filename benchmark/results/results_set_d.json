@@ -1,6 +1,6 @@
 {
-  "run_at": "2026-03-03T22:37:57.249049",
-  "task_count": 10,
+  "run_at": "2026-03-04T17:42:38.621993",
+  "task_count": 30,
   "compiler_first_pass_rate": 0.9,
   "results": [
     {
@@ -109,7 +109,7 @@
       "run_stderr": "",
       "run_returncode": 0,
       "criteria_failures": [],
-      "duration_seconds": 12.18,
+      "duration_seconds": 12.72,
       "error": null,
       "baseline_success": null,
       "baseline_error": null,
@@ -119,11 +119,11 @@
       "task_id": "set_d_02_plugin_lifecycle",
       "description": "Using an 11-node workflow, read input.json, validate schema, apply a data transformation with no operations, drop null values, store into a SQLite database called d_events.db in table raw_events, run a SQL query to retrieve all rows, cast column types using an empty mapping, group by event_type and count rows, sort by count descending, then export to d_event_counts.csv.",
       "plan_success": true,
-      "validation_success": false,
-      "compile_success": false,
-      "run_success": false,
-      "criteria_passed": false,
-      "first_pass_success": false,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
       "plan": {
         "nodes": [
           "JSONParser",
@@ -131,7 +131,6 @@
           "DataTransformer",
           "NullHandler",
           "SQLiteConnector",
-          "SQLiteReader",
           "QueryEngine",
           "TypeCaster",
           "Aggregator",
@@ -157,10 +156,6 @@
           ],
           [
             "SQLiteConnector",
-            "SQLiteReader"
-          ],
-          [
-            "SQLiteReader",
             "QueryEngine"
           ],
           [
@@ -193,9 +188,6 @@
             "db_path": "d_events.db",
             "table_name": "raw_events"
           },
-          "SQLiteReader": {
-            "db_path": "d_events.db"
-          },
           "QueryEngine": {
             "query": "SELECT * FROM raw_events"
           },
@@ -217,15 +209,13 @@
         "flags": [],
         "glue_code": ""
       },
-      "validation_errors": [
-        "TYPE_MISMATCH: [SQLiteConnector -> SQLiteReader] NodeType.DB_HANDLE != NodeType.FILE_PATH"
-      ],
+      "validation_errors": [],
       "compile_error": null,
-      "run_stdout": "",
+      "run_stdout": "[JSONParser] Loaded 50 rows from input.json\n[SchemaValidator] Schema validated\n[DataTransformer] Transformations applied\n[NullHandler] Dropped null rows\n[SQLiteConnector] Stored table 'raw_events' in d_events.db\n[QueryEngine] Query executed\n[TypeCaster] Cast columns: {}\n[Aggregator] Aggregated using count\n[DataSorter] Sorted by 'count' (descending)\n[CSVExporter] Exported to d_event_counts.csv\nd_event_counts.csv\n",
       "run_stderr": "",
-      "run_returncode": null,
+      "run_returncode": 0,
       "criteria_failures": [],
-      "duration_seconds": 10.46,
+      "duration_seconds": 10.21,
       "error": null,
       "baseline_success": null,
       "baseline_error": null,
@@ -346,7 +336,7 @@
       "run_stderr": "",
       "run_returncode": 0,
       "criteria_failures": [],
-      "duration_seconds": 11.63,
+      "duration_seconds": 13.73,
       "error": null,
       "baseline_success": null,
       "baseline_error": null,
@@ -451,7 +441,7 @@
       "run_stderr": "",
       "run_returncode": 0,
       "criteria_failures": [],
-      "duration_seconds": 10.44,
+      "duration_seconds": 15.51,
       "error": null,
       "baseline_success": null,
       "baseline_error": null,
@@ -563,7 +553,7 @@
       "run_stderr": "",
       "run_returncode": 0,
       "criteria_failures": [],
-      "duration_seconds": 11.34,
+      "duration_seconds": 13.4,
       "error": null,
       "baseline_success": null,
       "baseline_error": null,
@@ -686,7 +676,7 @@
       "run_stderr": "",
       "run_returncode": 0,
       "criteria_failures": [],
-      "duration_seconds": 12.91,
+      "duration_seconds": 15.57,
       "error": null,
       "baseline_success": null,
       "baseline_error": null,
@@ -783,7 +773,7 @@
       "run_stderr": "",
       "run_returncode": 0,
       "criteria_failures": [],
-      "duration_seconds": 9.6,
+      "duration_seconds": 9.31,
       "error": null,
       "baseline_success": null,
       "baseline_error": null,
@@ -796,8 +786,8 @@
       "validation_success": true,
       "compile_success": true,
       "run_success": true,
-      "criteria_passed": true,
-      "first_pass_success": true,
+      "criteria_passed": false,
+      "first_pass_success": false,
       "plan": {
         "nodes": [
           "CSVParser",
@@ -808,7 +798,6 @@
           "TypeCaster",
           "SQLiteConnector",
           "QueryEngine",
-          "Aggregator",
           "CSVExporter"
         ],
         "edges": [
@@ -842,10 +831,6 @@
           ],
           [
             "QueryEngine",
-            "Aggregator"
-          ],
-          [
-            "Aggregator",
             "CSVExporter"
           ]
         ],
@@ -875,11 +860,7 @@
             "table_name": "results"
           },
           "QueryEngine": {
-            "query": "SELECT * FROM results"
-          },
-          "Aggregator": {
-            "group_by": "label",
-            "agg_func": "count"
+            "query": "SELECT * FROM results GROUP BY label"
           },
           "CSVExporter": {
             "output_path": "d_high_score_labels.csv"
@@ -890,11 +871,13 @@
       },
       "validation_errors": [],
       "compile_error": null,
-      "run_stdout": "[CSVParser] Loaded 30 rows from data.csv\n[NullHandler] Dropped null rows\n[DataDeduplicator] Removed duplicate rows\n[DataFilter] Applied condition: score > 0.6\n[ColumnSelector] Selected columns: ['name', 'score', 'label']\n[TypeCaster] Cast columns: {}\n[SQLiteConnector] Stored table 'results' in d_scores.db\n[QueryEngine] Query executed\n[Aggregator] Aggregated using count\n[CSVExporter] Exported to d_high_score_labels.csv\nd_high_score_labels.csv\n",
+      "run_stdout": "[CSVParser] Loaded 30 rows from data.csv\n[NullHandler] Dropped null rows\n[DataDeduplicator] Removed duplicate rows\n[DataFilter] Applied condition: score > 0.6\n[ColumnSelector] Selected columns: ['name', 'score', 'label']\n[TypeCaster] Cast columns: {}\n[SQLiteConnector] Stored table 'results' in d_scores.db\n[QueryEngine] Query executed\n[CSVExporter] Exported to d_high_score_labels.csv\nd_high_score_labels.csv\n",
       "run_stderr": "",
       "run_returncode": 0,
-      "criteria_failures": [],
-      "duration_seconds": 11.26,
+      "criteria_failures": [
+        "file_has_column: column 'count' not in 'd_high_score_labels.csv'"
+      ],
+      "duration_seconds": 11.05,
       "error": null,
       "baseline_success": null,
       "baseline_error": null,
@@ -983,7 +966,7 @@
       "run_stderr": "",
       "run_returncode": 0,
       "criteria_failures": [],
-      "duration_seconds": 9.47,
+      "duration_seconds": 8.64,
       "error": null,
       "baseline_success": null,
       "baseline_error": null,
@@ -1104,7 +1087,2334 @@
       "run_stderr": "",
       "run_returncode": 0,
       "criteria_failures": [],
-      "duration_seconds": 13.26,
+      "duration_seconds": 13.74,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_d_11_employees_sqlite_dept_agg",
+      "description": "Using a 10-node workflow, read data.csv, drop null values, remove duplicate rows, filter rows where salary is greater than 35000, select name, department, region, and salary, cast column types using an empty mapping, store into a SQLite database called d_employees2.db in table employees, run a SQL query to retrieve all rows, group by department and count rows, then export to d_dept_counts2.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataDeduplicator",
+          "DataFilter",
+          "ColumnSelector",
+          "TypeCaster",
+          "SQLiteConnector",
+          "QueryEngine",
+          "Aggregator",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "ColumnSelector"
+          ],
+          [
+            "ColumnSelector",
+            "TypeCaster"
+          ],
+          [
+            "TypeCaster",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "Aggregator"
+          ],
+          [
+            "Aggregator",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataDeduplicator": {},
+          "DataFilter": {
+            "condition": "salary > 35000"
+          },
+          "ColumnSelector": {
+            "columns": [
+              "name",
+              "department",
+              "region",
+              "salary"
+            ]
+          },
+          "TypeCaster": {
+            "mapping": {}
+          },
+          "SQLiteConnector": {
+            "db_path": "d_employees2.db",
+            "table_name": "employees"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM employees"
+          },
+          "Aggregator": {
+            "group_by": "department",
+            "agg_func": "count"
+          },
+          "CSVExporter": {
+            "output_path": "d_dept_counts2.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 23 rows from data.csv\n[NullHandler] Dropped null rows\n[DataDeduplicator] Removed duplicate rows\n[DataFilter] Applied condition: salary > 35000\n[ColumnSelector] Selected columns: ['name', 'department', 'region', 'salary']\n[TypeCaster] Cast columns: {}\n[SQLiteConnector] Stored table 'employees' in d_employees2.db\n[QueryEngine] Query executed\n[Aggregator] Aggregated using count\n[CSVExporter] Exported to d_dept_counts2.csv\nd_dept_counts2.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 9.86,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_d_12_employees_sqlite_region_agg_sort_desc",
+      "description": "Using an 11-node workflow, read data.csv, drop null values, remove duplicate rows, filter rows where salary is greater than 40000, select name, department, region, and salary, cast column types using an empty mapping, store into a SQLite database called d_salary2.db in table salary_rows, run a SQL query to retrieve all rows, group by region and count rows, sort by count descending, then export to d_region_salary.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataDeduplicator",
+          "DataFilter",
+          "ColumnSelector",
+          "TypeCaster",
+          "SQLiteConnector",
+          "QueryEngine",
+          "Aggregator",
+          "DataSorter",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "ColumnSelector"
+          ],
+          [
+            "ColumnSelector",
+            "TypeCaster"
+          ],
+          [
+            "TypeCaster",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "Aggregator"
+          ],
+          [
+            "Aggregator",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataDeduplicator": {},
+          "DataFilter": {
+            "condition": "salary > 40000"
+          },
+          "ColumnSelector": {
+            "columns": [
+              "name",
+              "department",
+              "region",
+              "salary"
+            ]
+          },
+          "TypeCaster": {
+            "mapping": {}
+          },
+          "SQLiteConnector": {
+            "db_path": "d_salary2.db",
+            "table_name": "salary_rows"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM salary_rows"
+          },
+          "Aggregator": {
+            "group_by": [
+              "region"
+            ],
+            "agg_func": "count"
+          },
+          "DataSorter": {
+            "by": "count",
+            "ascending": false
+          },
+          "CSVExporter": {
+            "output_path": "d_region_salary.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 23 rows from data.csv\n[NullHandler] Dropped null rows\n[DataDeduplicator] Removed duplicate rows\n[DataFilter] Applied condition: salary > 40000\n[ColumnSelector] Selected columns: ['name', 'department', 'region', 'salary']\n[TypeCaster] Cast columns: {}\n[SQLiteConnector] Stored table 'salary_rows' in d_salary2.db\n[QueryEngine] Query executed\n[Aggregator] Aggregated using count\n[DataSorter] Sorted by 'count' (descending)\n[CSVExporter] Exported to d_region_salary.csv\nd_region_salary.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 12.84,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_d_13_events_sqlite_agg_sort_desc_export",
+      "description": "Using an 11-node workflow, read input.json, validate schema, apply a data transformation with no operations, drop null values, remove duplicate rows, cast column types using an empty mapping, store into a SQLite database called d_events2.db in table events, run a SQL query to retrieve all rows, group by event_type and count rows, sort by count descending, then export to d_event_counts2.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "JSONParser",
+          "SchemaValidator",
+          "DataTransformer",
+          "NullHandler",
+          "DataDeduplicator",
+          "TypeCaster",
+          "SQLiteConnector",
+          "QueryEngine",
+          "DataSorter",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "JSONParser",
+            "SchemaValidator"
+          ],
+          [
+            "SchemaValidator",
+            "DataTransformer"
+          ],
+          [
+            "DataTransformer",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "TypeCaster"
+          ],
+          [
+            "TypeCaster",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "JSONParser": {
+            "file_path": "input.json"
+          },
+          "SchemaValidator": {},
+          "DataTransformer": {},
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataDeduplicator": {},
+          "TypeCaster": {
+            "mapping": {}
+          },
+          "SQLiteConnector": {
+            "db_path": "d_events2.db",
+            "table_name": "events"
+          },
+          "QueryEngine": {
+            "query": "SELECT event_type, COUNT(*) as count FROM events GROUP BY event_type"
+          },
+          "DataSorter": {
+            "by": "count",
+            "ascending": false
+          },
+          "CSVExporter": {
+            "output_path": "d_event_counts2.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[JSONParser] Loaded 50 rows from input.json\n[SchemaValidator] Schema validated\n[DataTransformer] Transformations applied\n[NullHandler] Dropped null rows\n[DataDeduplicator] Removed duplicate rows\n[TypeCaster] Cast columns: {}\n[SQLiteConnector] Stored table 'events' in d_events2.db\n[QueryEngine] Query executed\n[DataSorter] Sorted by 'count' (descending)\n[CSVExporter] Exported to d_event_counts2.csv\nd_event_counts2.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 11.72,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_d_14_people_sqlite_sort_desc_export",
+      "description": "Using a 10-node workflow, read data.csv, drop null values, remove duplicate rows, filter rows where age is greater than 20, select name, age, city, and salary, cast column types using an empty mapping, store into a SQLite database called d_people2.db in table people, run a SQL query to retrieve all rows, sort by salary descending, then export to d_people_salary.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataDeduplicator",
+          "DataFilter",
+          "ColumnSelector",
+          "TypeCaster",
+          "SQLiteConnector",
+          "QueryEngine",
+          "DataSorter",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "ColumnSelector"
+          ],
+          [
+            "ColumnSelector",
+            "TypeCaster"
+          ],
+          [
+            "TypeCaster",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataDeduplicator": {},
+          "DataFilter": {
+            "condition": "age > 20"
+          },
+          "ColumnSelector": {
+            "columns": [
+              "name",
+              "age",
+              "city",
+              "salary"
+            ]
+          },
+          "TypeCaster": {
+            "mapping": {}
+          },
+          "SQLiteConnector": {
+            "db_path": "d_people2.db",
+            "table_name": "people"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM people"
+          },
+          "DataSorter": {
+            "by": "salary",
+            "ascending": false
+          },
+          "CSVExporter": {
+            "output_path": "d_people_salary.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 10 rows from data.csv\n[NullHandler] Dropped null rows\n[DataDeduplicator] Removed duplicate rows\n[DataFilter] Applied condition: age > 20\n[ColumnSelector] Selected columns: ['name', 'age', 'city', 'salary']\n[TypeCaster] Cast columns: {}\n[SQLiteConnector] Stored table 'people' in d_people2.db\n[QueryEngine] Query executed\n[DataSorter] Sorted by 'salary' (descending)\n[CSVExporter] Exported to d_people_salary.csv\nd_people_salary.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 14.88,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_d_15_predictions_sqlite_label_agg_sort_desc",
+      "description": "Using an 11-node workflow, read data.csv, drop null values, remove duplicate rows, filter rows where score is greater than 0.2, select name, score, and label, cast column types using an empty mapping, store into a SQLite database called d_predictions2.db in table results, run a SQL query to retrieve all rows, group by label and count rows, sort by count descending, then export to d_label_counts2.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataDeduplicator",
+          "DataFilter",
+          "ColumnSelector",
+          "TypeCaster",
+          "SQLiteConnector",
+          "QueryEngine",
+          "Aggregator",
+          "DataSorter",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "ColumnSelector"
+          ],
+          [
+            "ColumnSelector",
+            "TypeCaster"
+          ],
+          [
+            "TypeCaster",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "Aggregator"
+          ],
+          [
+            "Aggregator",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataDeduplicator": {},
+          "DataFilter": {
+            "condition": "score > 0.2"
+          },
+          "ColumnSelector": {
+            "columns": [
+              "name",
+              "score",
+              "label"
+            ]
+          },
+          "TypeCaster": {
+            "mapping": {}
+          },
+          "SQLiteConnector": {
+            "db_path": "d_predictions2.db",
+            "table_name": "results"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM results"
+          },
+          "Aggregator": {
+            "group_by": "label",
+            "agg_func": "count"
+          },
+          "DataSorter": {
+            "by": "count",
+            "ascending": false
+          },
+          "CSVExporter": {
+            "output_path": "d_label_counts2.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 30 rows from data.csv\n[NullHandler] Dropped null rows\n[DataDeduplicator] Removed duplicate rows\n[DataFilter] Applied condition: score > 0.2\n[ColumnSelector] Selected columns: ['name', 'score', 'label']\n[TypeCaster] Cast columns: {}\n[SQLiteConnector] Stored table 'results' in d_predictions2.db\n[QueryEngine] Query executed\n[Aggregator] Aggregated using count\n[DataSorter] Sorted by 'count' (descending)\n[CSVExporter] Exported to d_label_counts2.csv\nd_label_counts2.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 13.34,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_d_16_customers_sqlite_region_agg",
+      "description": "Using a 10-node workflow, read data.csv, filter rows where status equals active, drop null values, remove duplicate rows, select name, status, signup_date, and region, cast column types using an empty mapping, store into a SQLite database called d_customers2.db in table active, run a SQL query to retrieve all rows, group by region and count rows, then export to d_active_region_counts.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "DataFilter",
+          "NullHandler",
+          "DataDeduplicator",
+          "ColumnSelector",
+          "TypeCaster",
+          "SQLiteConnector",
+          "QueryEngine",
+          "Aggregator",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "ColumnSelector"
+          ],
+          [
+            "ColumnSelector",
+            "TypeCaster"
+          ],
+          [
+            "TypeCaster",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "Aggregator"
+          ],
+          [
+            "Aggregator",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "DataFilter": {
+            "condition": "status == 'active'"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataDeduplicator": {},
+          "ColumnSelector": {
+            "columns": [
+              "name",
+              "status",
+              "signup_date",
+              "region"
+            ]
+          },
+          "TypeCaster": {
+            "mapping": {}
+          },
+          "SQLiteConnector": {
+            "db_path": "d_customers2.db",
+            "table_name": "active"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM active"
+          },
+          "Aggregator": {
+            "group_by": "region",
+            "agg_func": "count"
+          },
+          "CSVExporter": {
+            "output_path": "d_active_region_counts.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 20 rows from data.csv\n[DataFilter] Applied condition: status == 'active'\n[NullHandler] Dropped null rows\n[DataDeduplicator] Removed duplicate rows\n[ColumnSelector] Selected columns: ['name', 'status', 'signup_date', 'region']\n[TypeCaster] Cast columns: {}\n[SQLiteConnector] Stored table 'active' in d_customers2.db\n[QueryEngine] Query executed\n[Aggregator] Aggregated using count\n[CSVExporter] Exported to d_active_region_counts.csv\nd_active_region_counts.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 10.37,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_d_17_employees_logger_sqlite_region_agg_sort_desc",
+      "description": "Using a 12-node workflow, read data.csv, drop null values, remove duplicate rows, filter rows where salary is greater than 45000, select name, department, region, and salary, cast column types using an empty mapping, log the intermediate data, store into a SQLite database called d_sorted_salary.db in table employees, run a SQL query to retrieve all rows, group by region and count rows, sort by count descending, then export to d_sorted_region_counts.csv.",
+      "plan_success": true,
+      "validation_success": false,
+      "compile_success": false,
+      "run_success": false,
+      "criteria_passed": false,
+      "first_pass_success": false,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataDeduplicator",
+          "DataFilter",
+          "ColumnSelector",
+          "TypeCaster",
+          "Logger",
+          "SQLiteConnector",
+          "QueryEngine",
+          "Aggregator",
+          "DataSorter",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "ColumnSelector"
+          ],
+          [
+            "ColumnSelector",
+            "TypeCaster"
+          ],
+          [
+            "TypeCaster",
+            "Logger"
+          ],
+          [
+            "Logger",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "Aggregator"
+          ],
+          [
+            "Aggregator",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataDeduplicator": {},
+          "DataFilter": {
+            "condition": "salary > 45000"
+          },
+          "ColumnSelector": {
+            "columns": [
+              "name",
+              "department",
+              "region",
+              "salary"
+            ]
+          },
+          "TypeCaster": {
+            "mapping": {}
+          },
+          "Logger": {},
+          "SQLiteConnector": {
+            "db_path": "d_sorted_salary.db",
+            "table_name": "employees"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM employees"
+          },
+          "Aggregator": {
+            "group_by": [
+              "region"
+            ],
+            "agg_func": "count"
+          },
+          "DataSorter": {
+            "by": "count",
+            "ascending": false
+          },
+          "CSVExporter": {
+            "output_path": "d_sorted_region_counts.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [
+        "TYPE_MISMATCH: [Logger -> SQLiteConnector] NodeType.ANY != NodeType.DATA_FRAME"
+      ],
+      "compile_error": null,
+      "run_stdout": "",
+      "run_stderr": "",
+      "run_returncode": null,
+      "criteria_failures": [],
+      "duration_seconds": 10.67,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_d_18_predictions_sqlite_agg_export",
+      "description": "Using an 11-node workflow, read data.csv, drop null values, remove duplicate rows, filter rows where score is greater than 0.6, select name, score, and label, cast column types using an empty mapping, store into a SQLite database called d_high_scores.db in table results, run a SQL query to retrieve all rows, group by label and count rows, then export to d_high_score_labels2.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataDeduplicator",
+          "DataFilter",
+          "ColumnSelector",
+          "TypeCaster",
+          "SQLiteConnector",
+          "QueryEngine",
+          "Aggregator",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "ColumnSelector"
+          ],
+          [
+            "ColumnSelector",
+            "TypeCaster"
+          ],
+          [
+            "TypeCaster",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "Aggregator"
+          ],
+          [
+            "Aggregator",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataDeduplicator": {},
+          "DataFilter": {
+            "condition": "score > 0.6"
+          },
+          "ColumnSelector": {
+            "columns": [
+              "name",
+              "score",
+              "label"
+            ]
+          },
+          "TypeCaster": {
+            "mapping": {}
+          },
+          "SQLiteConnector": {
+            "db_path": "d_high_scores.db",
+            "table_name": "results"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM results"
+          },
+          "Aggregator": {
+            "group_by": "label",
+            "agg_func": "count"
+          },
+          "CSVExporter": {
+            "output_path": "d_high_score_labels2.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 30 rows from data.csv\n[NullHandler] Dropped null rows\n[DataDeduplicator] Removed duplicate rows\n[DataFilter] Applied condition: score > 0.6\n[ColumnSelector] Selected columns: ['name', 'score', 'label']\n[TypeCaster] Cast columns: {}\n[SQLiteConnector] Stored table 'results' in d_high_scores.db\n[QueryEngine] Query executed\n[Aggregator] Aggregated using count\n[CSVExporter] Exported to d_high_score_labels2.csv\nd_high_score_labels2.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 12.17,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_d_19_people_city_sqlite_agg",
+      "description": "Using a 10-node workflow, read data.csv, drop null values, remove duplicate rows, filter rows where salary is greater than 30000, select name, city, region, and salary, store into a SQLite database called d_city_people.db in table people, run a SQL query to retrieve all rows, group by city and count rows, then export to d_city_counts2.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataDeduplicator",
+          "DataFilter",
+          "ColumnSelector",
+          "SQLiteConnector",
+          "QueryEngine",
+          "Aggregator",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "ColumnSelector"
+          ],
+          [
+            "ColumnSelector",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "Aggregator"
+          ],
+          [
+            "Aggregator",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataDeduplicator": {},
+          "DataFilter": {
+            "condition": "salary > 30000"
+          },
+          "ColumnSelector": {
+            "columns": [
+              "name",
+              "city",
+              "region",
+              "salary"
+            ]
+          },
+          "SQLiteConnector": {
+            "db_path": "d_city_people.db",
+            "table_name": "people"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM people"
+          },
+          "Aggregator": {
+            "group_by": "city",
+            "agg_func": "count"
+          },
+          "CSVExporter": {
+            "output_path": "d_city_counts2.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 10 rows from data.csv\n[NullHandler] Dropped null rows\n[DataDeduplicator] Removed duplicate rows\n[DataFilter] Applied condition: salary > 30000\n[ColumnSelector] Selected columns: ['name', 'city', 'region', 'salary']\n[SQLiteConnector] Stored table 'people' in d_city_people.db\n[QueryEngine] Query executed\n[Aggregator] Aggregated using count\n[CSVExporter] Exported to d_city_counts2.csv\nd_city_counts2.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 11.69,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_d_20_events_logger_sqlite_agg_sort_desc",
+      "description": "Using a 12-node workflow, read input.json, validate schema, apply a data transformation with no operations, drop null values, remove duplicate rows, cast column types using an empty mapping, log the intermediate data, store into a SQLite database called d_events3.db in table raw_events, run a SQL query to retrieve all rows, group by event_type and count rows, sort by count descending, then export to d_event_summary2.csv.",
+      "plan_success": true,
+      "validation_success": false,
+      "compile_success": false,
+      "run_success": false,
+      "criteria_passed": false,
+      "first_pass_success": false,
+      "plan": {
+        "nodes": [
+          "JSONParser",
+          "SchemaValidator",
+          "DataTransformer",
+          "NullHandler",
+          "DataDeduplicator",
+          "TypeCaster",
+          "Logger",
+          "SQLiteConnector",
+          "QueryEngine",
+          "Aggregator",
+          "DataSorter",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "JSONParser",
+            "SchemaValidator"
+          ],
+          [
+            "SchemaValidator",
+            "DataTransformer"
+          ],
+          [
+            "DataTransformer",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "TypeCaster"
+          ],
+          [
+            "TypeCaster",
+            "Logger"
+          ],
+          [
+            "Logger",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "Aggregator"
+          ],
+          [
+            "Aggregator",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "JSONParser": {
+            "file_path": "input.json"
+          },
+          "SchemaValidator": {},
+          "DataTransformer": {},
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataDeduplicator": {},
+          "TypeCaster": {
+            "mapping": {}
+          },
+          "Logger": {},
+          "SQLiteConnector": {
+            "db_path": "d_events3.db",
+            "table_name": "raw_events"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM raw_events"
+          },
+          "Aggregator": {
+            "group_by": "event_type",
+            "agg_func": "count"
+          },
+          "DataSorter": {
+            "by": "count",
+            "ascending": false
+          },
+          "CSVExporter": {
+            "output_path": "d_event_summary2.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [
+        "TYPE_MISMATCH: [Logger -> SQLiteConnector] NodeType.ANY != NodeType.DATA_FRAME"
+      ],
+      "compile_error": null,
+      "run_stdout": "",
+      "run_stderr": "",
+      "run_returncode": null,
+      "criteria_failures": [],
+      "duration_seconds": 11.89,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_d_21_products_schema_full_sqlite_agg",
+      "description": "Using an 11-node workflow, read input.json, validate schema, drop null values, remove duplicate rows, filter rows where price is greater than 50, select only name, category, and price, cast column types using an empty mapping, store into a SQLite database called d_products_rt.db in table products, run a SQL query to retrieve all rows, group by category and count rows, then export to d_product_cat_counts.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "JSONParser",
+          "SchemaValidator",
+          "NullHandler",
+          "DataDeduplicator",
+          "DataFilter",
+          "ColumnSelector",
+          "TypeCaster",
+          "SQLiteConnector",
+          "QueryEngine",
+          "Aggregator",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "JSONParser",
+            "SchemaValidator"
+          ],
+          [
+            "SchemaValidator",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "ColumnSelector"
+          ],
+          [
+            "ColumnSelector",
+            "TypeCaster"
+          ],
+          [
+            "TypeCaster",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "Aggregator"
+          ],
+          [
+            "Aggregator",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "JSONParser": {
+            "file_path": "input.json"
+          },
+          "SchemaValidator": {},
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataDeduplicator": {},
+          "DataFilter": {
+            "condition": "price > 50"
+          },
+          "ColumnSelector": {
+            "columns": [
+              "name",
+              "category",
+              "price"
+            ]
+          },
+          "TypeCaster": {
+            "mapping": {}
+          },
+          "SQLiteConnector": {
+            "db_path": "d_products_rt.db",
+            "table_name": "products"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM products"
+          },
+          "Aggregator": {
+            "group_by": "category",
+            "agg_func": "count"
+          },
+          "CSVExporter": {
+            "output_path": "d_product_cat_counts.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[JSONParser] Loaded 25 rows from input.json\n[SchemaValidator] Schema validated\n[NullHandler] Dropped null rows\n[DataDeduplicator] Removed duplicate rows\n[DataFilter] Applied condition: price > 50\n[ColumnSelector] Selected columns: ['name', 'category', 'price']\n[TypeCaster] Cast columns: {}\n[SQLiteConnector] Stored table 'products' in d_products_rt.db\n[QueryEngine] Query executed\n[Aggregator] Aggregated using count\n[CSVExporter] Exported to d_product_cat_counts.csv\nd_product_cat_counts.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 13.81,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_d_22_sales_null_dedup_filter_typecast_sqlite_agg_sort",
+      "description": "Using an 11-node workflow, read data.csv, drop null values, remove duplicate rows, filter rows where revenue is greater than 100, select only product, category, and revenue, cast column types using an empty mapping, store into a SQLite database called d_sales_agg.db in table sales, run a SQL query to retrieve all rows, group by category and count rows, sort by count descending, then export to d_sales_cat_ranked.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataDeduplicator",
+          "DataFilter",
+          "ColumnSelector",
+          "TypeCaster",
+          "SQLiteConnector",
+          "QueryEngine",
+          "Aggregator",
+          "DataSorter",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "ColumnSelector"
+          ],
+          [
+            "ColumnSelector",
+            "TypeCaster"
+          ],
+          [
+            "TypeCaster",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "Aggregator"
+          ],
+          [
+            "Aggregator",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataDeduplicator": {},
+          "DataFilter": {
+            "condition": "revenue > 100"
+          },
+          "ColumnSelector": {
+            "columns": [
+              "product",
+              "category",
+              "revenue"
+            ]
+          },
+          "TypeCaster": {
+            "mapping": {}
+          },
+          "SQLiteConnector": {
+            "db_path": "d_sales_agg.db",
+            "table_name": "sales"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM sales"
+          },
+          "Aggregator": {
+            "group_by": [
+              "category"
+            ],
+            "agg_func": "count"
+          },
+          "DataSorter": {
+            "by": "count",
+            "ascending": false
+          },
+          "CSVExporter": {
+            "output_path": "d_sales_cat_ranked.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 40 rows from data.csv\n[NullHandler] Dropped null rows\n[DataDeduplicator] Removed duplicate rows\n[DataFilter] Applied condition: revenue > 100\n[ColumnSelector] Selected columns: ['product', 'category', 'revenue']\n[TypeCaster] Cast columns: {}\n[SQLiteConnector] Stored table 'sales' in d_sales_agg.db\n[QueryEngine] Query executed\n[Aggregator] Aggregated using count\n[DataSorter] Sorted by 'count' (descending)\n[CSVExporter] Exported to d_sales_cat_ranked.csv\nd_sales_cat_ranked.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 13.04,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_d_23_products_schema_dedup_filter_typecast_sort_sqlite_agg",
+      "description": "Using a 12-node workflow, read input.json, validate schema, drop null values, remove duplicate rows, filter rows where price is greater than 50, select only name, category, and price, cast column types using an empty mapping, sort by price descending, store into a SQLite database called d_products_full.db in table products, run a SQL query to retrieve all rows, group by category and count rows, then export to d_product_full_counts.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "JSONParser",
+          "SchemaValidator",
+          "NullHandler",
+          "DataDeduplicator",
+          "DataFilter",
+          "ColumnSelector",
+          "TypeCaster",
+          "DataSorter",
+          "SQLiteConnector",
+          "QueryEngine",
+          "Aggregator",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "JSONParser",
+            "SchemaValidator"
+          ],
+          [
+            "SchemaValidator",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "ColumnSelector"
+          ],
+          [
+            "ColumnSelector",
+            "TypeCaster"
+          ],
+          [
+            "TypeCaster",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "Aggregator"
+          ],
+          [
+            "Aggregator",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "JSONParser": {
+            "file_path": "input.json"
+          },
+          "SchemaValidator": {},
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataDeduplicator": {},
+          "DataFilter": {
+            "condition": "price > 50"
+          },
+          "ColumnSelector": {
+            "columns": [
+              "name",
+              "category",
+              "price"
+            ]
+          },
+          "TypeCaster": {
+            "mapping": {}
+          },
+          "DataSorter": {
+            "by": "price",
+            "ascending": false
+          },
+          "SQLiteConnector": {
+            "db_path": "d_products_full.db",
+            "table_name": "products"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM products"
+          },
+          "Aggregator": {
+            "group_by": "category",
+            "agg_func": "count"
+          },
+          "CSVExporter": {
+            "output_path": "d_product_full_counts.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[JSONParser] Loaded 25 rows from input.json\n[SchemaValidator] Schema validated\n[NullHandler] Dropped null rows\n[DataDeduplicator] Removed duplicate rows\n[DataFilter] Applied condition: price > 50\n[ColumnSelector] Selected columns: ['name', 'category', 'price']\n[TypeCaster] Cast columns: {}\n[DataSorter] Sorted by 'price' (descending)\n[SQLiteConnector] Stored table 'products' in d_products_full.db\n[QueryEngine] Query executed\n[Aggregator] Aggregated using count\n[CSVExporter] Exported to d_product_full_counts.csv\nd_product_full_counts.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 12.79,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_d_24_sales_schema_null_dedup_filter_typecast_agg_sort_sqlite_query",
+      "description": "Using an 11-node workflow, read data.csv, validate schema, drop null values, remove duplicate rows, filter rows where revenue is greater than 100, cast column types using an empty mapping, group by category and count rows, sort by count descending, store into a SQLite database called d_cat_counts.db in table category_counts, run a SQL query to retrieve all rows, then export to d_cat_counts_db.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "SchemaValidator",
+          "NullHandler",
+          "DataDeduplicator",
+          "DataFilter",
+          "TypeCaster",
+          "Aggregator",
+          "DataSorter",
+          "SQLiteConnector",
+          "QueryEngine",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "SchemaValidator"
+          ],
+          [
+            "SchemaValidator",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "TypeCaster"
+          ],
+          [
+            "TypeCaster",
+            "Aggregator"
+          ],
+          [
+            "Aggregator",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "SchemaValidator": {},
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataDeduplicator": {},
+          "DataFilter": {
+            "condition": "revenue > 100"
+          },
+          "TypeCaster": {
+            "mapping": {}
+          },
+          "Aggregator": {
+            "group_by": "category",
+            "agg_func": "count"
+          },
+          "DataSorter": {
+            "by": "count",
+            "ascending": false
+          },
+          "SQLiteConnector": {
+            "db_path": "d_cat_counts.db",
+            "table_name": "category_counts"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM category_counts"
+          },
+          "CSVExporter": {
+            "output_path": "d_cat_counts_db.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 40 rows from data.csv\n[SchemaValidator] Schema validated\n[NullHandler] Dropped null rows\n[DataDeduplicator] Removed duplicate rows\n[DataFilter] Applied condition: revenue > 100\n[TypeCaster] Cast columns: {}\n[Aggregator] Aggregated using count\n[DataSorter] Sorted by 'count' (descending)\n[SQLiteConnector] Stored table 'category_counts' in d_cat_counts.db\n[QueryEngine] Query executed\n[CSVExporter] Exported to d_cat_counts_db.csv\nd_cat_counts_db.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 14.3,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_d_25_products_null_dedup_filter_select_typecast_agg_sort_transform",
+      "description": "Using a 10-node workflow, read input.json, drop null values, remove duplicate rows, filter rows where price is greater than 50, select only name, category, and price, cast column types using an empty mapping, group by category and count rows, sort by count ascending, apply a data transformation with no operations, then export to d_product_asc_counts.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "JSONParser",
+          "NullHandler",
+          "DataDeduplicator",
+          "DataFilter",
+          "ColumnSelector",
+          "TypeCaster",
+          "Aggregator",
+          "DataSorter",
+          "DataTransformer",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "JSONParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "ColumnSelector"
+          ],
+          [
+            "ColumnSelector",
+            "TypeCaster"
+          ],
+          [
+            "TypeCaster",
+            "Aggregator"
+          ],
+          [
+            "Aggregator",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "DataTransformer"
+          ],
+          [
+            "DataTransformer",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "JSONParser": {
+            "file_path": "input.json"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataDeduplicator": {},
+          "DataFilter": {
+            "condition": "price > 50"
+          },
+          "ColumnSelector": {
+            "columns": [
+              "name",
+              "category",
+              "price"
+            ]
+          },
+          "TypeCaster": {
+            "mapping": {}
+          },
+          "Aggregator": {
+            "group_by": [
+              "category"
+            ],
+            "agg_func": "count"
+          },
+          "DataSorter": {
+            "by": "count",
+            "ascending": true
+          },
+          "DataTransformer": {},
+          "CSVExporter": {
+            "output_path": "d_product_asc_counts.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[JSONParser] Loaded 25 rows from input.json\n[NullHandler] Dropped null rows\n[DataDeduplicator] Removed duplicate rows\n[DataFilter] Applied condition: price > 50\n[ColumnSelector] Selected columns: ['name', 'category', 'price']\n[TypeCaster] Cast columns: {}\n[Aggregator] Aggregated using count\n[DataSorter] Sorted by 'count' (ascending)\n[DataTransformer] Transformations applied\n[CSVExporter] Exported to d_product_asc_counts.csv\nd_product_asc_counts.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 11.83,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_d_26_sales_schema_null_dedup_filter_select_typecast_sqlite_agg_sort",
+      "description": "Using a 12-node workflow, read data.csv, validate schema, drop null values, remove duplicate rows, filter rows where revenue is greater than 100, select only product, category, revenue, and quantity, cast column types using an empty mapping, store into a SQLite database called d_sales_qty.db in table sales, run a SQL query to retrieve all rows, group by category and count rows, sort by count descending, then export to d_sales_qty_ranked.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "SchemaValidator",
+          "NullHandler",
+          "DataDeduplicator",
+          "DataFilter",
+          "ColumnSelector",
+          "TypeCaster",
+          "SQLiteConnector",
+          "QueryEngine",
+          "Aggregator",
+          "DataSorter",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "SchemaValidator"
+          ],
+          [
+            "SchemaValidator",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "ColumnSelector"
+          ],
+          [
+            "ColumnSelector",
+            "TypeCaster"
+          ],
+          [
+            "TypeCaster",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "Aggregator"
+          ],
+          [
+            "Aggregator",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "SchemaValidator": {},
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataDeduplicator": {},
+          "DataFilter": {
+            "condition": "revenue > 100"
+          },
+          "ColumnSelector": {
+            "columns": [
+              "product",
+              "category",
+              "revenue",
+              "quantity"
+            ]
+          },
+          "TypeCaster": {
+            "mapping": {}
+          },
+          "SQLiteConnector": {
+            "db_path": "d_sales_qty.db",
+            "table_name": "sales"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM sales"
+          },
+          "Aggregator": {
+            "group_by": "category",
+            "agg_func": "count"
+          },
+          "DataSorter": {
+            "by": "count",
+            "ascending": false
+          },
+          "CSVExporter": {
+            "output_path": "d_sales_qty_ranked.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 40 rows from data.csv\n[SchemaValidator] Schema validated\n[NullHandler] Dropped null rows\n[DataDeduplicator] Removed duplicate rows\n[DataFilter] Applied condition: revenue > 100\n[ColumnSelector] Selected columns: ['product', 'category', 'revenue', 'quantity']\n[TypeCaster] Cast columns: {}\n[SQLiteConnector] Stored table 'sales' in d_sales_qty.db\n[QueryEngine] Query executed\n[Aggregator] Aggregated using count\n[DataSorter] Sorted by 'count' (descending)\n[CSVExporter] Exported to d_sales_qty_ranked.csv\nd_sales_qty_ranked.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 13.17,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_d_27_products_schema_null_filter_select_typecast_sqlite_sort",
+      "description": "Using a 10-node workflow, read input.json, validate schema, drop null values, filter rows where price is greater than 50, select only name, category, and price, cast column types using an empty mapping, store into a SQLite database called d_products_sort.db in table products, run a SQL query to retrieve all rows, sort by price descending, then export to d_expensive_sorted.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "JSONParser",
+          "SchemaValidator",
+          "NullHandler",
+          "DataFilter",
+          "ColumnSelector",
+          "TypeCaster",
+          "SQLiteConnector",
+          "QueryEngine",
+          "DataSorter",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "JSONParser",
+            "SchemaValidator"
+          ],
+          [
+            "SchemaValidator",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "ColumnSelector"
+          ],
+          [
+            "ColumnSelector",
+            "TypeCaster"
+          ],
+          [
+            "TypeCaster",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "JSONParser": {
+            "file_path": "input.json"
+          },
+          "SchemaValidator": {},
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataFilter": {
+            "condition": "price > 50"
+          },
+          "ColumnSelector": {
+            "columns": [
+              "name",
+              "category",
+              "price"
+            ]
+          },
+          "TypeCaster": {
+            "mapping": {}
+          },
+          "SQLiteConnector": {
+            "db_path": "d_products_sort.db",
+            "table_name": "products"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM products"
+          },
+          "DataSorter": {
+            "by": "price",
+            "ascending": false
+          },
+          "CSVExporter": {
+            "output_path": "d_expensive_sorted.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[JSONParser] Loaded 25 rows from input.json\n[SchemaValidator] Schema validated\n[NullHandler] Dropped null rows\n[DataFilter] Applied condition: price > 50\n[ColumnSelector] Selected columns: ['name', 'category', 'price']\n[TypeCaster] Cast columns: {}\n[SQLiteConnector] Stored table 'products' in d_products_sort.db\n[QueryEngine] Query executed\n[DataSorter] Sorted by 'price' (descending)\n[CSVExporter] Exported to d_expensive_sorted.csv\nd_expensive_sorted.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 12.48,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_d_28_sales_null_dedup_filter_select_typecast_sqlite_sort_agg",
+      "description": "Using an 11-node workflow, read data.csv, drop null values, remove duplicate rows, filter rows where revenue is greater than 100, select only product, category, and revenue, cast column types using an empty mapping, store into a SQLite database called d_sales_sort_agg.db in table sales, run a SQL query to retrieve all rows, sort by revenue ascending, group by category and count rows, then export to d_rev_asc_cats.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataDeduplicator",
+          "DataFilter",
+          "ColumnSelector",
+          "TypeCaster",
+          "SQLiteConnector",
+          "QueryEngine",
+          "DataSorter",
+          "Aggregator",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "ColumnSelector"
+          ],
+          [
+            "ColumnSelector",
+            "TypeCaster"
+          ],
+          [
+            "TypeCaster",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "Aggregator"
+          ],
+          [
+            "Aggregator",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataDeduplicator": {},
+          "DataFilter": {
+            "condition": "revenue > 100"
+          },
+          "ColumnSelector": {
+            "columns": [
+              "product",
+              "category",
+              "revenue"
+            ]
+          },
+          "TypeCaster": {
+            "mapping": {}
+          },
+          "SQLiteConnector": {
+            "db_path": "d_sales_sort_agg.db",
+            "table_name": "sales"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM sales"
+          },
+          "DataSorter": {
+            "by": "revenue",
+            "ascending": true
+          },
+          "Aggregator": {
+            "group_by": "category",
+            "agg_func": "count"
+          },
+          "CSVExporter": {
+            "output_path": "d_rev_asc_cats.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 40 rows from data.csv\n[NullHandler] Dropped null rows\n[DataDeduplicator] Removed duplicate rows\n[DataFilter] Applied condition: revenue > 100\n[ColumnSelector] Selected columns: ['product', 'category', 'revenue']\n[TypeCaster] Cast columns: {}\n[SQLiteConnector] Stored table 'sales' in d_sales_sort_agg.db\n[QueryEngine] Query executed\n[DataSorter] Sorted by 'revenue' (ascending)\n[Aggregator] Aggregated using count\n[CSVExporter] Exported to d_rev_asc_cats.csv\nd_rev_asc_cats.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 13.94,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_d_29_sales_null_dedup_filter_typecast_transform_sqlite_agg",
+      "description": "Using a 10-node workflow, read data.csv, drop null values, remove duplicate rows, filter rows where revenue is greater than 100, cast column types using an empty mapping, apply a data transformation with no operations, store into a SQLite database called d_sales_transform.db in table sales, run a SQL query to retrieve all rows, group by category and count rows, then export to d_sales_transform_counts.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "CSVParser",
+          "NullHandler",
+          "DataDeduplicator",
+          "DataFilter",
+          "TypeCaster",
+          "DataTransformer",
+          "SQLiteConnector",
+          "QueryEngine",
+          "Aggregator",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "CSVParser",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "TypeCaster"
+          ],
+          [
+            "TypeCaster",
+            "DataTransformer"
+          ],
+          [
+            "DataTransformer",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "Aggregator"
+          ],
+          [
+            "Aggregator",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "CSVParser": {
+            "file_path": "data.csv"
+          },
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataDeduplicator": {},
+          "DataFilter": {
+            "condition": "revenue > 100"
+          },
+          "TypeCaster": {
+            "mapping": {}
+          },
+          "DataTransformer": {},
+          "SQLiteConnector": {
+            "db_path": "d_sales_transform.db",
+            "table_name": "sales"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM sales"
+          },
+          "Aggregator": {
+            "group_by": "category",
+            "agg_func": "count"
+          },
+          "CSVExporter": {
+            "output_path": "d_sales_transform_counts.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[CSVParser] Loaded 40 rows from data.csv\n[NullHandler] Dropped null rows\n[DataDeduplicator] Removed duplicate rows\n[DataFilter] Applied condition: revenue > 100\n[TypeCaster] Cast columns: {}\n[DataTransformer] Transformations applied\n[SQLiteConnector] Stored table 'sales' in d_sales_transform.db\n[QueryEngine] Query executed\n[Aggregator] Aggregated using count\n[CSVExporter] Exported to d_sales_transform_counts.csv\nd_sales_transform_counts.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 11.54,
+      "error": null,
+      "baseline_success": null,
+      "baseline_error": null,
+      "baseline_duration_seconds": null
+    },
+    {
+      "task_id": "set_d_30_products_schema_null_dedup_filter_select_typecast_sort_sqlite_agg",
+      "description": "Using a 12-node workflow, read input.json, validate schema, drop null values, remove duplicate rows, filter rows where price is greater than 50, select only name, category, and price, cast column types using an empty mapping, sort by price descending, store into a SQLite database called d_products_final.db in table products, run a SQL query to retrieve all rows, group by category and count rows, then export to d_product_final_cats.csv.",
+      "plan_success": true,
+      "validation_success": true,
+      "compile_success": true,
+      "run_success": true,
+      "criteria_passed": true,
+      "first_pass_success": true,
+      "plan": {
+        "nodes": [
+          "JSONParser",
+          "SchemaValidator",
+          "NullHandler",
+          "DataDeduplicator",
+          "DataFilter",
+          "ColumnSelector",
+          "TypeCaster",
+          "DataSorter",
+          "SQLiteConnector",
+          "QueryEngine",
+          "Aggregator",
+          "CSVExporter"
+        ],
+        "edges": [
+          [
+            "JSONParser",
+            "SchemaValidator"
+          ],
+          [
+            "SchemaValidator",
+            "NullHandler"
+          ],
+          [
+            "NullHandler",
+            "DataDeduplicator"
+          ],
+          [
+            "DataDeduplicator",
+            "DataFilter"
+          ],
+          [
+            "DataFilter",
+            "ColumnSelector"
+          ],
+          [
+            "ColumnSelector",
+            "TypeCaster"
+          ],
+          [
+            "TypeCaster",
+            "DataSorter"
+          ],
+          [
+            "DataSorter",
+            "SQLiteConnector"
+          ],
+          [
+            "SQLiteConnector",
+            "QueryEngine"
+          ],
+          [
+            "QueryEngine",
+            "Aggregator"
+          ],
+          [
+            "Aggregator",
+            "CSVExporter"
+          ]
+        ],
+        "parameters": {
+          "JSONParser": {
+            "file_path": "input.json"
+          },
+          "SchemaValidator": {},
+          "NullHandler": {
+            "strategy": "drop"
+          },
+          "DataDeduplicator": {},
+          "DataFilter": {
+            "condition": "price > 50"
+          },
+          "ColumnSelector": {
+            "columns": [
+              "name",
+              "category",
+              "price"
+            ]
+          },
+          "TypeCaster": {
+            "mapping": {}
+          },
+          "DataSorter": {
+            "by": "price",
+            "ascending": false
+          },
+          "SQLiteConnector": {
+            "db_path": "d_products_final.db",
+            "table_name": "products"
+          },
+          "QueryEngine": {
+            "query": "SELECT * FROM products"
+          },
+          "Aggregator": {
+            "group_by": "category",
+            "agg_func": "count"
+          },
+          "CSVExporter": {
+            "output_path": "d_product_final_cats.csv"
+          }
+        },
+        "flags": [],
+        "glue_code": ""
+      },
+      "validation_errors": [],
+      "compile_error": null,
+      "run_stdout": "[JSONParser] Loaded 25 rows from input.json\n[SchemaValidator] Schema validated\n[NullHandler] Dropped null rows\n[DataDeduplicator] Removed duplicate rows\n[DataFilter] Applied condition: price > 50\n[ColumnSelector] Selected columns: ['name', 'category', 'price']\n[TypeCaster] Cast columns: {}\n[DataSorter] Sorted by 'price' (descending)\n[SQLiteConnector] Stored table 'products' in d_products_final.db\n[QueryEngine] Query executed\n[Aggregator] Aggregated using count\n[CSVExporter] Exported to d_product_final_cats.csv\nd_product_final_cats.csv\n",
+      "run_stderr": "",
+      "run_returncode": 0,
+      "criteria_failures": [],
+      "duration_seconds": 12.91,
       "error": null,
       "baseline_success": null,
       "baseline_error": null,

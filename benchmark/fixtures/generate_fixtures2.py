@@ -148,7 +148,7 @@ def create_scores_db():
 
 # ─────────────────────────────────────────────────────────────────────
 # sales.csv  (40 rows, 2 exact duplicates → 38 unique)
-# revenue > 100: exactly 25 rows
+# revenue > 100: exactly 27 rows
 # ─────────────────────────────────────────────────────────────────────
 
 def create_sales_csv():
