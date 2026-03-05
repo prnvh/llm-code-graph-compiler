@@ -67,7 +67,41 @@
       "error": null,
       "baseline_success": true,
       "baseline_error": null,
-      "baseline_duration_seconds": 6.67
+      "baseline_duration_seconds": 16.9,
+      "baseline_pass_count": 5,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": true,
+          "error": null,
+          "duration_seconds": 4.28
+        },
+        {
+          "run": 2,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.59
+        },
+        {
+          "run": 3,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.68
+        },
+        {
+          "run": 4,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.41
+        },
+        {
+          "run": 5,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.94
+        }
+      ]
     },
     {
       "task_id": "set_b_02_salary_typecast_select_sort",
@@ -143,7 +177,41 @@
       "error": null,
       "baseline_success": true,
       "baseline_error": null,
-      "baseline_duration_seconds": 5.45
+      "baseline_duration_seconds": 21.69,
+      "baseline_pass_count": 5,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.31
+        },
+        {
+          "run": 2,
+          "success": true,
+          "error": null,
+          "duration_seconds": 4.28
+        },
+        {
+          "run": 3,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.69
+        },
+        {
+          "run": 4,
+          "success": true,
+          "error": null,
+          "duration_seconds": 7.96
+        },
+        {
+          "run": 5,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.45
+        }
+      ]
     },
     {
       "task_id": "set_b_03_salary_filter_select_sort_asc",
@@ -221,7 +289,41 @@
       "error": null,
       "baseline_success": true,
       "baseline_error": null,
-      "baseline_duration_seconds": 5.67
+      "baseline_duration_seconds": 17.39,
+      "baseline_pass_count": 5,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.7
+        },
+        {
+          "run": 2,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.78
+        },
+        {
+          "run": 3,
+          "success": true,
+          "error": null,
+          "duration_seconds": 4.71
+        },
+        {
+          "run": 4,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.93
+        },
+        {
+          "run": 5,
+          "success": true,
+          "error": null,
+          "duration_seconds": 4.27
+        }
+      ]
     },
     {
       "task_id": "set_b_04_active_customers_sort_signup",
@@ -293,7 +395,41 @@
       "error": null,
       "baseline_success": true,
       "baseline_error": null,
-      "baseline_duration_seconds": 4.02
+      "baseline_duration_seconds": 17.19,
+      "baseline_pass_count": 5,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.89
+        },
+        {
+          "run": 2,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.26
+        },
+        {
+          "run": 3,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.15
+        },
+        {
+          "run": 4,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.96
+        },
+        {
+          "run": 5,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.93
+        }
+      ]
     },
     {
       "task_id": "set_b_05_score_filter_null_export",
@@ -361,7 +497,41 @@
       "error": null,
       "baseline_success": true,
       "baseline_error": null,
-      "baseline_duration_seconds": 3.43
+      "baseline_duration_seconds": 16.88,
+      "baseline_pass_count": 5,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.67
+        },
+        {
+          "run": 2,
+          "success": true,
+          "error": null,
+          "duration_seconds": 5.09
+        },
+        {
+          "run": 3,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.14
+        },
+        {
+          "run": 4,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.29
+        },
+        {
+          "run": 5,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.69
+        }
+      ]
     },
     {
       "task_id": "set_b_06_events_transform_agg_count",
@@ -442,7 +612,41 @@
       "error": null,
       "baseline_success": false,
       "baseline_error": "Baseline execution timed out",
-      "baseline_duration_seconds": 47.36
+      "baseline_duration_seconds": 236.78,
+      "baseline_pass_count": 0,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 45.24
+        },
+        {
+          "run": 2,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 46.59
+        },
+        {
+          "run": 3,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 47.24
+        },
+        {
+          "run": 4,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 47.15
+        },
+        {
+          "run": 5,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 50.56
+        }
+      ]
     },
     {
       "task_id": "set_b_07_employees_null_dedup_select",
@@ -511,7 +715,41 @@
       "error": null,
       "baseline_success": true,
       "baseline_error": null,
-      "baseline_duration_seconds": 4.5
+      "baseline_duration_seconds": 21.0,
+      "baseline_pass_count": 5,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": true,
+          "error": null,
+          "duration_seconds": 5.13
+        },
+        {
+          "run": 2,
+          "success": true,
+          "error": null,
+          "duration_seconds": 4.57
+        },
+        {
+          "run": 3,
+          "success": true,
+          "error": null,
+          "duration_seconds": 5.78
+        },
+        {
+          "run": 4,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.54
+        },
+        {
+          "run": 5,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.98
+        }
+      ]
     },
     {
       "task_id": "set_b_08_employees_typecast_sort_desc",
@@ -585,7 +823,41 @@
       "error": null,
       "baseline_success": false,
       "baseline_error": "Criteria failures:\nfile_has_column: column 'count' not in 'b_region_counts.csv'",
-      "baseline_duration_seconds": 4.54
+      "baseline_duration_seconds": 19.4,
+      "baseline_pass_count": 0,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Criteria failures:\nfile_has_column: column 'count' not in 'b_region_counts.csv'",
+          "duration_seconds": 2.73
+        },
+        {
+          "run": 2,
+          "success": false,
+          "error": "Criteria failures:\nfile_has_column: column 'count' not in 'b_region_counts.csv'",
+          "duration_seconds": 6.25
+        },
+        {
+          "run": 3,
+          "success": false,
+          "error": "Criteria failures:\nfile_has_column: column 'count' not in 'b_region_counts.csv'",
+          "duration_seconds": 3.64
+        },
+        {
+          "run": 4,
+          "success": false,
+          "error": "Criteria failures:\nfile_has_column: column 'count' not in 'b_region_counts.csv'",
+          "duration_seconds": 3.16
+        },
+        {
+          "run": 5,
+          "success": false,
+          "error": "Criteria failures:\nfile_has_column: column 'count' not in 'b_region_counts.csv'",
+          "duration_seconds": 3.62
+        }
+      ]
     },
     {
       "task_id": "set_b_09_salary_filter_sqlite_query",
@@ -672,8 +944,42 @@
       "duration_seconds": 8.42,
       "error": null,
       "baseline_success": false,
-      "baseline_error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\pranav h\\Documents\\GitHub\\llm-code-graph-compiler\\.venv\\Lib\\site-packages\\sqlalchemy\\engine\\base.py\", line 1415, in execute\n    meth = statement._execute_on_connection\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'str' object has no attribute '_execute_on_connection'\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp1uh_4my5\\ap",
-      "baseline_duration_seconds": 11.21
+      "baseline_error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpxtx8e5ss\\app.py:19: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df_selected.to_sql('contacts', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpxtx8e5ss\\app.py\", line 19, in <module>\n    df_selected.to_sql('contacts', con",
+      "baseline_duration_seconds": 24.9,
+      "baseline_pass_count": 0,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpzei18zhg\\app.py:19: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  selected_data.to_sql('contacts', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpzei18zhg\\app.py\", line 19, in <module>\n    selected_data.to_sql('contacts',",
+          "duration_seconds": 5.32
+        },
+        {
+          "run": 2,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmptuqpuxzf\\app.py:19: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df_selected.to_sql('contacts', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmptuqpuxzf\\app.py\", line 19, in <module>\n    df_selected.to_sql('contacts', con",
+          "duration_seconds": 5.28
+        },
+        {
+          "run": 3,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpqaesaobt\\app.py:19: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df_selected.to_sql('contacts', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpqaesaobt\\app.py\", line 19, in <module>\n    df_selected.to_sql('contacts', con",
+          "duration_seconds": 3.85
+        },
+        {
+          "run": 4,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpyg2zfuzs\\app.py:19: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df_selected.to_sql('contacts', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpyg2zfuzs\\app.py\", line 19, in <module>\n    df_selected.to_sql('contacts', con",
+          "duration_seconds": 6.7
+        },
+        {
+          "run": 5,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpxtx8e5ss\\app.py:19: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df_selected.to_sql('contacts', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpxtx8e5ss\\app.py\", line 19, in <module>\n    df_selected.to_sql('contacts', con",
+          "duration_seconds": 3.75
+        }
+      ]
     },
     {
       "task_id": "set_b_10_employees_null_dedup_sort_asc",
@@ -739,7 +1045,41 @@
       "error": null,
       "baseline_success": true,
       "baseline_error": null,
-      "baseline_duration_seconds": 4.95
+      "baseline_duration_seconds": 16.69,
+      "baseline_pass_count": 5,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.34
+        },
+        {
+          "run": 2,
+          "success": true,
+          "error": null,
+          "duration_seconds": 4.04
+        },
+        {
+          "run": 3,
+          "success": true,
+          "error": null,
+          "duration_seconds": 4.02
+        },
+        {
+          "run": 4,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.62
+        },
+        {
+          "run": 5,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.67
+        }
+      ]
     },
     {
       "task_id": "set_b_11_null_filter_sort_name_asc",
@@ -807,7 +1147,41 @@
       "error": null,
       "baseline_success": true,
       "baseline_error": null,
-      "baseline_duration_seconds": 4.31
+      "baseline_duration_seconds": 15.61,
+      "baseline_pass_count": 5,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.38
+        },
+        {
+          "run": 2,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.67
+        },
+        {
+          "run": 3,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.63
+        },
+        {
+          "run": 4,
+          "success": true,
+          "error": null,
+          "duration_seconds": 4.26
+        },
+        {
+          "run": 5,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.67
+        }
+      ]
     },
     {
       "task_id": "set_b_12_score_filter_dedup_select",
@@ -884,7 +1258,41 @@
       "error": null,
       "baseline_success": true,
       "baseline_error": null,
-      "baseline_duration_seconds": 4.37
+      "baseline_duration_seconds": 17.83,
+      "baseline_pass_count": 5,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.58
+        },
+        {
+          "run": 2,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.74
+        },
+        {
+          "run": 3,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.68
+        },
+        {
+          "run": 4,
+          "success": true,
+          "error": null,
+          "duration_seconds": 4.74
+        },
+        {
+          "run": 5,
+          "success": true,
+          "error": null,
+          "duration_seconds": 5.09
+        }
+      ]
     },
     {
       "task_id": "set_b_13_events_validate_dedup_sort_asc",
@@ -948,7 +1356,41 @@
       "error": null,
       "baseline_success": false,
       "baseline_error": "Baseline execution timed out",
-      "baseline_duration_seconds": 54.91
+      "baseline_duration_seconds": 242.69,
+      "baseline_pass_count": 0,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 44.89
+        },
+        {
+          "run": 2,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 53.48
+        },
+        {
+          "run": 3,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 47.79
+        },
+        {
+          "run": 4,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 52.18
+        },
+        {
+          "run": 5,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 44.35
+        }
+      ]
     },
     {
       "task_id": "set_b_14_dept_count_agg",
@@ -1014,7 +1456,41 @@
       "error": null,
       "baseline_success": true,
       "baseline_error": null,
-      "baseline_duration_seconds": 4.17
+      "baseline_duration_seconds": 14.52,
+      "baseline_pass_count": 5,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.41
+        },
+        {
+          "run": 2,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.38
+        },
+        {
+          "run": 3,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.75
+        },
+        {
+          "run": 4,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.48
+        },
+        {
+          "run": 5,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.5
+        }
+      ]
     },
     {
       "task_id": "set_b_15_age_filter_city_select_sort_asc",
@@ -1101,7 +1577,41 @@
       "error": null,
       "baseline_success": true,
       "baseline_error": null,
-      "baseline_duration_seconds": 3.72
+      "baseline_duration_seconds": 15.89,
+      "baseline_pass_count": 5,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.96
+        },
+        {
+          "run": 2,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.23
+        },
+        {
+          "run": 3,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.65
+        },
+        {
+          "run": 4,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.94
+        },
+        {
+          "run": 5,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.11
+        }
+      ]
     },
     {
       "task_id": "set_b_16_active_region_count",
@@ -1167,7 +1677,41 @@
       "error": null,
       "baseline_success": true,
       "baseline_error": null,
-      "baseline_duration_seconds": 4.08
+      "baseline_duration_seconds": 15.49,
+      "baseline_pass_count": 5,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.45
+        },
+        {
+          "run": 2,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.9
+        },
+        {
+          "run": 3,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.61
+        },
+        {
+          "run": 4,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.8
+        },
+        {
+          "run": 5,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.73
+        }
+      ]
     },
     {
       "task_id": "set_b_17_high_salary_dept_count",
@@ -1241,7 +1785,41 @@
       "error": null,
       "baseline_success": true,
       "baseline_error": null,
-      "baseline_duration_seconds": 6.54
+      "baseline_duration_seconds": 17.48,
+      "baseline_pass_count": 5,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.33
+        },
+        {
+          "run": 2,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.05
+        },
+        {
+          "run": 3,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.11
+        },
+        {
+          "run": 4,
+          "success": true,
+          "error": null,
+          "duration_seconds": 4.77
+        },
+        {
+          "run": 5,
+          "success": true,
+          "error": null,
+          "duration_seconds": 4.22
+        }
+      ]
     },
     {
       "task_id": "set_b_18_score_filter_dedup_select_sort_desc",
@@ -1327,7 +1905,41 @@
       "error": null,
       "baseline_success": true,
       "baseline_error": null,
-      "baseline_duration_seconds": 3.97
+      "baseline_duration_seconds": 14.65,
+      "baseline_pass_count": 5,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.99
+        },
+        {
+          "run": 2,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.83
+        },
+        {
+          "run": 3,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.52
+        },
+        {
+          "run": 4,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.91
+        },
+        {
+          "run": 5,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.4
+        }
+      ]
     },
     {
       "task_id": "set_b_19_salary_select_sort_desc",
@@ -1413,7 +2025,41 @@
       "error": null,
       "baseline_success": true,
       "baseline_error": null,
-      "baseline_duration_seconds": 3.41
+      "baseline_duration_seconds": 14.35,
+      "baseline_pass_count": 5,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.97
+        },
+        {
+          "run": 2,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.89
+        },
+        {
+          "run": 3,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.64
+        },
+        {
+          "run": 4,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.67
+        },
+        {
+          "run": 5,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.18
+        }
+      ]
     },
     {
       "task_id": "set_b_20_events_validate_dedup_agg",
@@ -1477,7 +2123,41 @@
       "error": null,
       "baseline_success": false,
       "baseline_error": "Baseline execution timed out",
-      "baseline_duration_seconds": 49.06
+      "baseline_duration_seconds": 236.78,
+      "baseline_pass_count": 0,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 47.05
+        },
+        {
+          "run": 2,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 49.26
+        },
+        {
+          "run": 3,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 45.84
+        },
+        {
+          "run": 4,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 47.02
+        },
+        {
+          "run": 5,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 47.61
+        }
+      ]
     },
     {
       "task_id": "set_b_21_sales_null_dedup_filter_export",
@@ -1542,7 +2222,41 @@
       "error": null,
       "baseline_success": true,
       "baseline_error": null,
-      "baseline_duration_seconds": 4.56
+      "baseline_duration_seconds": 17.98,
+      "baseline_pass_count": 5,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.59
+        },
+        {
+          "run": 2,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.52
+        },
+        {
+          "run": 3,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.51
+        },
+        {
+          "run": 4,
+          "success": true,
+          "error": null,
+          "duration_seconds": 4.76
+        },
+        {
+          "run": 5,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.6
+        }
+      ]
     },
     {
       "task_id": "set_b_22_sales_filter_select_sort_desc",
@@ -1622,7 +2336,41 @@
       "error": null,
       "baseline_success": true,
       "baseline_error": null,
-      "baseline_duration_seconds": 5.65
+      "baseline_duration_seconds": 19.04,
+      "baseline_pass_count": 5,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": true,
+          "error": null,
+          "duration_seconds": 5.14
+        },
+        {
+          "run": 2,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.72
+        },
+        {
+          "run": 3,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.63
+        },
+        {
+          "run": 4,
+          "success": true,
+          "error": null,
+          "duration_seconds": 4.17
+        },
+        {
+          "run": 5,
+          "success": true,
+          "error": null,
+          "duration_seconds": 4.38
+        }
+      ]
     },
     {
       "task_id": "set_b_23_products_dedup_filter_select_sort",
@@ -1699,7 +2447,41 @@
       "error": null,
       "baseline_success": true,
       "baseline_error": null,
-      "baseline_duration_seconds": 6.24
+      "baseline_duration_seconds": 17.46,
+      "baseline_pass_count": 5,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.41
+        },
+        {
+          "run": 2,
+          "success": true,
+          "error": null,
+          "duration_seconds": 4.13
+        },
+        {
+          "run": 3,
+          "success": true,
+          "error": null,
+          "duration_seconds": 4.49
+        },
+        {
+          "run": 4,
+          "success": true,
+          "error": null,
+          "duration_seconds": 4.02
+        },
+        {
+          "run": 5,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.41
+        }
+      ]
     },
     {
       "task_id": "set_b_24_products_filter_agg_count",
@@ -1767,7 +2549,41 @@
       "error": null,
       "baseline_success": false,
       "baseline_error": "Baseline execution timed out",
-      "baseline_duration_seconds": 48.17
+      "baseline_duration_seconds": 109.55,
+      "baseline_pass_count": 3,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": true,
+          "error": null,
+          "duration_seconds": 12.18
+        },
+        {
+          "run": 2,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 43.02
+        },
+        {
+          "run": 3,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 44.85
+        },
+        {
+          "run": 4,
+          "success": true,
+          "error": null,
+          "duration_seconds": 7.05
+        },
+        {
+          "run": 5,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.45
+        }
+      ]
     },
     {
       "task_id": "set_b_25_sales_filter_sqlite_query",
@@ -1854,8 +2670,42 @@
       "duration_seconds": 10.5,
       "error": null,
       "baseline_success": false,
-      "baseline_error": "Baseline execution timed out",
-      "baseline_duration_seconds": 47.33
+      "baseline_error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmplsxut670\\app.py:19: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df_selected.to_sql('high_revenue', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmplsxut670\\app.py\", line 19, in <module>\n    df_selected.to_sql('high_reven",
+      "baseline_duration_seconds": 23.86,
+      "baseline_pass_count": 0,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpz4q8qdyp\\app.py:19: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df_selected.to_sql('high_revenue', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpz4q8qdyp\\app.py\", line 19, in <module>\n    df_selected.to_sql('high_reven",
+          "duration_seconds": 4.31
+        },
+        {
+          "run": 2,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpz8r2pmg2\\app.py:19: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df_selected.to_sql('high_revenue', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpz8r2pmg2\\app.py\", line 19, in <module>\n    df_selected.to_sql('high_reven",
+          "duration_seconds": 6.66
+        },
+        {
+          "run": 3,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpgumze1pl\\app.py:19: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  selected_data.to_sql('high_revenue', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpgumze1pl\\app.py\", line 19, in <module>\n    selected_data.to_sql('high_r",
+          "duration_seconds": 5.24
+        },
+        {
+          "run": 4,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp5_4b65qe\\app.py:19: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df_selected.to_sql('high_revenue', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp5_4b65qe\\app.py\", line 19, in <module>\n    df_selected.to_sql('high_reven",
+          "duration_seconds": 3.88
+        },
+        {
+          "run": 5,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmplsxut670\\app.py:19: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df_selected.to_sql('high_revenue', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmplsxut670\\app.py\", line 19, in <module>\n    df_selected.to_sql('high_reven",
+          "duration_seconds": 3.77
+        }
+      ]
     },
     {
       "task_id": "set_b_26_products_validate_filter_agg",
@@ -1921,7 +2771,41 @@
       "error": null,
       "baseline_success": false,
       "baseline_error": "Baseline execution timed out",
-      "baseline_duration_seconds": 61.58
+      "baseline_duration_seconds": 230.65,
+      "baseline_pass_count": 0,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 47.96
+        },
+        {
+          "run": 2,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 44.17
+        },
+        {
+          "run": 3,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 47.04
+        },
+        {
+          "run": 4,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 47.08
+        },
+        {
+          "run": 5,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 44.4
+        }
+      ]
     },
     {
       "task_id": "set_b_27_sales_null_dedup_agg_sort_desc",
@@ -1996,7 +2880,41 @@
       "error": null,
       "baseline_success": true,
       "baseline_error": null,
-      "baseline_duration_seconds": 4.98
+      "baseline_duration_seconds": 18.23,
+      "baseline_pass_count": 5,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": true,
+          "error": null,
+          "duration_seconds": 4.05
+        },
+        {
+          "run": 2,
+          "success": true,
+          "error": null,
+          "duration_seconds": 4.13
+        },
+        {
+          "run": 3,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.34
+        },
+        {
+          "run": 4,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.44
+        },
+        {
+          "run": 5,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.27
+        }
+      ]
     },
     {
       "task_id": "set_b_28_products_null_filter_sort_asc",
@@ -2070,7 +2988,41 @@
       "error": null,
       "baseline_success": true,
       "baseline_error": null,
-      "baseline_duration_seconds": 5.89
+      "baseline_duration_seconds": 19.67,
+      "baseline_pass_count": 5,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.29
+        },
+        {
+          "run": 2,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.42
+        },
+        {
+          "run": 3,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.17
+        },
+        {
+          "run": 4,
+          "success": true,
+          "error": null,
+          "duration_seconds": 7.22
+        },
+        {
+          "run": 5,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.57
+        }
+      ]
     },
     {
       "task_id": "set_b_29_sales_null_filter_sqlite_query",
@@ -2153,8 +3105,42 @@
       "duration_seconds": 10.49,
       "error": null,
       "baseline_success": false,
-      "baseline_error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\pranav h\\Documents\\GitHub\\llm-code-graph-compiler\\.venv\\Lib\\site-packages\\sqlalchemy\\engine\\base.py\", line 1415, in execute\n    meth = statement._execute_on_connection\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'str' object has no attribute '_execute_on_connection'\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp_fk3ac0t\\ap",
-      "baseline_duration_seconds": 5.21
+      "baseline_error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpq65nmlib\\app.py:22: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df.to_sql('sales_rows', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpq65nmlib\\app.py\", line 22, in <module>\n    df.to_sql('sales_rows', con=engine, if_ex",
+      "baseline_duration_seconds": 26.62,
+      "baseline_pass_count": 0,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp_2xzq1nq\\app.py:19: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df.to_sql('sales_rows', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp_2xzq1nq\\app.py\", line 19, in <module>\n    df.to_sql('sales_rows', con=engine, if_ex",
+          "duration_seconds": 4.63
+        },
+        {
+          "run": 2,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpa65_yxpf\\app.py:19: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df.to_sql('sales_rows', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpa65_yxpf\\app.py\", line 19, in <module>\n    df.to_sql('sales_rows', con=engine, if_ex",
+          "duration_seconds": 5.43
+        },
+        {
+          "run": 3,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpf7rkhjge\\app.py:19: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df.to_sql('sales_rows', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpf7rkhjge\\app.py\", line 19, in <module>\n    df.to_sql('sales_rows', con=engine, if_ex",
+          "duration_seconds": 6.61
+        },
+        {
+          "run": 4,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp6iv_0qvk\\app.py:18: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df.to_sql('sales_rows', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp6iv_0qvk\\app.py\", line 18, in <module>\n    df.to_sql('sales_rows', con=engine, if_ex",
+          "duration_seconds": 3.96
+        },
+        {
+          "run": 5,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpq65nmlib\\app.py:22: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df.to_sql('sales_rows', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpq65nmlib\\app.py\", line 22, in <module>\n    df.to_sql('sales_rows', con=engine, if_ex",
+          "duration_seconds": 5.99
+        }
+      ]
     },
     {
       "task_id": "set_b_30_sales_validate_typecast_agg",
@@ -2228,7 +3214,41 @@
       "error": null,
       "baseline_success": false,
       "baseline_error": "Baseline execution timed out",
-      "baseline_duration_seconds": 52.09
+      "baseline_duration_seconds": 117.21,
+      "baseline_pass_count": 0,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpg01jm3gn\\app.py\", line 57, in <module>\n    main()\n    ~~~~^^\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpg01jm3gn\\app.py\", line 50, in main\n    df = validate_schema(df, expected_columns)\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpg01jm3gn\\app.py\", line 15, in validate_schema\n    raise ValueError(\"Schema does not match expected columns\")\nValueError: Schema does not match expected columns\n",
+          "duration_seconds": 7.51
+        },
+        {
+          "run": 2,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpf7xcmpr0\\app.py\", line 57, in <module>\n    main()\n    ~~~~^^\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpf7xcmpr0\\app.py\", line 50, in main\n    df = validate_schema(df, expected_columns)\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpf7xcmpr0\\app.py\", line 15, in validate_schema\n    raise ValueError(\"Schema does not match expected columns\")\nValueError: Schema does not match expected columns\n",
+          "duration_seconds": 8.54
+        },
+        {
+          "run": 3,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpj1ugnjk5\\app.py\", line 57, in <module>\n    main()\n    ~~~~^^\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpj1ugnjk5\\app.py\", line 50, in main\n    df = validate_schema(df, expected_columns)\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpj1ugnjk5\\app.py\", line 15, in validate_schema\n    raise ValueError(\"Schema does not match expected columns\")\nValueError: Schema does not match expected columns\n",
+          "duration_seconds": 6.85
+        },
+        {
+          "run": 4,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 46.91
+        },
+        {
+          "run": 5,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 47.4
+        }
+      ]
     },
     {
       "task_id": "set_b_31_sales_null_dedup_agg_sort",
@@ -2303,7 +3323,41 @@
       "error": null,
       "baseline_success": true,
       "baseline_error": null,
-      "baseline_duration_seconds": 3.9
+      "baseline_duration_seconds": 20.87,
+      "baseline_pass_count": 5,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.59
+        },
+        {
+          "run": 2,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.74
+        },
+        {
+          "run": 3,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.49
+        },
+        {
+          "run": 4,
+          "success": true,
+          "error": null,
+          "duration_seconds": 6.48
+        },
+        {
+          "run": 5,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.57
+        }
+      ]
     },
     {
       "task_id": "set_b_32_employees_filter_agg",
@@ -2371,7 +3425,41 @@
       "error": null,
       "baseline_success": true,
       "baseline_error": null,
-      "baseline_duration_seconds": 4.43
+      "baseline_duration_seconds": 19.96,
+      "baseline_pass_count": 5,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": true,
+          "error": null,
+          "duration_seconds": 1.99
+        },
+        {
+          "run": 2,
+          "success": true,
+          "error": null,
+          "duration_seconds": 6.69
+        },
+        {
+          "run": 3,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.7
+        },
+        {
+          "run": 4,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.97
+        },
+        {
+          "run": 5,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.61
+        }
+      ]
     },
     {
       "task_id": "set_b_33_events_schema_agg_sort",
@@ -2446,7 +3534,41 @@
       "error": null,
       "baseline_success": false,
       "baseline_error": "Baseline execution timed out",
-      "baseline_duration_seconds": 48.01
+      "baseline_duration_seconds": 235.39,
+      "baseline_pass_count": 0,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 46.79
+        },
+        {
+          "run": 2,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 47.87
+        },
+        {
+          "run": 3,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 46.92
+        },
+        {
+          "run": 4,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 46.95
+        },
+        {
+          "run": 5,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 46.86
+        }
+      ]
     },
     {
       "task_id": "set_b_34_predictions_null_agg_sqlite",
@@ -2530,8 +3652,42 @@
       "duration_seconds": 8.98,
       "error": null,
       "baseline_success": false,
-      "baseline_error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\pranav h\\Documents\\GitHub\\llm-code-graph-compiler\\.venv\\Lib\\site-packages\\sqlalchemy\\engine\\base.py\", line 1415, in execute\n    meth = statement._execute_on_connection\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'str' object has no attribute '_execute_on_connection'\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpagjbh4_u\\ap",
-      "baseline_duration_seconds": 4.15
+      "baseline_error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp19u9tlok\\app.py:19: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  label_counts.to_sql('label_counts', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp19u9tlok\\app.py\", line 19, in <module>\n    label_counts.to_sql('label_co",
+      "baseline_duration_seconds": 21.93,
+      "baseline_pass_count": 0,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp_3x2wj9e\\app.py:19: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  label_counts.to_sql('label_counts', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp_3x2wj9e\\app.py\", line 19, in <module>\n    label_counts.to_sql('label_co",
+          "duration_seconds": 4.32
+        },
+        {
+          "run": 2,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpbucja8mx\\app.py:19: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  label_counts.to_sql('label_counts', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpbucja8mx\\app.py\", line 19, in <module>\n    label_counts.to_sql('label_co",
+          "duration_seconds": 3.92
+        },
+        {
+          "run": 3,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmptf_ej250\\app.py:19: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  label_counts.to_sql('label_counts', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmptf_ej250\\app.py\", line 19, in <module>\n    label_counts.to_sql('label_co",
+          "duration_seconds": 4.47
+        },
+        {
+          "run": 4,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp00obwb3p\\app.py:19: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  label_counts.to_sql('label_counts', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp00obwb3p\\app.py\", line 19, in <module>\n    label_counts.to_sql('label_co",
+          "duration_seconds": 4.81
+        },
+        {
+          "run": 5,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp19u9tlok\\app.py:19: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  label_counts.to_sql('label_counts', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp19u9tlok\\app.py\", line 19, in <module>\n    label_counts.to_sql('label_co",
+          "duration_seconds": 4.41
+        }
+      ]
     },
     {
       "task_id": "set_b_35_sales_filter_logger_sqlite",
@@ -2612,8 +3768,42 @@
       "duration_seconds": 9.21,
       "error": null,
       "baseline_success": false,
-      "baseline_error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\pranav h\\Documents\\GitHub\\llm-code-graph-compiler\\.venv\\Lib\\site-packages\\sqlalchemy\\engine\\base.py\", line 1415, in execute\n    meth = statement._execute_on_connection\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'str' object has no attribute '_execute_on_connection'\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp3aaop_ab\\ap",
-      "baseline_duration_seconds": 5.67
+      "baseline_error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmphuoniwj_\\app.py:20: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  filtered_data.to_sql('sales', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmphuoniwj_\\app.py\", line 20, in <module>\n    filtered_data.to_sql('sales', con=e",
+      "baseline_duration_seconds": 24.8,
+      "baseline_pass_count": 0,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpv8wq_olf\\app.py:19: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  filtered_data.to_sql('sales', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpv8wq_olf\\app.py\", line 19, in <module>\n    filtered_data.to_sql('sales', con=e",
+          "duration_seconds": 4.87
+        },
+        {
+          "run": 2,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpjh33bu2y\\app.py:26: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df_filtered.to_sql('sales', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpjh33bu2y\\app.py\", line 26, in <module>\n    df_filtered.to_sql('sales', con=engin",
+          "duration_seconds": 5.17
+        },
+        {
+          "run": 3,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpstgyrlhx\\app.py:26: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df_filtered.to_sql('sales', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpstgyrlhx\\app.py\", line 26, in <module>\n    df_filtered.to_sql('sales', con=engin",
+          "duration_seconds": 6.51
+        },
+        {
+          "run": 4,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp43hjay9q\\app.py:25: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df_filtered.to_sql('sales', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp43hjay9q\\app.py\", line 25, in <module>\n    df_filtered.to_sql('sales', con=engin",
+          "duration_seconds": 3.61
+        },
+        {
+          "run": 5,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmphuoniwj_\\app.py:20: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  filtered_data.to_sql('sales', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmphuoniwj_\\app.py\", line 20, in <module>\n    filtered_data.to_sql('sales', con=e",
+          "duration_seconds": 4.64
+        }
+      ]
     },
     {
       "task_id": "set_b_36_employees_logger_sqlite_query",
@@ -2700,8 +3890,42 @@
       "duration_seconds": 10.53,
       "error": null,
       "baseline_success": false,
-      "baseline_error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\pranav h\\Documents\\GitHub\\llm-code-graph-compiler\\.venv\\Lib\\site-packages\\sqlalchemy\\engine\\base.py\", line 1415, in execute\n    meth = statement._execute_on_connection\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'str' object has no attribute '_execute_on_connection'\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp50_l6grz\\ap",
-      "baseline_duration_seconds": 5.71
+      "baseline_error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp3k4clmfr\\app.py:26: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  filtered_data.to_sql('employees', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp3k4clmfr\\app.py\", line 26, in <module>\n    filtered_data.to_sql('employees",
+      "baseline_duration_seconds": 24.11,
+      "baseline_pass_count": 0,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpl2yfwpok\\app.py:30: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df_filtered.to_sql('employees', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpl2yfwpok\\app.py\", line 30, in <module>\n    df_filtered.to_sql('employees', c",
+          "duration_seconds": 5.62
+        },
+        {
+          "run": 2,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp8vbxhely\\app.py:26: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  filtered_data.to_sql('employees', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp8vbxhely\\app.py\", line 26, in <module>\n    filtered_data.to_sql('employees",
+          "duration_seconds": 5.74
+        },
+        {
+          "run": 3,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpfri4d5zj\\app.py:25: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  filtered_data.to_sql('employees', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpfri4d5zj\\app.py\", line 25, in <module>\n    filtered_data.to_sql('employees",
+          "duration_seconds": 4.33
+        },
+        {
+          "run": 4,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpue4fmwg4\\app.py:26: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df_filtered.to_sql('employees', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpue4fmwg4\\app.py\", line 26, in <module>\n    df_filtered.to_sql('employees', c",
+          "duration_seconds": 4.46
+        },
+        {
+          "run": 5,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp3k4clmfr\\app.py:26: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  filtered_data.to_sql('employees', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp3k4clmfr\\app.py\", line 26, in <module>\n    filtered_data.to_sql('employees",
+          "duration_seconds": 3.96
+        }
+      ]
     },
     {
       "task_id": "set_b_37_products_schema_filter_agg",
@@ -2767,7 +3991,41 @@
       "error": null,
       "baseline_success": false,
       "baseline_error": "Baseline execution timed out",
-      "baseline_duration_seconds": 49.74
+      "baseline_duration_seconds": 238.71,
+      "baseline_pass_count": 0,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 50.23
+        },
+        {
+          "run": 2,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 45.01
+        },
+        {
+          "run": 3,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 45.33
+        },
+        {
+          "run": 4,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 49.67
+        },
+        {
+          "run": 5,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 48.47
+        }
+      ]
     },
     {
       "task_id": "set_b_38_sales_filter_select_sort",
@@ -2847,7 +4105,41 @@
       "error": null,
       "baseline_success": true,
       "baseline_error": null,
-      "baseline_duration_seconds": 3.76
+      "baseline_duration_seconds": 23.16,
+      "baseline_pass_count": 5,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": true,
+          "error": null,
+          "duration_seconds": 4.21
+        },
+        {
+          "run": 2,
+          "success": true,
+          "error": null,
+          "duration_seconds": 4.33
+        },
+        {
+          "run": 3,
+          "success": true,
+          "error": null,
+          "duration_seconds": 7.67
+        },
+        {
+          "run": 4,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.4
+        },
+        {
+          "run": 5,
+          "success": true,
+          "error": null,
+          "duration_seconds": 4.55
+        }
+      ]
     },
     {
       "task_id": "set_b_39_events_logger_agg_sort",
@@ -2920,9 +4212,43 @@
       "criteria_failures": [],
       "duration_seconds": 9.03,
       "error": null,
-      "baseline_success": true,
-      "baseline_error": null,
-      "baseline_duration_seconds": 4.62
+      "baseline_success": false,
+      "baseline_error": "Baseline execution timed out",
+      "baseline_duration_seconds": 155.43,
+      "baseline_pass_count": 2,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 50.9
+        },
+        {
+          "run": 2,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 48.98
+        },
+        {
+          "run": 3,
+          "success": true,
+          "error": null,
+          "duration_seconds": 5.51
+        },
+        {
+          "run": 4,
+          "success": true,
+          "error": null,
+          "duration_seconds": 4.54
+        },
+        {
+          "run": 5,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 45.5
+        }
+      ]
     },
     {
       "task_id": "set_b_40_predictions_filter_sqlite",
@@ -2997,8 +4323,42 @@
       "duration_seconds": 8.46,
       "error": null,
       "baseline_success": false,
-      "baseline_error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\pranav h\\Documents\\GitHub\\llm-code-graph-compiler\\.venv\\Lib\\site-packages\\sqlalchemy\\engine\\base.py\", line 1415, in execute\n    meth = statement._execute_on_connection\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'str' object has no attribute '_execute_on_connection'\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmppc_79040\\ap",
-      "baseline_duration_seconds": 3.96
+      "baseline_error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmplg_w07gg\\app.py:16: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  filtered_data.to_sql('results', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmplg_w07gg\\app.py\", line 16, in <module>\n    filtered_data.to_sql('results', c",
+      "baseline_duration_seconds": 31.03,
+      "baseline_pass_count": 0,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp193ky2a1\\app.py:16: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  filtered_data.to_sql('results', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp193ky2a1\\app.py\", line 16, in <module>\n    filtered_data.to_sql('results', c",
+          "duration_seconds": 5.25
+        },
+        {
+          "run": 2,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpadcpjvtl\\app.py:16: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  filtered_data.to_sql('results', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpadcpjvtl\\app.py\", line 16, in <module>\n    filtered_data.to_sql('results', c",
+          "duration_seconds": 5.12
+        },
+        {
+          "run": 3,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpm32vys17\\app.py:16: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  filtered_data.to_sql('results', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpm32vys17\\app.py\", line 16, in <module>\n    filtered_data.to_sql('results', c",
+          "duration_seconds": 4.99
+        },
+        {
+          "run": 4,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpl168cyfs\\app.py:16: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  filtered_data.to_sql('results', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpl168cyfs\\app.py\", line 16, in <module>\n    filtered_data.to_sql('results', c",
+          "duration_seconds": 9.8
+        },
+        {
+          "run": 5,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmplg_w07gg\\app.py:16: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  filtered_data.to_sql('results', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmplg_w07gg\\app.py\", line 16, in <module>\n    filtered_data.to_sql('results', c",
+          "duration_seconds": 5.87
+        }
+      ]
     },
     {
       "task_id": "set_b_41_employees_null_dedup_sort_sel",
@@ -3076,7 +4436,41 @@
       "error": null,
       "baseline_success": true,
       "baseline_error": null,
-      "baseline_duration_seconds": 3.4
+      "baseline_duration_seconds": 22.6,
+      "baseline_pass_count": 5,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.69
+        },
+        {
+          "run": 2,
+          "success": true,
+          "error": null,
+          "duration_seconds": 6.74
+        },
+        {
+          "run": 3,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.99
+        },
+        {
+          "run": 4,
+          "success": true,
+          "error": null,
+          "duration_seconds": 4.41
+        },
+        {
+          "run": 5,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.77
+        }
+      ]
     },
     {
       "task_id": "set_b_42_sales_typecast_agg",
@@ -3144,7 +4538,41 @@
       "error": null,
       "baseline_success": true,
       "baseline_error": null,
-      "baseline_duration_seconds": 3.76
+      "baseline_duration_seconds": 27.71,
+      "baseline_pass_count": 5,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": true,
+          "error": null,
+          "duration_seconds": 4.51
+        },
+        {
+          "run": 2,
+          "success": true,
+          "error": null,
+          "duration_seconds": 8.82
+        },
+        {
+          "run": 3,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.86
+        },
+        {
+          "run": 4,
+          "success": true,
+          "error": null,
+          "duration_seconds": 6.18
+        },
+        {
+          "run": 5,
+          "success": true,
+          "error": null,
+          "duration_seconds": 4.34
+        }
+      ]
     },
     {
       "task_id": "set_b_43_products_filter_sort_sel",
@@ -3224,7 +4652,41 @@
       "error": null,
       "baseline_success": true,
       "baseline_error": null,
-      "baseline_duration_seconds": 3.72
+      "baseline_duration_seconds": 24.15,
+      "baseline_pass_count": 5,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": true,
+          "error": null,
+          "duration_seconds": 4.93
+        },
+        {
+          "run": 2,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.35
+        },
+        {
+          "run": 3,
+          "success": true,
+          "error": null,
+          "duration_seconds": 4.79
+        },
+        {
+          "run": 4,
+          "success": true,
+          "error": null,
+          "duration_seconds": 5.14
+        },
+        {
+          "run": 5,
+          "success": true,
+          "error": null,
+          "duration_seconds": 5.94
+        }
+      ]
     },
     {
       "task_id": "set_b_44_events_schema_null_sel_sort",
@@ -3756,5 +5218,5 @@
       "baseline_duration_seconds": 6.94
     }
   ],
-  "baseline_first_pass_rate": 0.56
+  "baseline_first_pass_rate": 0.54
 }

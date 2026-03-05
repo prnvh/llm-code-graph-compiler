@@ -303,7 +303,7 @@
       {
         "type": "file_row_count",
         "path": "g_roundtrip11.csv",
-        "expected": 25
+        "expected": 27
       }
     ],
     "timeout_seconds": 40

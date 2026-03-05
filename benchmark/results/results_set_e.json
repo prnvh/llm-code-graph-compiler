@@ -55,8 +55,42 @@
       "duration_seconds": 5.64,
       "error": null,
       "baseline_success": false,
-      "baseline_error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp488p6e9a\\app.py\", line 3, in <module>\n    from jsonschema import validate, ValidationError\nModuleNotFoundError: No module named 'jsonschema'\n",
-      "baseline_duration_seconds": 6.6
+      "baseline_error": "Criteria failures:\nfile_has_column: could not read 'f_schema_report_01.csv': No columns to parse from file\nfile_has_column: could not read 'f_schema_report_01.csv': No columns to parse from file",
+      "baseline_duration_seconds": 76.12,
+      "baseline_pass_count": 0,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Criteria failures:\nfile_has_column: could not read 'f_schema_report_01.csv': No columns to parse from file\nfile_has_column: could not read 'f_schema_report_01.csv': No columns to parse from file",
+          "duration_seconds": 4.82
+        },
+        {
+          "run": 2,
+          "success": false,
+          "error": "Criteria failures:\nfile_has_column: could not read 'f_schema_report_01.csv': No columns to parse from file\nfile_has_column: could not read 'f_schema_report_01.csv': No columns to parse from file",
+          "duration_seconds": 6.59
+        },
+        {
+          "run": 3,
+          "success": false,
+          "error": "Criteria failures:\nfile_has_column: could not read 'f_schema_report_01.csv': No columns to parse from file\nfile_has_column: could not read 'f_schema_report_01.csv': No columns to parse from file",
+          "duration_seconds": 5.0
+        },
+        {
+          "run": 4,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 54.93
+        },
+        {
+          "run": 5,
+          "success": false,
+          "error": "Criteria failures:\nfile_has_column: could not read 'f_schema_report_01.csv': No columns to parse from file\nfile_has_column: could not read 'f_schema_report_01.csv': No columns to parse from file",
+          "duration_seconds": 4.78
+        }
+      ]
     },
     {
       "task_id": "set_e_02_wrong_primitive_type",
@@ -112,8 +146,42 @@
       "duration_seconds": 6.87,
       "error": null,
       "baseline_success": false,
-      "baseline_error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpel3xu0x7\\app.py\", line 3, in <module>\n    from jsonschema import validate, ValidationError\nModuleNotFoundError: No module named 'jsonschema'\n",
-      "baseline_duration_seconds": 6.66
+      "baseline_error": "Criteria failures:\nfile_has_column: could not read 'f_schema_report_02.csv': No columns to parse from file\nfile_has_column: could not read 'f_schema_report_02.csv': No columns to parse from file",
+      "baseline_duration_seconds": 28.54,
+      "baseline_pass_count": 0,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Criteria failures:\nfile_has_column: could not read 'f_schema_report_02.csv': No columns to parse from file\nfile_has_column: could not read 'f_schema_report_02.csv': No columns to parse from file",
+          "duration_seconds": 5.42
+        },
+        {
+          "run": 2,
+          "success": false,
+          "error": "Criteria failures:\nfile_has_column: could not read 'f_schema_report_02.csv': No columns to parse from file\nfile_has_column: could not read 'f_schema_report_02.csv': No columns to parse from file",
+          "duration_seconds": 4.96
+        },
+        {
+          "run": 3,
+          "success": false,
+          "error": "Criteria failures:\nfile_has_column: could not read 'f_schema_report_02.csv': No columns to parse from file\nfile_has_column: could not read 'f_schema_report_02.csv': No columns to parse from file",
+          "duration_seconds": 4.51
+        },
+        {
+          "run": 4,
+          "success": false,
+          "error": "Criteria failures:\nfile_has_column: could not read 'f_schema_report_02.csv': No columns to parse from file\nfile_has_column: could not read 'f_schema_report_02.csv': No columns to parse from file",
+          "duration_seconds": 5.32
+        },
+        {
+          "run": 5,
+          "success": false,
+          "error": "Criteria failures:\nfile_has_column: could not read 'f_schema_report_02.csv': No columns to parse from file\nfile_has_column: could not read 'f_schema_report_02.csv': No columns to parse from file",
+          "duration_seconds": 8.33
+        }
+      ]
     },
     {
       "task_id": "set_e_03_enum_trap",
@@ -170,8 +238,42 @@
       "duration_seconds": 5.66,
       "error": null,
       "baseline_success": false,
-      "baseline_error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpmncbnryp\\app.py\", line 53, in <module>\n    process_data('input.json', 'f_schema_report_03.csv')\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpmncbnryp\\app.py\", line 29, in process_data\n    raise ValueError(\"Input data does not match the expected schema.\")\nValueError: Input data does not match the expected schema.\n",
-      "baseline_duration_seconds": 8.58
+      "baseline_error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp8by205uk\\app.py\", line 33, in <module>\n    grouped_df = df.groupby('event_type').size().reset_index(name='count')\n                 ~~~~~~~~~~^^^^^^^^^^^^^^\n  File \"C:\\Users\\pranav h\\Documents\\GitHub\\llm-code-graph-compiler\\.venv\\Lib\\site-packages\\pandas\\util\\_decorators.py\", line 336, in wrapper\n    return func(*args, **kwargs)\n  File \"C:\\Users\\pranav h\\Documents\\GitHub\\llm-code-graph-compiler\\.venv\\Lib\\site-packa",
+      "baseline_duration_seconds": 32.39,
+      "baseline_pass_count": 0,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpclzywn02\\app.py\", line 30, in <module>\n    grouped_df = df.groupby('event_type').size().reset_index(name='count')\n                 ~~~~~~~~~~^^^^^^^^^^^^^^\n  File \"C:\\Users\\pranav h\\Documents\\GitHub\\llm-code-graph-compiler\\.venv\\Lib\\site-packages\\pandas\\util\\_decorators.py\", line 336, in wrapper\n    return func(*args, **kwargs)\n  File \"C:\\Users\\pranav h\\Documents\\GitHub\\llm-code-graph-compiler\\.venv\\Lib\\site-packa",
+          "duration_seconds": 5.67
+        },
+        {
+          "run": 2,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp129xdlyk\\app.py\", line 52, in <module>\n    process_data('input.json', 'f_schema_report_03.csv')\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp129xdlyk\\app.py\", line 29, in process_data\n    raise ValueError(\"Input data does not match the expected schema.\")\nValueError: Input data does not match the expected schema.\n",
+          "duration_seconds": 6.71
+        },
+        {
+          "run": 3,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp_34tmtj1\\app.py\", line 33, in <module>\n    grouped_df = df.groupby('event_type').size().reset_index(name='count')\n                 ~~~~~~~~~~^^^^^^^^^^^^^^\n  File \"C:\\Users\\pranav h\\Documents\\GitHub\\llm-code-graph-compiler\\.venv\\Lib\\site-packages\\pandas\\util\\_decorators.py\", line 336, in wrapper\n    return func(*args, **kwargs)\n  File \"C:\\Users\\pranav h\\Documents\\GitHub\\llm-code-graph-compiler\\.venv\\Lib\\site-packa",
+          "duration_seconds": 4.31
+        },
+        {
+          "run": 4,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpjrjlyah8\\app.py\", line 52, in <module>\n    process_data('input.json', 'f_schema_report_03.csv')\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpjrjlyah8\\app.py\", line 29, in process_data\n    raise ValueError(\"Input data does not match the expected schema.\")\nValueError: Input data does not match the expected schema.\n",
+          "duration_seconds": 10.14
+        },
+        {
+          "run": 5,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp8by205uk\\app.py\", line 33, in <module>\n    grouped_df = df.groupby('event_type').size().reset_index(name='count')\n                 ~~~~~~~~~~^^^^^^^^^^^^^^\n  File \"C:\\Users\\pranav h\\Documents\\GitHub\\llm-code-graph-compiler\\.venv\\Lib\\site-packages\\pandas\\util\\_decorators.py\", line 336, in wrapper\n    return func(*args, **kwargs)\n  File \"C:\\Users\\pranav h\\Documents\\GitHub\\llm-code-graph-compiler\\.venv\\Lib\\site-packa",
+          "duration_seconds": 5.56
+        }
+      ]
     },
     {
       "task_id": "set_e_04_additional_properties",
@@ -227,8 +329,42 @@
       "duration_seconds": 7.89,
       "error": null,
       "baseline_success": false,
-      "baseline_error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpjr9x0pu4\\app.py\", line 32, in <module>\n    raise ValueError(\"Data does not match the expected schema\")\nValueError: Data does not match the expected schema\n",
-      "baseline_duration_seconds": 7.45
+      "baseline_error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpb4p8xcys\\app.py\", line 32, in <module>\n    raise ValueError(\"Data does not match the expected schema\")\nValueError: Data does not match the expected schema\n",
+      "baseline_duration_seconds": 71.25,
+      "baseline_pass_count": 2,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpj5qvs51_\\app.py\", line 32, in <module>\n    raise ValueError(\"Data does not match the expected schema\")\nValueError: Data does not match the expected schema\n",
+          "duration_seconds": 7.08
+        },
+        {
+          "run": 2,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 46.62
+        },
+        {
+          "run": 3,
+          "success": true,
+          "error": null,
+          "duration_seconds": 4.96
+        },
+        {
+          "run": 4,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpb4p8xcys\\app.py\", line 32, in <module>\n    raise ValueError(\"Data does not match the expected schema\")\nValueError: Data does not match the expected schema\n",
+          "duration_seconds": 6.88
+        },
+        {
+          "run": 5,
+          "success": true,
+          "error": null,
+          "duration_seconds": 5.71
+        }
+      ]
     },
     {
       "task_id": "set_e_05_nullability_trap",
@@ -287,7 +423,41 @@
       "error": null,
       "baseline_success": true,
       "baseline_error": null,
-      "baseline_duration_seconds": 5.01
+      "baseline_duration_seconds": 16.67,
+      "baseline_pass_count": 5,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.04
+        },
+        {
+          "run": 2,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.37
+        },
+        {
+          "run": 3,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.68
+        },
+        {
+          "run": 4,
+          "success": true,
+          "error": null,
+          "duration_seconds": 4.32
+        },
+        {
+          "run": 5,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.26
+        }
+      ]
     },
     {
       "task_id": "set_e_06_recursive_depth",
@@ -352,8 +522,42 @@
       "duration_seconds": 7.33,
       "error": null,
       "baseline_success": false,
-      "baseline_error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp5ku2uhcy\\app.py\", line 33, in <module>\n    is_valid, error_message = validate_json(data, expected_schema)\n                              ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp5ku2uhcy\\app.py\", line 22, in validate_json\n    from jsonschema import validate, ValidationError\nModuleNotFoundError: No module named 'jsonschema'\n",
-      "baseline_duration_seconds": 10.92
+      "baseline_error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmptqsq574y\\app.py:37: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df.to_sql(table_name, con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmptqsq574y\\app.py\", line 71, in <module>\n    main()\n    ~~~~^^\n  File \"C:\\Users\\PRANAV~1",
+      "baseline_duration_seconds": 48.78,
+      "baseline_pass_count": 0,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Criteria failures:\nfile_exists: 'f_schema_report_06.csv' not found\nfile_has_column: could not read 'f_schema_report_06.csv': [Errno 2] No such file or directory: 'C:\\\\Users\\\\PRANAV~1\\\\AppData\\\\Local\\\\Temp\\\\tmpsqx_5vzz\\\\f_schema_report_06.csv'\nfile_has_column: could not read 'f_schema_report_06.csv': [Errno 2] No such file or directory: 'C:\\\\Users\\\\PRANAV~1\\\\AppData\\\\Local\\\\Temp\\\\tmpsqx_5vzz\\\\f_schema_report_06.csv'",
+          "duration_seconds": 9.04
+        },
+        {
+          "run": 2,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpabygva63\\app.py:37: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df.to_sql(table_name, con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpabygva63\\app.py\", line 71, in <module>\n    main()\n    ~~~~^^\n  File \"C:\\Users\\PRANAV~1",
+          "duration_seconds": 8.38
+        },
+        {
+          "run": 3,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp2ziazmq5\\app.py\", line 36, in <module>\n    raise ValueError(\"JSON data does not match the expected schema\")\nValueError: JSON data does not match the expected schema\n",
+          "duration_seconds": 11.0
+        },
+        {
+          "run": 4,
+          "success": false,
+          "error": "Criteria failures:\nfile_exists: 'f_schema_report_06.csv' not found\nfile_has_column: could not read 'f_schema_report_06.csv': [Errno 2] No such file or directory: 'C:\\\\Users\\\\PRANAV~1\\\\AppData\\\\Local\\\\Temp\\\\tmpxnjivace\\\\f_schema_report_06.csv'\nfile_has_column: could not read 'f_schema_report_06.csv': [Errno 2] No such file or directory: 'C:\\\\Users\\\\PRANAV~1\\\\AppData\\\\Local\\\\Temp\\\\tmpxnjivace\\\\f_schema_report_06.csv'",
+          "duration_seconds": 11.87
+        },
+        {
+          "run": 5,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmptqsq574y\\app.py:37: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df.to_sql(table_name, con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmptqsq574y\\app.py\", line 71, in <module>\n    main()\n    ~~~~^^\n  File \"C:\\Users\\PRANAV~1",
+          "duration_seconds": 8.49
+        }
+      ]
     },
     {
       "task_id": "set_e_07_id_uniqueness",
@@ -411,7 +615,41 @@
       "error": null,
       "baseline_success": true,
       "baseline_error": null,
-      "baseline_duration_seconds": 3.24
+      "baseline_duration_seconds": 16.16,
+      "baseline_pass_count": 5,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.85
+        },
+        {
+          "run": 2,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.63
+        },
+        {
+          "run": 3,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.55
+        },
+        {
+          "run": 4,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.69
+        },
+        {
+          "run": 5,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.44
+        }
+      ]
     },
     {
       "task_id": "set_e_08_foreign_key_trap",
@@ -475,7 +713,41 @@
       "error": null,
       "baseline_success": true,
       "baseline_error": null,
-      "baseline_duration_seconds": 3.23
+      "baseline_duration_seconds": 14.0,
+      "baseline_pass_count": 5,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.33
+        },
+        {
+          "run": 2,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.71
+        },
+        {
+          "run": 3,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.19
+        },
+        {
+          "run": 4,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.57
+        },
+        {
+          "run": 5,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.2
+        }
+      ]
     },
     {
       "task_id": "set_e_09_version_skew",
@@ -546,8 +818,42 @@
       "duration_seconds": 8.35,
       "error": null,
       "baseline_success": false,
-      "baseline_error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpv57si11m\\app.py\", line 63, in <module>\n    main()\n    ~~~~^^\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpv57si11m\\app.py\", line 48, in main\n    data = load_and_validate_json(input_file)\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpv57si11m\\app.py\", line 15, in load_and_validate_json\n    raise ValueError(\"Invalid schema in JSON data\")\nValueError: Invalid schema in JSON data\n",
-      "baseline_duration_seconds": 11.42
+      "baseline_error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpz004enrj\\app.py:15: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df.to_sql('events', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpz004enrj\\app.py\", line 15, in <module>\n    df.to_sql('events', con=engine, if_exists='re",
+      "baseline_duration_seconds": 33.32,
+      "baseline_pass_count": 0,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpuhp46wt3\\app.py\", line 34, in <module>\n    raise ValueError(\"JSON data does not match the expected schema\")\nValueError: JSON data does not match the expected schema\n",
+          "duration_seconds": 7.7
+        },
+        {
+          "run": 2,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpecaulqmi\\app.py\", line 34, in <module>\n    raise ValueError(\"Input JSON does not match the expected schema.\")\nValueError: Input JSON does not match the expected schema.\n",
+          "duration_seconds": 5.54
+        },
+        {
+          "run": 3,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpwksum56y\\app.py\", line 34, in <module>\n    raise ValueError(\"JSON data does not match the expected schema\")\nValueError: JSON data does not match the expected schema\n",
+          "duration_seconds": 6.74
+        },
+        {
+          "run": 4,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpscl6edxg\\app.py\", line 36, in <module>\n    raise ValueError(\"JSON data does not match the expected schema\")\nValueError: JSON data does not match the expected schema\n",
+          "duration_seconds": 9.37
+        },
+        {
+          "run": 5,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpz004enrj\\app.py:15: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df.to_sql('events', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpz004enrj\\app.py\", line 15, in <module>\n    df.to_sql('events', con=engine, if_exists='re",
+          "duration_seconds": 3.97
+        }
+      ]
     },
     {
       "task_id": "set_e_10_oversized_payload",
@@ -612,7 +918,41 @@
       "error": null,
       "baseline_success": true,
       "baseline_error": null,
-      "baseline_duration_seconds": 3.57
+      "baseline_duration_seconds": 14.53,
+      "baseline_pass_count": 5,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.88
+        },
+        {
+          "run": 2,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.51
+        },
+        {
+          "run": 3,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.76
+        },
+        {
+          "run": 4,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.6
+        },
+        {
+          "run": 5,
+          "success": true,
+          "error": null,
+          "duration_seconds": 2.78
+        }
+      ]
     },
     {
       "task_id": "set_e_11_schema_validate_filter_export",
@@ -676,8 +1016,42 @@
       "duration_seconds": 5.95,
       "error": null,
       "baseline_success": false,
-      "baseline_error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp9muzvwl8\\app.py\", line 3, in <module>\n    from jsonschema import validate, ValidationError\nModuleNotFoundError: No module named 'jsonschema'\n",
-      "baseline_duration_seconds": 8.54
+      "baseline_error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpnw13u5bm\\app.py\", line 39, in <module>\n    df_filtered = df[df['event_type'] == 'purchase']\n                     ~~^^^^^^^^^^^^^^\n  File \"C:\\Users\\pranav h\\Documents\\GitHub\\llm-code-graph-compiler\\.venv\\Lib\\site-packages\\pandas\\core\\frame.py\", line 4378, in __getitem__\n    indexer = self.columns.get_loc(key)\n  File \"C:\\Users\\pranav h\\Documents\\GitHub\\llm-code-graph-compiler\\.venv\\Lib\\site-packages\\pandas\\core\\inde",
+      "baseline_duration_seconds": 36.61,
+      "baseline_pass_count": 0,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpbrfzoinu\\app.py\", line 39, in <module>\n    df_filtered = df[df['event_type'] == 'purchase']\n                     ~~^^^^^^^^^^^^^^\n  File \"C:\\Users\\pranav h\\Documents\\GitHub\\llm-code-graph-compiler\\.venv\\Lib\\site-packages\\pandas\\core\\frame.py\", line 4378, in __getitem__\n    indexer = self.columns.get_loc(key)\n  File \"C:\\Users\\pranav h\\Documents\\GitHub\\llm-code-graph-compiler\\.venv\\Lib\\site-packages\\pandas\\core\\inde",
+          "duration_seconds": 7.9
+        },
+        {
+          "run": 2,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmppaq1ygcg\\app.py\", line 39, in <module>\n    df_filtered = df[df['event_type'] == 'purchase']\n                     ~~^^^^^^^^^^^^^^\n  File \"C:\\Users\\pranav h\\Documents\\GitHub\\llm-code-graph-compiler\\.venv\\Lib\\site-packages\\pandas\\core\\frame.py\", line 4378, in __getitem__\n    indexer = self.columns.get_loc(key)\n  File \"C:\\Users\\pranav h\\Documents\\GitHub\\llm-code-graph-compiler\\.venv\\Lib\\site-packages\\pandas\\core\\inde",
+          "duration_seconds": 7.9
+        },
+        {
+          "run": 3,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpzumjl98p\\app.py\", line 39, in <module>\n    df_filtered = df[df['event_type'] == 'purchase']\n                     ~~^^^^^^^^^^^^^^\n  File \"C:\\Users\\pranav h\\Documents\\GitHub\\llm-code-graph-compiler\\.venv\\Lib\\site-packages\\pandas\\core\\frame.py\", line 4378, in __getitem__\n    indexer = self.columns.get_loc(key)\n  File \"C:\\Users\\pranav h\\Documents\\GitHub\\llm-code-graph-compiler\\.venv\\Lib\\site-packages\\pandas\\core\\inde",
+          "duration_seconds": 5.04
+        },
+        {
+          "run": 4,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp1_pt48t1\\app.py\", line 39, in <module>\n    df_filtered = df[df['event_type'] == 'purchase']\n                     ~~^^^^^^^^^^^^^^\n  File \"C:\\Users\\pranav h\\Documents\\GitHub\\llm-code-graph-compiler\\.venv\\Lib\\site-packages\\pandas\\core\\frame.py\", line 4378, in __getitem__\n    indexer = self.columns.get_loc(key)\n  File \"C:\\Users\\pranav h\\Documents\\GitHub\\llm-code-graph-compiler\\.venv\\Lib\\site-packages\\pandas\\core\\inde",
+          "duration_seconds": 8.08
+        },
+        {
+          "run": 5,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpnw13u5bm\\app.py\", line 39, in <module>\n    df_filtered = df[df['event_type'] == 'purchase']\n                     ~~^^^^^^^^^^^^^^\n  File \"C:\\Users\\pranav h\\Documents\\GitHub\\llm-code-graph-compiler\\.venv\\Lib\\site-packages\\pandas\\core\\frame.py\", line 4378, in __getitem__\n    indexer = self.columns.get_loc(key)\n  File \"C:\\Users\\pranav h\\Documents\\GitHub\\llm-code-graph-compiler\\.venv\\Lib\\site-packages\\pandas\\core\\inde",
+          "duration_seconds": 7.69
+        }
+      ]
     },
     {
       "task_id": "set_e_12_schema_validate_dedup_agg",
@@ -741,7 +1115,41 @@
       "error": null,
       "baseline_success": false,
       "baseline_error": "Baseline execution timed out",
-      "baseline_duration_seconds": 49.04
+      "baseline_duration_seconds": 203.42,
+      "baseline_pass_count": 0,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp9mr4y81o\\app.py\", line 56, in <module>\n    process_data('input.json', 'e_schema_dedup_counts.csv')\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp9mr4y81o\\app.py\", line 29, in process_data\n    raise ValueError(\"Input data does not match the expected schema.\")\nValueError: Input data does not match the expected schema.\n",
+          "duration_seconds": 7.16
+        },
+        {
+          "run": 2,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 45.75
+        },
+        {
+          "run": 3,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 49.14
+        },
+        {
+          "run": 4,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 52.83
+        },
+        {
+          "run": 5,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 48.54
+        }
+      ]
     },
     {
       "task_id": "set_e_13_schema_null_select_sqlite",
@@ -835,8 +1243,42 @@
       "duration_seconds": 8.92,
       "error": null,
       "baseline_success": false,
-      "baseline_error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\pranav h\\Documents\\GitHub\\llm-code-graph-compiler\\.venv\\Lib\\site-packages\\sqlalchemy\\engine\\base.py\", line 1415, in execute\n    meth = statement._execute_on_connection\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'str' object has no attribute '_execute_on_connection'\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpe4lwlw05\\ap",
-      "baseline_duration_seconds": 5.64
+      "baseline_error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpazzfji95\\app.py:35: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df.to_sql('events', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpazzfji95\\app.py\", line 35, in <module>\n    df.to_sql('events', con=engine, if_exists='re",
+      "baseline_duration_seconds": 33.26,
+      "baseline_pass_count": 0,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpot5iwyxy\\app.py\", line 23, in <module>\n    raise ValueError(f\"Column {column} does not match expected type {dtype}\")\nValueError: Column event_type does not match expected type <class 'str'>\n",
+          "duration_seconds": 6.23
+        },
+        {
+          "run": 2,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp35saz7bj\\app.py:33: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df.to_sql('events', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp35saz7bj\\app.py\", line 33, in <module>\n    df.to_sql('events', con=engine, if_exists='re",
+          "duration_seconds": 6.13
+        },
+        {
+          "run": 3,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp26vzcik2\\app.py\", line 23, in <module>\n    raise ValueError(f\"Column {column} does not match expected type {dtype}\")\nValueError: Column event_type does not match expected type <class 'str'>\n",
+          "duration_seconds": 6.46
+        },
+        {
+          "run": 4,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp6cpdi70m\\app.py:33: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df.to_sql('events', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp6cpdi70m\\app.py\", line 33, in <module>\n    df.to_sql('events', con=engine, if_exists='re",
+          "duration_seconds": 7.92
+        },
+        {
+          "run": 5,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpazzfji95\\app.py:35: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df.to_sql('events', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpazzfji95\\app.py\", line 35, in <module>\n    df.to_sql('events', con=engine, if_exists='re",
+          "duration_seconds": 6.52
+        }
+      ]
     },
     {
       "task_id": "set_e_14_schema_typecast_dedup_export",
@@ -899,7 +1341,41 @@
       "error": null,
       "baseline_success": true,
       "baseline_error": null,
-      "baseline_duration_seconds": 5.18
+      "baseline_duration_seconds": 21.63,
+      "baseline_pass_count": 5,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.68
+        },
+        {
+          "run": 2,
+          "success": true,
+          "error": null,
+          "duration_seconds": 5.04
+        },
+        {
+          "run": 3,
+          "success": true,
+          "error": null,
+          "duration_seconds": 4.88
+        },
+        {
+          "run": 4,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.45
+        },
+        {
+          "run": 5,
+          "success": true,
+          "error": null,
+          "duration_seconds": 4.58
+        }
+      ]
     },
     {
       "task_id": "set_e_15_schema_employees_validate_sort_asc",
@@ -981,9 +1457,43 @@
       "criteria_failures": [],
       "duration_seconds": 9.32,
       "error": null,
-      "baseline_success": true,
-      "baseline_error": null,
-      "baseline_duration_seconds": 6.25
+      "baseline_success": false,
+      "baseline_error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpivrwt0cn\\app.py\", line 16, in <module>\n    raise ValueError(f\"Column {column} does not match expected type {dtype}\")\nValueError: Column name does not match expected type <class 'str'>\n",
+      "baseline_duration_seconds": 22.14,
+      "baseline_pass_count": 3,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpgpfqamu6\\app.py\", line 18, in <module>\n    raise ValueError(f\"Column {column} does not match expected type {dtype}\")\nValueError: Column name does not match expected type <class 'str'>\n",
+          "duration_seconds": 5.67
+        },
+        {
+          "run": 2,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.74
+        },
+        {
+          "run": 3,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpivrwt0cn\\app.py\", line 16, in <module>\n    raise ValueError(f\"Column {column} does not match expected type {dtype}\")\nValueError: Column name does not match expected type <class 'str'>\n",
+          "duration_seconds": 3.63
+        },
+        {
+          "run": 4,
+          "success": true,
+          "error": null,
+          "duration_seconds": 4.61
+        },
+        {
+          "run": 5,
+          "success": true,
+          "error": null,
+          "duration_seconds": 4.49
+        }
+      ]
     },
     {
       "task_id": "set_e_16_schema_validate_filter_sqlite_export",
@@ -1062,8 +1572,42 @@
       "duration_seconds": 10.19,
       "error": null,
       "baseline_success": false,
-      "baseline_error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\pranav h\\Documents\\GitHub\\llm-code-graph-compiler\\.venv\\Lib\\site-packages\\sqlalchemy\\engine\\base.py\", line 1967, in _exec_single_context\n    self.dialect.do_execute(\n    ~~~~~~~~~~~~~~~~~~~~~~~^\n        cursor, str_statement, effective_parameters, context\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"C:\\Users\\pranav h\\Documents\\GitHub\\llm-code-graph-compiler\\.venv\\Lib\\site-packages\\sqlalchemy\\engine\\default.py",
-      "baseline_duration_seconds": 8.32
+      "baseline_error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp8usp7wg7\\app.py\", line 29, in <module>\n    raise ValueError(\"Input data does not match the expected schema.\")\nValueError: Input data does not match the expected schema.\n",
+      "baseline_duration_seconds": 30.48,
+      "baseline_pass_count": 0,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpvrk2eerl\\app.py:38: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df.to_sql('events', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpvrk2eerl\\app.py\", line 38, in <module>\n    df.to_sql('events', con=engine, if_exists='re",
+          "duration_seconds": 7.07
+        },
+        {
+          "run": 2,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpaq7z4g5f\\app.py:35: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df.to_sql('events', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpaq7z4g5f\\app.py\", line 35, in <module>\n    df.to_sql('events', con=engine, if_exists='re",
+          "duration_seconds": 5.17
+        },
+        {
+          "run": 3,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmps85sbyso\\app.py:39: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df.to_sql('events', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmps85sbyso\\app.py\", line 39, in <module>\n    df.to_sql('events', con=engine, if_exists='re",
+          "duration_seconds": 5.41
+        },
+        {
+          "run": 4,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmputye943y\\app.py:39: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df.to_sql('events', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmputye943y\\app.py\", line 39, in <module>\n    df.to_sql('events', con=engine, if_exists='re",
+          "duration_seconds": 6.4
+        },
+        {
+          "run": 5,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp8usp7wg7\\app.py\", line 29, in <module>\n    raise ValueError(\"Input data does not match the expected schema.\")\nValueError: Input data does not match the expected schema.\n",
+          "duration_seconds": 6.43
+        }
+      ]
     },
     {
       "task_id": "set_e_17_schema_predictions_validate_filter_agg",
@@ -1136,8 +1680,42 @@
       "duration_seconds": 7.67,
       "error": null,
       "baseline_success": false,
-      "baseline_error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmprqjuhx7p\\app.py\", line 16, in <module>\n    raise ValueError(f\"Column {column} is missing or not of type {dtype}\")\nValueError: Column id is missing or not of type int64\n",
-      "baseline_duration_seconds": 5.52
+      "baseline_error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpajt_uebc\\app.py\", line 11, in <module>\n    raise ValueError(\"Schema does not match the expected format.\")\nValueError: Schema does not match the expected format.\n",
+      "baseline_duration_seconds": 20.77,
+      "baseline_pass_count": 1,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpb5ninue7\\app.py\", line 16, in <module>\n    raise ValueError(f\"Column {column} is missing or not of type {dtype}\")\nValueError: Column id is missing or not of type int64\n",
+          "duration_seconds": 4.0
+        },
+        {
+          "run": 2,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpdsoq7zoz\\app.py\", line 16, in <module>\n    raise ValueError(f\"Column {column} is missing or not of type {dtype}\")\nValueError: Column id is missing or not of type int64\n",
+          "duration_seconds": 4.64
+        },
+        {
+          "run": 3,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmphjhb3x9e\\app.py\", line 16, in <module>\n    raise ValueError(f\"Schema validation failed for column: {column}\")\nValueError: Schema validation failed for column: id\n",
+          "duration_seconds": 4.36
+        },
+        {
+          "run": 4,
+          "success": true,
+          "error": null,
+          "duration_seconds": 4.7
+        },
+        {
+          "run": 5,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpajt_uebc\\app.py\", line 11, in <module>\n    raise ValueError(\"Schema does not match the expected format.\")\nValueError: Schema does not match the expected format.\n",
+          "duration_seconds": 3.07
+        }
+      ]
     },
     {
       "task_id": "set_e_18_schema_validate_typecast_sqlite_agg",
@@ -1218,8 +1796,42 @@
       "duration_seconds": 9.51,
       "error": null,
       "baseline_success": false,
-      "baseline_error": "Baseline execution timed out",
-      "baseline_duration_seconds": 45.17
+      "baseline_error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp4n0y5wm7\\app.py:25: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df.to_sql('events', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp4n0y5wm7\\app.py\", line 25, in <module>\n    df.to_sql('events', con=engine, if_exists='re",
+      "baseline_duration_seconds": 24.19,
+      "baseline_pass_count": 0,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp04y9p_a3\\app.py:24: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df.to_sql('events', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp04y9p_a3\\app.py\", line 24, in <module>\n    df.to_sql('events', con=engine, if_exists='re",
+          "duration_seconds": 4.3
+        },
+        {
+          "run": 2,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpws_ore0z\\app.py:22: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df.to_sql('events', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpws_ore0z\\app.py\", line 22, in <module>\n    df.to_sql('events', con=engine, if_exists='re",
+          "duration_seconds": 5.47
+        },
+        {
+          "run": 3,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp1l1xnogr\\app.py\", line 17, in <module>\n    raise ValueError(\"Invalid schema in input data\")\nValueError: Invalid schema in input data\n",
+          "duration_seconds": 5.25
+        },
+        {
+          "run": 4,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp6lzbxc5d\\app.py:25: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df.to_sql('events', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp6lzbxc5d\\app.py\", line 25, in <module>\n    df.to_sql('events', con=engine, if_exists='re",
+          "duration_seconds": 4.58
+        },
+        {
+          "run": 5,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp4n0y5wm7\\app.py:25: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df.to_sql('events', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp4n0y5wm7\\app.py\", line 25, in <module>\n    df.to_sql('events', con=engine, if_exists='re",
+          "duration_seconds": 4.59
+        }
+      ]
     },
     {
       "task_id": "set_e_19_schema_employees_validate_sqlite_dept_agg",
@@ -1308,8 +1920,42 @@
       "duration_seconds": 10.0,
       "error": null,
       "baseline_success": false,
-      "baseline_error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpxmvjqcf6\\app.py\", line 10, in <module>\n    raise ValueError(\"CSV does not match expected schema\")\nValueError: CSV does not match expected schema\n",
-      "baseline_duration_seconds": 5.25
+      "baseline_error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpe3zc5j8x\\app.py\", line 10, in <module>\n    raise ValueError(\"CSV file does not match the expected schema.\")\nValueError: CSV file does not match the expected schema.\n",
+      "baseline_duration_seconds": 32.83,
+      "baseline_pass_count": 0,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpjwa6t208\\app.py\", line 11, in <module>\n    raise ValueError(\"CSV file does not match the expected schema.\")\nValueError: CSV file does not match the expected schema.\n",
+          "duration_seconds": 6.24
+        },
+        {
+          "run": 2,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpxaqxody5\\app.py\", line 10, in <module>\n    raise ValueError(\"CSV file does not match the expected schema.\")\nValueError: CSV file does not match the expected schema.\n",
+          "duration_seconds": 5.45
+        },
+        {
+          "run": 3,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpe5kkvirm\\app.py\", line 10, in <module>\n    raise ValueError(\"CSV file does not match the expected schema.\")\nValueError: CSV file does not match the expected schema.\n",
+          "duration_seconds": 6.91
+        },
+        {
+          "run": 4,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp9dpcv39u\\app.py\", line 10, in <module>\n    raise ValueError(\"CSV file does not match the expected schema.\")\nValueError: CSV file does not match the expected schema.\n",
+          "duration_seconds": 7.46
+        },
+        {
+          "run": 5,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpe3zc5j8x\\app.py\", line 10, in <module>\n    raise ValueError(\"CSV file does not match the expected schema.\")\nValueError: CSV file does not match the expected schema.\n",
+          "duration_seconds": 6.77
+        }
+      ]
     },
     {
       "task_id": "set_e_20_schema_validate_full_pipeline_sort_desc",
@@ -1420,8 +2066,42 @@
       "duration_seconds": 13.57,
       "error": null,
       "baseline_success": false,
-      "baseline_error": "Baseline execution timed out",
-      "baseline_duration_seconds": 53.65
+      "baseline_error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp0p23l2p5\\app.py:25: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df.to_sql('events', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp0p23l2p5\\app.py\", line 25, in <module>\n    df.to_sql('events', con=engine, if_exists='re",
+      "baseline_duration_seconds": 24.63,
+      "baseline_pass_count": 0,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpznlu726d\\app.py:25: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df.to_sql('events', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpznlu726d\\app.py\", line 25, in <module>\n    df.to_sql('events', con=engine, if_exists='re",
+          "duration_seconds": 5.28
+        },
+        {
+          "run": 2,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpf0_i9yey\\app.py:25: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df.to_sql('events', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpf0_i9yey\\app.py\", line 25, in <module>\n    df.to_sql('events', con=engine, if_exists='re",
+          "duration_seconds": 5.22
+        },
+        {
+          "run": 3,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp47g7cqh2\\app.py:25: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df.to_sql('events', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp47g7cqh2\\app.py\", line 25, in <module>\n    df.to_sql('events', con=engine, if_exists='re",
+          "duration_seconds": 5.0
+        },
+        {
+          "run": 4,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpe0a3jrl0\\app.py:25: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df.to_sql('events', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpe0a3jrl0\\app.py\", line 25, in <module>\n    df.to_sql('events', con=engine, if_exists='re",
+          "duration_seconds": 4.07
+        },
+        {
+          "run": 5,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp0p23l2p5\\app.py:25: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df.to_sql('events', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp0p23l2p5\\app.py\", line 25, in <module>\n    df.to_sql('events', con=engine, if_exists='re",
+          "duration_seconds": 5.06
+        }
+      ]
     },
     {
       "task_id": "set_e_21_schema_sales_validate_typecast",
@@ -1478,7 +2158,41 @@
       "error": null,
       "baseline_success": true,
       "baseline_error": null,
-      "baseline_duration_seconds": 5.59
+      "baseline_duration_seconds": 18.93,
+      "baseline_pass_count": 5,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.3
+        },
+        {
+          "run": 2,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.79
+        },
+        {
+          "run": 3,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.85
+        },
+        {
+          "run": 4,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.11
+        },
+        {
+          "run": 5,
+          "success": true,
+          "error": null,
+          "duration_seconds": 4.88
+        }
+      ]
     },
     {
       "task_id": "set_e_22_schema_products_validate_null_export",
@@ -1534,8 +2248,42 @@
       "duration_seconds": 6.71,
       "error": null,
       "baseline_success": false,
-      "baseline_error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp5s4ivzj_\\app.py\", line 4, in <module>\n    from jsonschema import validate, ValidationError\nModuleNotFoundError: No module named 'jsonschema'\n",
-      "baseline_duration_seconds": 13.03
+      "baseline_error": "Baseline runtime error (exit 1):\n",
+      "baseline_duration_seconds": 79.54,
+      "baseline_pass_count": 0,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\n",
+          "duration_seconds": 10.48
+        },
+        {
+          "run": 2,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\n",
+          "duration_seconds": 12.68
+        },
+        {
+          "run": 3,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 48.92
+        },
+        {
+          "run": 4,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\n",
+          "duration_seconds": 3.65
+        },
+        {
+          "run": 5,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\n",
+          "duration_seconds": 3.81
+        }
+      ]
     },
     {
       "task_id": "set_e_23_schema_sales_null_validate_sort_desc",
@@ -1600,8 +2348,42 @@
       "duration_seconds": 6.74,
       "error": null,
       "baseline_success": false,
-      "baseline_error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpu61zbu_k\\app.py\", line 23, in <module>\n    raise ValueError(f\"Missing expected column: {column}\")\nValueError: Missing expected column: product_name\n",
-      "baseline_duration_seconds": 6.49
+      "baseline_error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpqdgp8jff\\app.py\", line 23, in <module>\n    raise ValueError(f\"Missing expected column: {column}\")\nValueError: Missing expected column: product_name\n",
+      "baseline_duration_seconds": 20.04,
+      "baseline_pass_count": 0,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpca06wsdv\\app.py\", line 21, in <module>\n    raise ValueError(f\"Schema validation failed for column: {column}\")\nValueError: Schema validation failed for column: product_name\n",
+          "duration_seconds": 4.47
+        },
+        {
+          "run": 2,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmppsonheem\\app.py\", line 23, in <module>\n    raise ValueError(f\"Missing expected column: {column}\")\nValueError: Missing expected column: product_name\n",
+          "duration_seconds": 4.51
+        },
+        {
+          "run": 3,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpn_7c6z9n\\app.py\", line 23, in <module>\n    raise ValueError(f\"Missing expected column: {column}\")\nValueError: Missing expected column: product_name\n",
+          "duration_seconds": 3.54
+        },
+        {
+          "run": 4,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpqb_qpjfy\\app.py\", line 24, in <module>\n    raise ValueError(f\"Missing expected column: {column}\")\nValueError: Missing expected column: product_name\n",
+          "duration_seconds": 3.54
+        },
+        {
+          "run": 5,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpqdgp8jff\\app.py\", line 23, in <module>\n    raise ValueError(f\"Missing expected column: {column}\")\nValueError: Missing expected column: product_name\n",
+          "duration_seconds": 3.98
+        }
+      ]
     },
     {
       "task_id": "set_e_24_schema_products_dedup_validate_filter",
@@ -1663,8 +2445,42 @@
       "duration_seconds": 7.44,
       "error": null,
       "baseline_success": false,
-      "baseline_error": "Baseline runtime error (exit 1):\n",
-      "baseline_duration_seconds": 9.77
+      "baseline_error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmphe0v766_\\app.py\", line 33, in <module>\n    validate_schema(df, expected_schema)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmphe0v766_\\app.py\", line 26, in validate_schema\n    raise ValueError(\"Schema validation failed: Columns do not match\")\nValueError: Schema validation failed: Columns do not match\n",
+      "baseline_duration_seconds": 72.75,
+      "baseline_pass_count": 0,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpwasqyy69\\app.py:25: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df.to_sql('schema_table', con=engine, if_exists='append', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpwasqyy69\\app.py\", line 25, in <module>\n    df.to_sql('schema_table', con=engine, if",
+          "duration_seconds": 6.84
+        },
+        {
+          "run": 2,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 47.16
+        },
+        {
+          "run": 3,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpb49hgqf2\\app.py\", line 31, in <module>\n    raise ValueError(\"DataFrame does not match the expected schema\")\nValueError: DataFrame does not match the expected schema\n",
+          "duration_seconds": 6.42
+        },
+        {
+          "run": 4,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpdhqkkx_7\\app.py\", line 31, in <module>\n    raise ValueError(\"Dataframe does not match the schema\")\nValueError: Dataframe does not match the schema\n",
+          "duration_seconds": 6.81
+        },
+        {
+          "run": 5,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmphe0v766_\\app.py\", line 33, in <module>\n    validate_schema(df, expected_schema)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmphe0v766_\\app.py\", line 26, in validate_schema\n    raise ValueError(\"Schema validation failed: Columns do not match\")\nValueError: Schema validation failed: Columns do not match\n",
+          "duration_seconds": 5.52
+        }
+      ]
     },
     {
       "task_id": "set_e_25_schema_sales_validate_null_agg",
@@ -1729,8 +2545,42 @@
       "duration_seconds": 11.21,
       "error": null,
       "baseline_success": false,
-      "baseline_error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpvd1r_r3r\\app.py\", line 17, in <module>\n    raise ValueError(f\"Schema validation failed for column: {column}\")\nValueError: Schema validation failed for column: name\n",
-      "baseline_duration_seconds": 6.2
+      "baseline_error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpwxcr8lrw\\app.py\", line 17, in <module>\n    raise ValueError(f\"Column {column} is missing or has incorrect type.\")\nValueError: Column name is missing or has incorrect type.\n",
+      "baseline_duration_seconds": 20.75,
+      "baseline_pass_count": 0,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpvq_s1y9x\\app.py\", line 17, in <module>\n    raise ValueError(f\"Schema validation failed for column: {column}\")\nValueError: Schema validation failed for column: name\n",
+          "duration_seconds": 4.9
+        },
+        {
+          "run": 2,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpzx6he43k\\app.py\", line 17, in <module>\n    raise ValueError(f\"Schema validation failed for column: {column}\")\nValueError: Schema validation failed for column: name\n",
+          "duration_seconds": 4.56
+        },
+        {
+          "run": 3,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpi27aspth\\app.py\", line 17, in <module>\n    raise ValueError(f\"Schema validation failed for column: {column}\")\nValueError: Schema validation failed for column: name\n",
+          "duration_seconds": 3.38
+        },
+        {
+          "run": 4,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpojlzur1u\\app.py\", line 17, in <module>\n    raise ValueError(f\"Schema validation failed for column: {column}\")\nValueError: Schema validation failed for column: name\n",
+          "duration_seconds": 3.2
+        },
+        {
+          "run": 5,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpwxcr8lrw\\app.py\", line 17, in <module>\n    raise ValueError(f\"Column {column} is missing or has incorrect type.\")\nValueError: Column name is missing or has incorrect type.\n",
+          "duration_seconds": 4.71
+        }
+      ]
     },
     {
       "task_id": "set_e_26_schema_products_validate_sqlite",
@@ -1803,8 +2653,42 @@
       "duration_seconds": 8.25,
       "error": null,
       "baseline_success": false,
-      "baseline_error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpjmiw959i\\app.py\", line 34, in <module>\n    valid_data = [item for item in data if validate_data(item, schema)]\n                                           ~~~~~~~~~~~~~^^^^^^^^^^^^^^\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpjmiw959i\\app.py\", line 21, in validate_data\n    from jsonschema import validate, ValidationError\nModuleNotFoundError: No module named 'jsonschema'\n",
-      "baseline_duration_seconds": 12.14
+      "baseline_error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpwpuebjfl\\app.py:44: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df.to_sql('products', conn, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpwpuebjfl\\app.py\", line 44, in <module>\n    df.to_sql('products', conn, if_exists='replace', ",
+      "baseline_duration_seconds": 39.4,
+      "baseline_pass_count": 0,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp1phauay6\\app.py:39: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df.to_sql('products', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp1phauay6\\app.py\", line 39, in <module>\n    df.to_sql('products', con=engine, if_exists",
+          "duration_seconds": 6.87
+        },
+        {
+          "run": 2,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp80sw6mx4\\app.py:44: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df.to_sql('products', conn, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp80sw6mx4\\app.py\", line 44, in <module>\n    df.to_sql('products', conn, if_exists='replace', ",
+          "duration_seconds": 9.07
+        },
+        {
+          "run": 3,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpru7699rz\\app.py:39: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df.to_sql('products', con=engine, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpru7699rz\\app.py\", line 39, in <module>\n    df.to_sql('products', con=engine, if_exists",
+          "duration_seconds": 10.49
+        },
+        {
+          "run": 4,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpugj84iz8\\app.py:36: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df.to_sql('products', conn, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpugj84iz8\\app.py\", line 36, in <module>\n    df.to_sql('products', conn, if_exists='replace', ",
+          "duration_seconds": 8.05
+        },
+        {
+          "run": 5,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nC:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpwpuebjfl\\app.py:44: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.\n  df.to_sql('products', conn, if_exists='replace', index=False)\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpwpuebjfl\\app.py\", line 44, in <module>\n    df.to_sql('products', conn, if_exists='replace', ",
+          "duration_seconds": 4.92
+        }
+      ]
     },
     {
       "task_id": "set_e_27_schema_sales_typecast_dedup_export",
@@ -1867,7 +2751,41 @@
       "error": null,
       "baseline_success": true,
       "baseline_error": null,
-      "baseline_duration_seconds": 4.32
+      "baseline_duration_seconds": 18.1,
+      "baseline_pass_count": 5,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.26
+        },
+        {
+          "run": 2,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.8
+        },
+        {
+          "run": 3,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.34
+        },
+        {
+          "run": 4,
+          "success": true,
+          "error": null,
+          "duration_seconds": 4.09
+        },
+        {
+          "run": 5,
+          "success": true,
+          "error": null,
+          "duration_seconds": 3.61
+        }
+      ]
     },
     {
       "task_id": "set_e_28_schema_products_validate_filter_agg",
@@ -1931,9 +2849,43 @@
       "criteria_failures": [],
       "duration_seconds": 8.26,
       "error": null,
-      "baseline_success": false,
-      "baseline_error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpvourcosg\\app.py\", line 3, in <module>\n    from jsonschema import validate, ValidationError\nModuleNotFoundError: No module named 'jsonschema'\n",
-      "baseline_duration_seconds": 7.48
+      "baseline_success": true,
+      "baseline_error": null,
+      "baseline_duration_seconds": 27.14,
+      "baseline_pass_count": 5,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": true,
+          "error": null,
+          "duration_seconds": 5.78
+        },
+        {
+          "run": 2,
+          "success": true,
+          "error": null,
+          "duration_seconds": 4.28
+        },
+        {
+          "run": 3,
+          "success": true,
+          "error": null,
+          "duration_seconds": 6.01
+        },
+        {
+          "run": 4,
+          "success": true,
+          "error": null,
+          "duration_seconds": 5.27
+        },
+        {
+          "run": 5,
+          "success": true,
+          "error": null,
+          "duration_seconds": 5.8
+        }
+      ]
     },
     {
       "task_id": "set_e_29_schema_sales_null_sqlite_query_export",
@@ -2006,8 +2958,42 @@
       "duration_seconds": 7.47,
       "error": null,
       "baseline_success": false,
-      "baseline_error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp124hv7zq\\app.py\", line 19, in <module>\n    raise ValueError(f\"Missing expected column: {column}\")\nValueError: Missing expected column: OrderID\n",
-      "baseline_duration_seconds": 9.4
+      "baseline_error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp1v1e8mvk\\app.py\", line 22, in <module>\n    raise ValueError(f\"Column {column} does not match expected type {dtype}\")\nValueError: Column OrderID does not match expected type <class 'int'>\n",
+      "baseline_duration_seconds": 38.78,
+      "baseline_pass_count": 0,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp5ccd24as\\app.py\", line 19, in <module>\n    raise ValueError(f\"Column {column} does not match expected type {dtype}\")\nValueError: Column OrderID does not match expected type <class 'int'>\n",
+          "duration_seconds": 7.02
+        },
+        {
+          "run": 2,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpok_zln5o\\app.py\", line 19, in <module>\n    raise ValueError(f\"Missing expected column: {column}\")\nValueError: Missing expected column: OrderID\n",
+          "duration_seconds": 6.42
+        },
+        {
+          "run": 3,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmphkok0z36\\app.py\", line 19, in <module>\n    raise ValueError(f\"Missing expected column: {column}\")\nValueError: Missing expected column: OrderID\n",
+          "duration_seconds": 5.4
+        },
+        {
+          "run": 4,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmptn8ons5f\\app.py\", line 19, in <module>\n    raise ValueError(f\"Column {column} does not match expected type {dtype}\")\nValueError: Column OrderID does not match expected type <class 'int'>\n",
+          "duration_seconds": 7.1
+        },
+        {
+          "run": 5,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp1v1e8mvk\\app.py\", line 22, in <module>\n    raise ValueError(f\"Column {column} does not match expected type {dtype}\")\nValueError: Column OrderID does not match expected type <class 'int'>\n",
+          "duration_seconds": 12.84
+        }
+      ]
     },
     {
       "task_id": "set_e_30_schema_sales_full_chain",
@@ -2085,8 +3071,42 @@
       "duration_seconds": 8.31,
       "error": null,
       "baseline_success": false,
-      "baseline_error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpsf4__vln\\app.py\", line 9, in <module>\n    raise ValueError(\"CSV does not match expected schema\")\nValueError: CSV does not match expected schema\n",
-      "baseline_duration_seconds": 8.11
+      "baseline_error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp4xu_iut5\\app.py\", line 9, in <module>\n    raise ValueError(\"CSV does not match expected schema\")\nValueError: CSV does not match expected schema\n",
+      "baseline_duration_seconds": 24.3,
+      "baseline_pass_count": 0,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp7ywwcjoj\\app.py\", line 9, in <module>\n    raise ValueError(\"CSV does not match expected schema\")\nValueError: CSV does not match expected schema\n",
+          "duration_seconds": 4.23
+        },
+        {
+          "run": 2,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpyrbt8kgs\\app.py\", line 9, in <module>\n    raise ValueError(\"CSV does not match expected schema\")\nValueError: CSV does not match expected schema\n",
+          "duration_seconds": 4.93
+        },
+        {
+          "run": 3,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpxsh5dqwb\\app.py\", line 9, in <module>\n    raise ValueError(\"CSV does not match expected schema\")\nValueError: CSV does not match expected schema\n",
+          "duration_seconds": 5.35
+        },
+        {
+          "run": 4,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp4gx4o3a0\\app.py\", line 9, in <module>\n    raise ValueError(\"CSV does not match expected schema\")\nValueError: CSV does not match expected schema\n",
+          "duration_seconds": 4.62
+        },
+        {
+          "run": 5,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp4xu_iut5\\app.py\", line 9, in <module>\n    raise ValueError(\"CSV does not match expected schema\")\nValueError: CSV does not match expected schema\n",
+          "duration_seconds": 5.17
+        }
+      ]
     },
     {
       "task_id": "set_e_31_schema_sales_agg",
@@ -2151,8 +3171,42 @@
       "duration_seconds": 6.48,
       "error": null,
       "baseline_success": false,
-      "baseline_error": "Baseline execution timed out",
-      "baseline_duration_seconds": 49.31
+      "baseline_error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmplbiwg8ov\\app.py\", line 50, in <module>\n    workflow()\n    ~~~~~~~~^^\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmplbiwg8ov\\app.py\", line 37, in workflow\n    df = validate_schema(df, expected_columns)\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmplbiwg8ov\\app.py\", line 15, in validate_schema\n    raise ValueError(\"Schema does not match expected columns\")\nValueError: Schema does not match expected columns\n",
+      "baseline_duration_seconds": 112.81,
+      "baseline_pass_count": 0,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 46.59
+        },
+        {
+          "run": 2,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 44.11
+        },
+        {
+          "run": 3,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpueyly8ka\\app.py\", line 50, in <module>\n    workflow()\n    ~~~~~~~~^^\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpueyly8ka\\app.py\", line 37, in workflow\n    df = validate_schema(df, expected_columns)\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpueyly8ka\\app.py\", line 15, in validate_schema\n    raise ValueError(\"Schema does not match expected columns\")\nValueError: Schema does not match expected columns\n",
+          "duration_seconds": 10.54
+        },
+        {
+          "run": 4,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpqjug_cqa\\app.py\", line 9, in <module>\n    raise ValueError(\"CSV file does not match the expected schema.\")\nValueError: CSV file does not match the expected schema.\n",
+          "duration_seconds": 4.26
+        },
+        {
+          "run": 5,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmplbiwg8ov\\app.py\", line 50, in <module>\n    workflow()\n    ~~~~~~~~^^\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmplbiwg8ov\\app.py\", line 37, in workflow\n    df = validate_schema(df, expected_columns)\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmplbiwg8ov\\app.py\", line 15, in validate_schema\n    raise ValueError(\"Schema does not match expected columns\")\nValueError: Schema does not match expected columns\n",
+          "duration_seconds": 7.31
+        }
+      ]
     },
     {
       "task_id": "set_e_32_schema_events_agg_sort",
@@ -2227,7 +3281,41 @@
       "error": null,
       "baseline_success": false,
       "baseline_error": "Baseline execution timed out",
-      "baseline_duration_seconds": 49.26
+      "baseline_duration_seconds": 230.46,
+      "baseline_pass_count": 0,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 46.38
+        },
+        {
+          "run": 2,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 46.97
+        },
+        {
+          "run": 3,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 43.32
+        },
+        {
+          "run": 4,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 49.22
+        },
+        {
+          "run": 5,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 44.57
+        }
+      ]
     },
     {
       "task_id": "set_e_33_schema_employees_filter_agg",
@@ -2300,8 +3388,42 @@
       "duration_seconds": 6.68,
       "error": null,
       "baseline_success": false,
-      "baseline_error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpdusbmkhb\\app.py\", line 9, in <module>\n    raise ValueError(\"Dataframe does not match expected schema\")\nValueError: Dataframe does not match expected schema\n",
-      "baseline_duration_seconds": 6.1
+      "baseline_error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpzq05swwe\\app.py\", line 9, in <module>\n    raise ValueError(\"Schema validation failed. Expected columns: \" + \", \".join(expected_columns))\nValueError: Schema validation failed. Expected columns: id, name, department, salary\n",
+      "baseline_duration_seconds": 20.02,
+      "baseline_pass_count": 0,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp1d0loxjf\\app.py\", line 9, in <module>\n    raise ValueError(\"CSV file does not match the expected schema.\")\nValueError: CSV file does not match the expected schema.\n",
+          "duration_seconds": 3.03
+        },
+        {
+          "run": 2,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpc3pkc4pf\\app.py\", line 9, in <module>\n    raise ValueError(\"Schema validation failed. Expected columns: \" + \", \".join(expected_columns))\nValueError: Schema validation failed. Expected columns: id, name, department, salary\n",
+          "duration_seconds": 3.1
+        },
+        {
+          "run": 3,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpcyx4u93v\\app.py\", line 9, in <module>\n    raise ValueError(\"Schema validation failed. Expected columns: \" + \", \".join(expected_columns))\nValueError: Schema validation failed. Expected columns: id, name, department, salary\n",
+          "duration_seconds": 3.83
+        },
+        {
+          "run": 4,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp1bsqdcen\\app.py\", line 9, in <module>\n    raise ValueError(\"CSV does not contain the required columns\")\nValueError: CSV does not contain the required columns\n",
+          "duration_seconds": 2.76
+        },
+        {
+          "run": 5,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpzq05swwe\\app.py\", line 9, in <module>\n    raise ValueError(\"Schema validation failed. Expected columns: \" + \", \".join(expected_columns))\nValueError: Schema validation failed. Expected columns: id, name, department, salary\n",
+          "duration_seconds": 7.3
+        }
+      ]
     },
     {
       "task_id": "set_e_34_schema_predictions_agg",
@@ -2366,8 +3488,42 @@
       "duration_seconds": 7.26,
       "error": null,
       "baseline_success": false,
-      "baseline_error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp9uptsqt8\\app.py\", line 9, in <module>\n    raise ValueError(\"Schema validation failed. Expected columns: {}\".format(expected_columns))\nValueError: Schema validation failed. Expected columns: ['label', 'value']\n",
-      "baseline_duration_seconds": 4.65
+      "baseline_error": "Baseline execution timed out",
+      "baseline_duration_seconds": 107.17,
+      "baseline_pass_count": 0,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpvkc0zgey\\app.py\", line 9, in <module>\n    raise ValueError(\"Schema validation failed. Expected columns: {}\".format(expected_columns))\nValueError: Schema validation failed. Expected columns: ['label', 'value']\n",
+          "duration_seconds": 3.37
+        },
+        {
+          "run": 2,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 46.42
+        },
+        {
+          "run": 3,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp0nczgji5\\app.py\", line 9, in <module>\n    raise ValueError(\"Schema validation failed. Expected columns: {}\".format(expected_columns))\nValueError: Schema validation failed. Expected columns: ['label', 'value']\n",
+          "duration_seconds": 2.57
+        },
+        {
+          "run": 4,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp6q0mn034\\app.py\", line 9, in <module>\n    raise ValueError(\"Schema validation failed. Expected columns: {}\".format(expected_columns))\nValueError: Schema validation failed. Expected columns: ['label', 'value']\n",
+          "duration_seconds": 6.8
+        },
+        {
+          "run": 5,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 48.01
+        }
+      ]
     },
     {
       "task_id": "set_e_35_schema_products_filter_agg",
@@ -2433,7 +3589,41 @@
       "error": null,
       "baseline_success": false,
       "baseline_error": "Baseline execution timed out",
-      "baseline_duration_seconds": 49.31
+      "baseline_duration_seconds": 242.26,
+      "baseline_pass_count": 0,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 44.75
+        },
+        {
+          "run": 2,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 47.69
+        },
+        {
+          "run": 3,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 47.84
+        },
+        {
+          "run": 4,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 48.38
+        },
+        {
+          "run": 5,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 53.6
+        }
+      ]
     },
     {
       "task_id": "set_e_36_schema_sales_logger_filter",
@@ -2503,8 +3693,42 @@
       "duration_seconds": 9.6,
       "error": null,
       "baseline_success": false,
-      "baseline_error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmp2auh5nq0\\app.py\", line 14, in <module>\n    raise ValueError(f\"Schema validation failed. Expected columns: {expected_columns}, but got: {set(data.columns)}\")\nValueError: Schema validation failed. Expected columns: {'revenue', 'name', 'id'}, but got: {'category', 'product', 'id', 'revenue', 'quantity'}\n",
-      "baseline_duration_seconds": 7.1
+      "baseline_error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpiz63fx7e\\app.py\", line 14, in <module>\n    raise ValueError(f\"Schema validation failed. Expected columns: {expected_columns}, but got: {set(data.columns)}\")\nValueError: Schema validation failed. Expected columns: {'id', 'name', 'revenue'}, but got: {'product', 'id', 'category', 'revenue', 'quantity'}\n",
+      "baseline_duration_seconds": 83.54,
+      "baseline_pass_count": 0,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Criteria failures:\nfile_exists: 'e36_sales_log.csv' not found\nfile_has_column: could not read 'e36_sales_log.csv': [Errno 2] No such file or directory: 'C:\\\\Users\\\\PRANAV~1\\\\AppData\\\\Local\\\\Temp\\\\tmplcronojl\\\\e36_sales_log.csv'\nfile_has_column: could not read 'e36_sales_log.csv': [Errno 2] No such file or directory: 'C:\\\\Users\\\\PRANAV~1\\\\AppData\\\\Local\\\\Temp\\\\tmplcronojl\\\\e36_sales_log.csv'\nfile_row_count: could not read 'e36_sales_log.csv': [Errno 2] No such file or directory: 'C:\\\\Users\\\\PRANAV~1\\\\AppData\\\\Local\\\\Temp\\\\tmplcronojl\\\\e36_sales_log.csv'",
+          "duration_seconds": 12.44
+        },
+        {
+          "run": 2,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpdvvlkggo\\app.py\", line 14, in <module>\n    raise ValueError(f\"Schema validation failed. Expected columns: {expected_columns}, but got: {set(data.columns)}\")\nValueError: Schema validation failed. Expected columns: {'name', 'id', 'revenue'}, but got: {'quantity', 'id', 'product', 'revenue', 'category'}\n",
+          "duration_seconds": 7.36
+        },
+        {
+          "run": 3,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpmfn4wy3p\\app.py\", line 14, in <module>\n    raise ValueError(f\"Schema validation failed. Expected columns: {expected_columns}, but got: {set(data.columns)}\")\nValueError: Schema validation failed. Expected columns: {'id', 'revenue', 'name'}, but got: {'product', 'id', 'revenue', 'quantity', 'category'}\n",
+          "duration_seconds": 4.84
+        },
+        {
+          "run": 4,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 52.02
+        },
+        {
+          "run": 5,
+          "success": false,
+          "error": "Baseline runtime error (exit 1):\nTraceback (most recent call last):\n  File \"C:\\Users\\PRANAV~1\\AppData\\Local\\Temp\\tmpiz63fx7e\\app.py\", line 14, in <module>\n    raise ValueError(f\"Schema validation failed. Expected columns: {expected_columns}, but got: {set(data.columns)}\")\nValueError: Schema validation failed. Expected columns: {'id', 'name', 'revenue'}, but got: {'product', 'id', 'category', 'revenue', 'quantity'}\n",
+          "duration_seconds": 6.88
+        }
+      ]
     },
     {
       "task_id": "set_e_37_schema_employees_logger_sort",
@@ -2568,7 +3792,41 @@
       "error": null,
       "baseline_success": false,
       "baseline_error": "Baseline execution timed out",
-      "baseline_duration_seconds": 50.12
+      "baseline_duration_seconds": 165.1,
+      "baseline_pass_count": 0,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 51.81
+        },
+        {
+          "run": 2,
+          "success": false,
+          "error": "Criteria failures:\nfile_exists: 'e37_emp_log.csv' not found\nfile_has_column: could not read 'e37_emp_log.csv': [Errno 2] No such file or directory: 'C:\\\\Users\\\\PRANAV~1\\\\AppData\\\\Local\\\\Temp\\\\tmpw2tk8y0d\\\\e37_emp_log.csv'",
+          "duration_seconds": 11.12
+        },
+        {
+          "run": 3,
+          "success": false,
+          "error": "Criteria failures:\nfile_exists: 'e37_emp_log.csv' not found\nfile_has_column: could not read 'e37_emp_log.csv': [Errno 2] No such file or directory: 'C:\\\\Users\\\\PRANAV~1\\\\AppData\\\\Local\\\\Temp\\\\tmp186ypveo\\\\e37_emp_log.csv'",
+          "duration_seconds": 6.77
+        },
+        {
+          "run": 4,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 47.88
+        },
+        {
+          "run": 5,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 47.52
+        }
+      ]
     },
     {
       "task_id": "set_e_38_schema_events_logger_select",
@@ -2642,7 +3900,41 @@
       "error": null,
       "baseline_success": false,
       "baseline_error": "Baseline execution timed out",
-      "baseline_duration_seconds": 53.8
+      "baseline_duration_seconds": 185.15,
+      "baseline_pass_count": 2,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 51.9
+        },
+        {
+          "run": 2,
+          "success": true,
+          "error": null,
+          "duration_seconds": 16.15
+        },
+        {
+          "run": 3,
+          "success": true,
+          "error": null,
+          "duration_seconds": 13.15
+        },
+        {
+          "run": 4,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 52.16
+        },
+        {
+          "run": 5,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 51.79
+        }
+      ]
     },
     {
       "task_id": "set_e_39_schema_products_logger_sort",
@@ -2714,7 +4006,41 @@
       "error": null,
       "baseline_success": false,
       "baseline_error": "Baseline execution timed out",
-      "baseline_duration_seconds": 51.28
+      "baseline_duration_seconds": 232.04,
+      "baseline_pass_count": 1,
+      "baseline_run_count": 5,
+      "baseline_runs": [
+        {
+          "run": 1,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 51.63
+        },
+        {
+          "run": 2,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 49.14
+        },
+        {
+          "run": 3,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 60.07
+        },
+        {
+          "run": 4,
+          "success": false,
+          "error": "Baseline execution timed out",
+          "duration_seconds": 54.9
+        },
+        {
+          "run": 5,
+          "success": true,
+          "error": null,
+          "duration_seconds": 16.3
+        }
+      ]
     },
     {
       "task_id": "set_e_40_schema_sales_sqlite",

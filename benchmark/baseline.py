@@ -26,7 +26,7 @@ load_dotenv()
 BASELINE_SYSTEM_PROMPT = """You are an expert Python developer.
 Write a complete, runnable Python script that accomplishes the task described.
 Return only the Python code — no explanation, no markdown fences, no preamble.
-The script must run as-is with standard Python libraries plus pandas, sqlalchemy, flask."""
+The script must run as-is with standard Python libraries plus pandas, sqlalchemy 2.0, and flask."""
 
 
 # ─────────────────────────────────────────────────────────────────────
