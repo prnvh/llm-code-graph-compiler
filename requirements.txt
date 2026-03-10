@@ -2,7 +2,6 @@ pydantic>=2.10.0
 openai>=2.26.0
 psycopg2-binary>=2.9.11
 jsonschema>=4.26.0
-python==3.11
 pandas==3.0.1
 sqlalchemy==2.0.48
 anthropic>=0.38.0
