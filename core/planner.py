@@ -126,7 +126,18 @@ Task:
 
             resp.raise_for_status()
 
-            raw = resp.json()["choices"][0]["message"]["content"].strip()
+            body = resp.json()
+            raw  = body["choices"][0]["message"]["content"].strip()
+            _usage = body.get("usage", {})
+            plan_usage = {
+                "input_tokens":  _usage.get("prompt_tokens", 0),
+                "output_tokens": _usage.get("completion_tokens", 0),
+                "total_tokens":  _usage.get("total_tokens", 0),
+                "cost_usd": round(
+                    (_usage.get("prompt_tokens", 0) / 1_000_000) * 0.15 +
+                    (_usage.get("completion_tokens", 0) / 1_000_000) * 0.60, 6
+                ),
+            }
             break
 
         except req.exceptions.Timeout:
@@ -145,7 +156,7 @@ Task:
         raise RuntimeError("Planner failed after 4 attempts")
 
     plan = json.loads(raw)
-    return normalize_plan(plan)
+    return normalize_plan(plan), plan_usage
 
 
 def _to_snake_case(name: str) -> str:

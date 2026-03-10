@@ -22,17 +22,46 @@ These aren't hallucination failures in the usual sense. They're **structural dri
 Instead of asking the LLM to write code, confine it to a single role: **select and parameterise nodes from a pre-verified registry.**
 
 ```
-Task description
-      ↓
-  LLM Planner          ← only LLM call in the system
-      ↓
-  JSON Plan            (nodes + edges + parameters)
-      ↓
-  Validator            ← 7 deterministic checks, hard abort on failure
-      ↓
-  Compiler             ← topological sort + template assembly
-      ↓
-  app.py               ← self-contained executable, no runtime LLM calls
+┌─────────────────────────────────────────────────────────────────┐
+│  USER TASK                                                      │
+│  "ingest CSV → normalize columns → aggregate → export to SQL"   │
+└──────────────────────────┬──────────────────────────────────────┘
+                           │
+                           ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  LLM PLANNER  (single call, constrained output)                 │
+│                                                                 │
+│  Input:  Task description + node registry (typed)               │
+│  Output: JSON plan - node selections + parameter bindings       │
+│                                                                 │
+│  The LLM cannot invent new nodes or execute repair loops.       │
+│  It emits a plan and stops there.                               │
+└──────────────────────────┬──────────────────────────────────────┘
+                           │  JSON plan
+                           ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  STATIC VALIDATOR  (7 checks, deterministic)                    │
+│                                                                 │
+│  ✓ Node existence        ✓ Acyclicity                           │ 
+│  ✓ Edge validity         ✓ Orphan detection                     │
+│  ✓ Type compatibility    ✓ Input arity                          │
+│  ✓ Required parameter presence                                  │
+│                                                                 │
+│  Fails here -> reject, log, return. No execution.               │
+└──────────────────────────┬──────────────────────────────────────┘
+                           │  validated plan
+                           ▼
+┌─────────────────────────────────────────────────────────────────┐
+│  COMPILER  (topological sort → Python assembly)                 │
+│                                                                 │
+│  Assembles executable Python from pre-verified node templates.  │
+│  The LLM is not called again after planning.                    │
+│  No runtime repair loops. No output inspection.                 │
+└──────────────────────────┬──────────────────────────────────────┘
+                           │  executable Python
+                           ▼
+                    deterministic run
+
 ```
 
 The LLM cannot produce a wrong column name when the node implementation is fixed. It cannot import a library that doesn't exist in the template. It cannot construct a type-incompatible pipeline when the validator enforces edge types before compilation. The reliability guarantee is structural, not probabilistic.
@@ -41,18 +70,22 @@ The LLM cannot produce a wrong column name when the node implementation is fixed
 
 ## Results
 
-First-pass success rate (plan → validate → compile → execute → criteria, zero human intervention, 5 runs per task):
+First-pass success rate (plan → validate → compile → execute → criteria, zero human intervention). Evaluated at **N=3, all-must-pass**: a task is scored as a success only if all three runs pass independently. Baselines are GPT-4.1 and Claude Sonnet 4.6 generating free-form Python under the same evaluation protocol.
 
-| Set | Pipeline Length | Compiler | Baseline GPT-4o | Delta |
-|-----|----------------|----------|-----------------|-------|
-| A | 3–5 nodes | 50/50 (100%) | 36/50 (72%) | +28pts |
-| B | 5–8 nodes | 50/50 (100%) | 28/50 (56%) | +44pts |
-| C | 8–10 nodes | 44/50 (88%) | 21/50 (42%) | +46pts |
-| D | 10–12 nodes | 50/50 (100%) | 17/50 (34%) | +66pts |
-| E | Schema traps | 45/50 (90%) | 8/50 (16%) | +74pts |
-| F | SQLite roundtrips | 45/50 (90%) | 22/50 (44%) | +46pts |
+| Set | Pipeline / Focus | Compiler | GPT-4.1 | Claude Sonnet 4.6 | Delta (vs GPT-4.1) |
+|-----|-----------------|----------|---------|-------------------|-------------------|
+| A | 3–5 nodes | 50/50 (100%) | 38/50 (76%) | 30/50 (60%) | +24pts |
+| B | 5–8 nodes | 50/50 (100%) | 36/50 (72%) | 23/50 (46%) | +28pts |
+| C | 8–10 nodes | 44/50 (88%) | 34/50 (68%) | 27/50 (54%) | +20pts |
+| D | 10+ nodes | 48/50 (96%) | 38/50 (76%) | 36/50 (72%) | +20pts |
+| E | Schema drift | 44/50 (88%) | 20/50 (40%) | 26/50 (52%) | +48pts |
+| F | SQL roundtrip | 42/50 (84%) | 36/50 (72%) | 45/50 (90%) | +12pts |
 
-The compiler's advantage grows monotonically with pipeline complexity. The baseline collapses at high node counts; the compiler does not. Wilson score 95% CI for Set D compiler: [93%, 100%]. Baseline CI: [10.8%, 60.3%]. The intervals do not overlap.
+The compiler leads on five of six sets. The single exception is Set F (SQL roundtrip), where Claude Sonnet 4.6 achieves 90% — higher than the compiler's 84%. This is directly tied to the open SQL surface described in Known Limitations: the compiler's remaining failures on Set F are QueryEngine evasion instances, while Claude's verbose defensive SQL generation happens to handle these tasks correctly.
+
+Set E (schema drift) shows the largest compiler advantage: 88% vs 40% for GPT-4.1. Wilson score 95% CI for Set D compiler: [86.5%, 98.9%]. GPT-4.1 CI: [62.6%, 85.7%]. Intervals do not overlap.
+
+Claude Sonnet 4.6's performance is strongly correlated with prompt specificity rather than task structural complexity. Failing runs consistently produce 1.5–2.5× more output tokens than passing runs across all six sets — output length instability under underspecified prompts is the dominant Claude failure mode on Sets A–C.
 
 ---
 
@@ -169,6 +202,8 @@ Every node edge is typed. An edge from A to B is valid only if `A.output_type ==
 
 ## Setup
 
+**Requirements:** Python 3.11
+
 ```bash
 git clone https://github.com/prnvh/llm-code-graph-compiler
 cd llm-code-graph-compiler
@@ -183,7 +218,7 @@ pip install -r requirements.txt
 echo "OPENAI_API_KEY=your_key_here" > .env
 ```
 
-**Dependencies:** `openai`, `pydantic`, `python-dotenv`, `pandas`, `sqlalchemy>=2.0`, `psycopg2-binary`, `flask`, `requests`
+**Dependencies:** `openai`, `anthropic`, `pydantic`, `python-dotenv`, `pandas`, `sqlalchemy>=2.0`, `psycopg2-binary`, `flask`, `requests`
 
 ---
 
@@ -208,23 +243,40 @@ Every run: resolve plan → print advisory flags → validate (abort on failure)
 
 ### Running
 
+**Option 1: Windows convenience scripts**
+
 ```bash
-# Compiler only (recommended first pass)
-python benchmark/harness.py \
-    --tasks benchmark/tasks/tasks_set_d.json \
-    --output benchmark/results/results_set_d.json \
-    --skip-baseline
+# Run compiler harness across all six sets (parallel)
+benchmark/run_all_sets_parallel.bat
+```
 
-# With baseline comparison
-python benchmark/harness.py \
-    --tasks benchmark/tasks/tasks_set_d.json \
-    --output benchmark/results/results_set_d.json
+**Option 2: Run each set manually (Mac/Linux/Windows)**
 
+```bash
+# Step 1 — compiler harness (run first, creates result files)
+python benchmark/harness.py --tasks benchmark/tasks/tasks_set_a.json --output benchmark/results/results_set_a.json
+python benchmark/harness.py --tasks benchmark/tasks/tasks_set_b.json --output benchmark/results/results_set_b.json
+python benchmark/harness.py --tasks benchmark/tasks/tasks_set_c.json --output benchmark/results/results_set_c.json
+python benchmark/harness.py --tasks benchmark/tasks/tasks_set_d.json --output benchmark/results/results_set_d.json
+python benchmark/harness.py --tasks benchmark/tasks/tasks_set_e.json --output benchmark/results/results_set_e.json
+python benchmark/harness.py --tasks benchmark/tasks/tasks_set_f.json --output benchmark/results/results_set_f.json
+
+# Step 2 — baselines (merges into existing result files)
+python benchmark/run_baseline.py --tasks benchmark/tasks/tasks_set_a.json --results benchmark/results/results_set_a.json
+python benchmark/run_baseline.py --tasks benchmark/tasks/tasks_set_b.json --results benchmark/results/results_set_b.json
+python benchmark/run_baseline.py --tasks benchmark/tasks/tasks_set_c.json --results benchmark/results/results_set_c.json
+python benchmark/run_baseline.py --tasks benchmark/tasks/tasks_set_d.json --results benchmark/results/results_set_d.json
+python benchmark/run_baseline.py --tasks benchmark/tasks/tasks_set_e.json --results benchmark/results/results_set_e.json
+python benchmark/run_baseline.py --tasks benchmark/tasks/tasks_set_f.json --results benchmark/results/results_set_f.json
+```
+
+The baseline runner defaults to `--model all` (GPT-4.1 + Claude Sonnet 4.6). To run a single model: `--model gpt-4.1` or `--model claude-sonnet-4-6`. Results are written incrementally — if a run is interrupted, rerunning will resume from where it left off.
+
+```bash
 # Single task debug
 python benchmark/harness.py \
     --tasks benchmark/tasks/tasks_set_d.json \
     --output benchmark/results/debug.json \
-    --skip-baseline \
     --task-id set_d_01_monorepo_staged
 ```
 
@@ -232,38 +284,27 @@ python benchmark/harness.py \
 
 300 total tasks across six sets (50 per set: 30 original + 20 probe tasks targeting known failure modes).
 
-Sets A–D form a complexity ladder by pipeline length. Sets E and F are stress tests: E targets schema trap failures (null handling, type casting chains), F targets SQLite roundtrip data integrity.
+Sets A–D form a complexity ladder by pipeline length. Sets E and F are capability stress tests: E targets schema drift (column name perturbations, null handling, type casting chains), F targets SQL roundtrip data integrity (CSV/JSON → SQLite → export).
 
 Probe tasks 31–50 per set directly stress-test two systematic failure patterns: QueryEngine evasion (aggregation pushed into SQL strings) and Logger placement (ANY wildcard handling).
 
 ### Ablation Study
 
-```bash
-python benchmark/ablations/ablation_harness.py \
-    --tasks benchmark/tasks/tasks_set_d.json \
-    --output benchmark/ablations/ablation_d_all.json \
-    --mode all
-```
-
-Three ablation modes isolate individual constraint contributions:
-
-- **`no-registry`** — LLM receives no node list, may invent freely. Validator CHECK 1 catches all hallucinated nodes. Tests hallucination prevention and logs hallucination taxonomy per task.
-- **`blind-types`** — type info stripped from the prompt, validator still enforces types. Tests whether type communication in the prompt improves plan quality, or whether the validator gate is doing all the type-safety work.
-- **`no-linearize`** — edge normalization removed from `normalize_plan`, LLM-proposed edges used as-is. Tests whether structural normalization is silently absorbing bad LLM edge proposals before they reach the validator.
+> **Note:** Ablation runs are currently in progress across all six sets. Results will be added to `benchmark/ablations/` as they complete.
 
 ---
 
 ## Known Limitations
 
-**QueryEngine evasion** — the planner satisfies aggregation tasks by embedding `GROUP BY COUNT(*)` in the `QueryEngine` SQL string rather than routing through `Aggregator`. This produces column `COUNT(*)` not `count`, failing `file_has_column` criteria. `QueryEngine` is the single unconstrained surface in the system — it accepts arbitrary SQL — and the planner systematically exploits it. 7 confirmed instances across Sets C, D, E, F. Probe tasks 31–50 quantify the evasion rate per complexity tier.
+**QueryEngine evasion** — the planner satisfies aggregation tasks by embedding `GROUP BY COUNT(*)` in the `QueryEngine` SQL string rather than routing through `Aggregator`. This produces column `COUNT(*)` not `count`, failing `file_has_column` criteria. `QueryEngine` is the single unconstrained surface in the system — it accepts arbitrary SQL — and the planner systematically exploits it. 13 confirmed instances across Sets C, D, E, F (81% of all compiler failures). Probe tasks 31–50 quantify the evasion rate per complexity tier.
 
 **Node uniqueness** — the plan schema uses node names as unique keys with no aliasing. Any pipeline requiring two instances of the same node type (two sorts, two database legs) is structurally inexpressible. Affected tasks are replaced with Logger-padded equivalents. Documented as approximate complexity tiers, not hard boundaries.
 
 **No-op padding** — `TypeCaster(mapping={})` and `DataTransformer` with no operations appear in some tasks to reach node-count tier targets. Complexity tiers are approximate.
 
-**Baseline API drift** — GPT-4o generates `engine.execute("SELECT ...")` — a SQLAlchemy 1.x pattern removed in 2.0 — across Sets B, C, and D. This is a training recency failure: syntactically valid code against a stale API assumption. The compiler is immune because node templates are environment-verified before registry inclusion. Reported as a distinct failure category in results.
+**Baseline API drift** — GPT-4.1 occasionally generates `engine.execute("SELECT ...")` — a SQLAlchemy 1.x pattern removed in 2.0. This is a training recency failure: syntactically valid code against a stale API assumption. The compiler is immune because node templates are environment-verified before registry inclusion. Reported as a distinct failure category in results.
 
-**Single model and temperature** — all results use `gpt-4o-mini` at `temperature=0` for the planner and `gpt-4o` at `temperature=0` for the baseline. Generalization to other models or temperatures is untested.
+**Single model and temperature** — all results use `gpt-4o-mini` at `temperature=0` for the planner, `gpt-4.1` and `claude-sonnet-4-6` at `temperature=0` for the baselines. Generalization to other models or temperatures is untested.
 
 **No fan-in or branching** — the execution model passes state strictly through single-predecessor function calls. CHECK 6 enforces this by rejecting any node with more than one inbound edge. Pipelines requiring data merges are not currently expressible.
 
@@ -272,22 +313,28 @@ Three ablation modes isolate individual constraint contributions:
 ## Reproducing Results
 
 ```bash
-# Clean slate
-rm benchmark/results/results_set_d.json
+# Clean slate — remove prior results and generated files
+rm -f benchmark/results/results_set_*.json
 rm -f benchmark/fixtures/*.db benchmark/fixtures/output_*.csv
 
-# Compiler run
-python benchmark/harness.py \
-    --tasks benchmark/tasks/tasks_set_d.json \
-    --output benchmark/results/results_set_d.json \
-    --skip-baseline
+# Step 1 — compiler harness across all six sets
+python benchmark/harness.py --tasks benchmark/tasks/tasks_set_a.json --output benchmark/results/results_set_a.json
+python benchmark/harness.py --tasks benchmark/tasks/tasks_set_b.json --output benchmark/results/results_set_b.json
+python benchmark/harness.py --tasks benchmark/tasks/tasks_set_c.json --output benchmark/results/results_set_c.json
+python benchmark/harness.py --tasks benchmark/tasks/tasks_set_d.json --output benchmark/results/results_set_d.json
+python benchmark/harness.py --tasks benchmark/tasks/tasks_set_e.json --output benchmark/results/results_set_e.json
+python benchmark/harness.py --tasks benchmark/tasks/tasks_set_f.json --output benchmark/results/results_set_f.json
 
-# Baseline run
-python benchmark/run_baseline.py \
-    --results benchmark/results/results_set_d.json \
-    --tasks benchmark/tasks/tasks_set_d.json \
-    --hard-timeout 120
+# Step 2 — baselines (both models, merges into existing result files)
+python benchmark/run_baseline.py --tasks benchmark/tasks/tasks_set_a.json --results benchmark/results/results_set_a.json
+python benchmark/run_baseline.py --tasks benchmark/tasks/tasks_set_b.json --results benchmark/results/results_set_b.json
+python benchmark/run_baseline.py --tasks benchmark/tasks/tasks_set_c.json --results benchmark/results/results_set_c.json
+python benchmark/run_baseline.py --tasks benchmark/tasks/tasks_set_d.json --results benchmark/results/results_set_d.json
+python benchmark/run_baseline.py --tasks benchmark/tasks/tasks_set_e.json --results benchmark/results/results_set_e.json
+python benchmark/run_baseline.py --tasks benchmark/tasks/tasks_set_f.json --results benchmark/results/results_set_f.json
 ```
+
+Both `OPENAI_API_KEY` and `ANTHROPIC_API_KEY` must be set in `.env` to reproduce both baseline results. To run a single baseline model: `--model gpt-4.1` or `--model claude-sonnet-4-6`.
 
 Fixture row counts are fixed. `sales.csv`: 40 rows, 38 after deduplication, 27 with `revenue > 100`. These counts are embedded in task success criteria — regenerating fixtures without regenerating tasks will break `file_row_count` checks.
 
