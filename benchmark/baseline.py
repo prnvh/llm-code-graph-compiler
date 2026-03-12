@@ -44,6 +44,10 @@ PRICING = {
         "input": 3.00,
         "output": 15.00,
     },
+    "MiniMax-M2.5": {
+        "input": 1.10,
+        "output": 4.40,
+    },
 }
 
 BASELINE_SYSTEM_PROMPT = """You are an expert Python developer.
@@ -156,6 +160,49 @@ def _call_claude(prompt: str, timeout: int = 60) -> tuple[str, int, int]:
     raise RuntimeError("Claude baseline failed after 4 attempts")
 
 
+def _call_minimax(prompt: str, timeout: int = 60) -> tuple[str, int, int]:
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {os.environ.get('MINIMAX_API_KEY', '')}",
+    }
+    payload = {
+        "model": "MiniMax-M2.5",
+        "messages": [
+            {"role": "system", "content": BASELINE_SYSTEM_PROMPT},
+            {"role": "user", "content": prompt},
+        ],
+        "temperature": 0.01,
+    }
+    for attempt in range(4):
+        try:
+            resp = req.post(
+                "https://api.minimax.io/v1/chat/completions",
+                headers=headers,
+                json=payload,
+                timeout=timeout,
+            )
+            if resp.status_code == 429:
+                wait = 15 * (attempt + 1)
+                print(f"  [baseline-minimax] rate limited, waiting {wait}s (attempt {attempt+1}/4)...")
+                time.sleep(wait)
+                continue
+            resp.raise_for_status()
+            body = resp.json()
+            code = body["choices"][0]["message"]["content"].strip()
+            usage = body.get("usage", {})
+            input_tokens = usage.get("prompt_tokens", 0)
+            output_tokens = usage.get("completion_tokens", 0)
+            return code, input_tokens, output_tokens
+        except req.exceptions.Timeout:
+            if attempt == 3:
+                raise RuntimeError(f"MiniMax baseline API call timed out after {timeout} seconds")
+            print(f"  [baseline-minimax] timeout, retrying (attempt {attempt+1}/4)...")
+            time.sleep(5)
+        except Exception as e:
+            raise RuntimeError(f"MiniMax baseline API call failed: {e}") from e
+    raise RuntimeError("MiniMax baseline failed after 4 attempts")
+
+
 # ─────────────────────────────────────────────────────────────────────
 # Process execution with hard kill
 # ─────────────────────────────────────────────────────────────────────
@@ -252,6 +299,8 @@ def run_baseline(
             code, input_tokens, output_tokens = _call_claude(task["description"])
         elif model == "gpt-4.1":
             code, input_tokens, output_tokens = _call_openai(task["description"], model=model)
+        elif model == "MiniMax-M2.5":
+            code, input_tokens, output_tokens = _call_minimax(task["description"])
         else:
             return False, f"Unsupported baseline model: {model}", empty_usage, False
 
