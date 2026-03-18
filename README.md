@@ -1,6 +1,8 @@
-# LLM Code Graph Compiler
+# PlanCompiler
 
 A constraint-guided program synthesis system that uses an LLM to generate typed execution graphs over a fixed node library, then deterministically compiles them into executable Python artifacts.
+
+**PlanCompiler** was previously released as **LLM Code Graph Compiler v1.0.0**; this repository now uses the PlanCompiler name going forward.
 
 ---
 
@@ -22,45 +24,54 @@ These aren't hallucination failures in the usual sense. They're **structural dri
 Instead of asking the LLM to write code, confine it to a single role: **select and parameterise nodes from a pre-verified registry.**
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│  USER TASK                                                      │
-│  "ingest CSV → normalize columns → aggregate → export to SQL"   │
-└──────────────────────────┬──────────────────────────────────────┘
-                           │
-                           ▼
-┌─────────────────────────────────────────────────────────────────┐
-│  LLM PLANNER  (single call, constrained output)                 │
-│                                                                 │
-│  Input:  Task description + node registry (typed)               │
-│  Output: JSON plan - node selections + parameter bindings       │
-│                                                                 │
-│  The LLM cannot invent new nodes or execute repair loops.       │
-│  It emits a plan and stops there.                               │
-└──────────────────────────┬──────────────────────────────────────┘
-                           │  JSON plan
-                           ▼
-┌─────────────────────────────────────────────────────────────────┐
-│  STATIC VALIDATOR  (7 checks, deterministic)                    │
-│                                                                 │
-│  ✓ Node existence        ✓ Acyclicity                           │ 
-│  ✓ Edge validity         ✓ Orphan detection                     │
-│  ✓ Type compatibility    ✓ Input arity                          │
-│  ✓ Required parameter presence                                  │
-│                                                                 │
-│  Fails here -> reject, log, return. No execution.               │
-└──────────────────────────┬──────────────────────────────────────┘
-                           │  validated plan
-                           ▼
-┌─────────────────────────────────────────────────────────────────┐
-│  COMPILER  (topological sort → Python assembly)                 │
-│                                                                 │
-│  Assembles executable Python from pre-verified node templates.  │
-│  The LLM is not called again after planning.                    │
-│  No runtime repair loops. No output inspection.                 │
-└──────────────────────────┬──────────────────────────────────────┘
-                           │  executable Python
-                           ▼
-                    deterministic run
++------------------------------------------------------------+
+| USER TASK                                                  |
+| "ingest csv -> normalize columns -> aggregate -> export    |
+| to SQL"                                                    |
++------------------------------------------------------------+
+                             |
+                             v
++------------------------------------------------------------+
+| LLM PLANNER                                                |
+| (single call, constrained output)                          |
+|                                                            |
+| Input:  task description + typed node registry             |
+| Output: JSON plan with node selections + parameter         |
+|         bindings                                           |
+|                                                            |
+| The LLM cannot invent new nodes or execute repair loops.   |
+| It emits a plan and stops there.                           |
++------------------------------------------------------------+
+                             |
+                             | JSON plan
+                             v
++------------------------------------------------------------+
+| STATIC VALIDATOR                                           |
+| (7 deterministic checks)                                   |
+|                                                            |
+| [x] Node existence       [x] Acyclicity                    |
+| [x] Edge validity        [x] Orphan detection              |
+| [x] Type compatibility   [x] Input arity                   |
+| [x] Required parameter presence                            |
+|                                                            |
+| Fails here -> reject, log, return. No execution.           |
++------------------------------------------------------------+
+                             |
+                             | validated plan
+                             v
++------------------------------------------------------------+
+| COMPILER                                                   |
+| (topological sort -> Python assembly)                      |
+|                                                            |
+| Assembles executable Python from pre-verified node         |
+| templates.                                                 |
+| The LLM is not called again after planning.                |
+| No runtime repair loops. No output inspection.             |
++------------------------------------------------------------+
+                             |
+                             | executable Python
+                             v
+                      deterministic run
 
 ```
 
@@ -72,18 +83,22 @@ The LLM cannot produce a wrong column name when the node implementation is fixed
 
 First-pass success rate (plan → validate → compile → execute → criteria, zero human intervention). Evaluated at **N=3, all-must-pass**: a task is scored as a success only if all three runs pass independently. Baselines are GPT-4.1 and Claude Sonnet 4.6 generating free-form Python under the same evaluation protocol.
 
-| Set | Pipeline / Focus | Compiler | GPT-4.1 | Claude Sonnet 4.6 | Delta (vs GPT-4.1) |
-|-----|-----------------|----------|---------|-------------------|-------------------|
-| A | 3–5 nodes | 50/50 (100%) | 38/50 (76%) | 30/50 (60%) | +24pts |
-| B | 5–8 nodes | 50/50 (100%) | 36/50 (72%) | 23/50 (46%) | +28pts |
-| C | 8–10 nodes | 44/50 (88%) | 34/50 (68%) | 27/50 (54%) | +20pts |
-| D | 10+ nodes | 48/50 (96%) | 38/50 (76%) | 36/50 (72%) | +20pts |
-| E | Schema drift | 44/50 (88%) | 20/50 (40%) | 26/50 (52%) | +48pts |
-| F | SQL roundtrip | 42/50 (84%) | 36/50 (72%) | 45/50 (90%) | +12pts |
+## Results
 
-The compiler leads on five of six sets. The single exception is Set F (SQL roundtrip), where Claude Sonnet 4.6 achieves 90% — higher than the compiler's 84%. This is directly tied to the open SQL surface described in Known Limitations: the compiler's remaining failures on Set F are QueryEngine evasion instances, while Claude's verbose defensive SQL generation happens to handle these tasks correctly.
+First-pass success rate (plan → validate → compile → execute → criteria, zero human intervention). Evaluated at **N=3, all-must-pass**: a task is scored as a success only if all three runs pass independently. Baselines are GPT-4.1 and Claude Sonnet 4.6 generating free-form Python under the same evaluation protocol.
 
-Set E (schema drift) shows the largest compiler advantage: 88% vs 40% for GPT-4.1. Wilson score 95% CI for Set D compiler: [86.5%, 98.9%]. GPT-4.1 CI: [62.6%, 85.7%]. Intervals do not overlap.
+| Set | Pipeline / Focus | PlanCompiler | GPT-4.1 | Claude Sonnet 4.6 | Delta (vs GPT-4.1) |
+|-----|------------------|--------------|---------|-------------------|--------------------|
+| A   | 3–5 nodes        | 50/50 (100%) | 38/50 (76%) | 30/50 (60%) | +24pts |
+| B   | 5–8 nodes        | 50/50 (100%) | 36/50 (72%) | 23/50 (46%) | +28pts |
+| C   | 8–10 nodes       | 44/50 (88%)  | 34/50 (68%) | 27/50 (54%) | +20pts |
+| D   | 10+ nodes        | 48/50 (96%)  | 38/50 (76%) | 36/50 (72%) | +20pts |
+| E   | Schema drift     | 44/50 (88%)  | 20/50 (40%) | 26/50 (52%) | +48pts |
+| F   | SQL roundtrip    | 42/50 (84%)  | 36/50 (72%) | 45/50 (90%) | +12pts |
+
+PlanCompiler leads on five of six sets. The single exception is Set F (SQL roundtrip), where Claude Sonnet 4.6 achieves 90% — higher than PlanCompiler’s 84%. This is directly tied to the open SQL surface described in Known Limitations: the remaining failures on Set F are QueryEngine evasion instances, while Claude’s verbose defensive SQL generation happens to handle these tasks correctly.
+
+Set E (schema drift) shows the largest PlanCompiler advantage: 88% vs 40% for GPT-4.1. Wilson score 95% CI for Set D PlanCompiler: [86.5%, 98.9%]. GPT-4.1 CI: [62.6%, 85.7%]. Intervals do not overlap.
 
 Claude Sonnet 4.6's performance is strongly correlated with prompt specificity rather than task structural complexity. Failing runs consistently produce 1.5–2.5× more output tokens than passing runs across all six sets — output length instability under underspecified prompts is the dominant Claude failure mode on Sets A–C.
 
@@ -91,7 +106,7 @@ Claude Sonnet 4.6's performance is strongly correlated with prompt specificity r
 
 ## Architecture
 
-Five components in a strictly ordered pipeline. Only one involves an LLM call.
+PlanCompiler consists of five components in a strictly ordered pipeline. Only one involves an LLM call.
 
 ### Node Registry
 
@@ -169,7 +184,7 @@ Every node edge is typed. An edge from A to B is valid only if `A.output_type ==
 | `HTTPResponse` | Flask HTTP response object | RESTEndpoint | AuthMiddleware, HTTPToDataFrame |
 | `ANY` | Wildcard — edge passes if either side is ANY | Logger | Logger, ErrorHandler |
 
-`ANY` exists for `Logger` (passthrough — insert anywhere without breaking the type chain) and `ErrorHandler` (accepts any upstream output). The v5.0 fix corrected a validator bug where `Logger → TypedNode` edges were incorrectly rejected: the original check only exempted `target_input == ANY`, not `source_output == ANY`.
+`ANY` exists for `Logger` (passthrough — insert anywhere without breaking the type chain) and `ErrorHandler` (accepts any upstream output). The fix corrected a validator bug where `Logger → TypedNode` edges were incorrectly rejected: the original check only exempted `target_input == ANY`, not `source_output == ANY`.
 
 ---
 
@@ -204,9 +219,11 @@ Every node edge is typed. An edge from A to B is valid only if `A.output_type ==
 
 **Requirements:** Python 3.11
 
+> Note: versions up to **v1.0.0** were released under the repository name **llm-code-graph-compiler**.
+
 ```bash
-git clone https://github.com/prnvh/llm-code-graph-compiler
-cd llm-code-graph-compiler
+git clone https://github.com/prnvh/plancompiler
+cd plancompiler
 python -m venv .venv
 
 # Windows
@@ -340,4 +357,4 @@ Fixture row counts are fixed. `sales.csv`: 40 rows, 38 after deduplication, 27 w
 
 ---
 
-*Build Specification v5.0 · March 2026 · Pranav H.*
+*March 2026 · Pranav H.*
