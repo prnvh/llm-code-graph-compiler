@@ -4,6 +4,13 @@ A constraint-guided program synthesis system that uses an LLM to generate typed 
 
 **PlanCompiler** was previously released as **LLM Code Graph Compiler v1.0.0**; this repository now uses the PlanCompiler name going forward.
 
+## Paper
+
+- [Paper PDF](./paper/PlanCompiler.pdf)
+- [Technical Writeup](https://prnvh.github.io/compiler.html)
+
+An arXiv link will be added here once available.
+
 ---
 
 ## The Problem
@@ -78,10 +85,6 @@ Instead of asking the LLM to write code, confine it to a single role: **select a
 The LLM cannot produce a wrong column name when the node implementation is fixed. It cannot import a library that doesn't exist in the template. It cannot construct a type-incompatible pipeline when the validator enforces edge types before compilation. The reliability guarantee is structural, not probabilistic.
 
 ---
-
-## Results
-
-First-pass success rate (plan → validate → compile → execute → criteria, zero human intervention). Evaluated at **N=3, all-must-pass**: a task is scored as a success only if all three runs pass independently. Baselines are GPT-4.1 and Claude Sonnet 4.6 generating free-form Python under the same evaluation protocol.
 
 ## Results
 
@@ -357,4 +360,4 @@ Fixture row counts are fixed. `sales.csv`: 40 rows, 38 after deduplication, 27 w
 
 ---
 
-*March 2026 · Pranav H.*
+*March 2026 · Pranav Harikumar*
