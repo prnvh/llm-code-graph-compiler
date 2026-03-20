@@ -41,6 +41,7 @@ N_RUNS = 3
 MODEL_PREFIX = {
     "gpt-4.1": "baseline_gpt41",
     "claude-sonnet-4-6": "baseline_claude",
+    "MiniMax-M2.5": "baseline_minimax",
 }
 
 ALL_MODELS = list(MODEL_PREFIX.keys())
@@ -278,6 +279,9 @@ def main():
         sys.exit(1)
     if "claude-sonnet-4-6" in models and not os.environ.get("ANTHROPIC_API_KEY"):
         print("ERROR: ANTHROPIC_API_KEY not set in environment / .env")
+        sys.exit(1)
+    if "MiniMax-M2.5" in models and not os.environ.get("MINIMAX_API_KEY"):
+        print("ERROR: MINIMAX_API_KEY not set in environment / .env")
         sys.exit(1)
 
     with open(args.results) as f:

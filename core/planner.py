@@ -75,7 +75,26 @@ Rules:
 """
 
 
-def get_plan(task_description: str) -> dict:
+PLANNER_PRICING = {
+    "gpt-4o-mini": {"input": 0.15, "output": 0.60},
+    "MiniMax-M2.5": {"input": 1.10, "output": 4.40},
+}
+
+PLANNER_MODELS = {
+    "gpt-4o-mini": {
+        "api_url": "https://api.openai.com/v1/chat/completions",
+        "api_key_env": "OPENAI_API_KEY",
+        "temperature": 0,
+    },
+    "MiniMax-M2.5": {
+        "api_url": "https://api.minimax.io/v1/chat/completions",
+        "api_key_env": "MINIMAX_API_KEY",
+        "temperature": 0.01,
+    },
+}
+
+
+def get_plan(task_description: str, model: str = "gpt-4o-mini") -> dict:
     node_summary = build_node_summary()
 
     user_message = f"""
@@ -89,24 +108,34 @@ Task:
     import time
     import requests as req
 
+    model_config = PLANNER_MODELS.get(model)
+    if not model_config:
+        raise ValueError(f"Unsupported planner model: {model}. Choose from: {list(PLANNER_MODELS.keys())}")
+
+    api_key = os.environ.get(model_config["api_key_env"], "")
+    if not api_key:
+        raise RuntimeError(f"{model_config['api_key_env']} not set in environment / .env")
+
     headers = {
         "Content-Type": "application/json",
-        "Authorization": f"Bearer {os.environ.get('OPENAI_API_KEY', '')}",
+        "Authorization": f"Bearer {api_key}",
     }
 
     payload = {
-        "model": "gpt-4o-mini",
+        "model": model,
         "messages": [
             {"role": "system", "content": SYSTEM_PROMPT},
             {"role": "user", "content": user_message},
         ],
-        "temperature": 0,
+        "temperature": model_config["temperature"],
     }
+
+    pricing = PLANNER_PRICING.get(model, {"input": 0.0, "output": 0.0})
 
     for attempt in range(4):
         try:
             resp = req.post(
-                "https://api.openai.com/v1/chat/completions",
+                model_config["api_url"],
                 headers=headers,
                 json=payload,
                 timeout=45,
@@ -134,8 +163,8 @@ Task:
                 "output_tokens": _usage.get("completion_tokens", 0),
                 "total_tokens":  _usage.get("total_tokens", 0),
                 "cost_usd": round(
-                    (_usage.get("prompt_tokens", 0) / 1_000_000) * 0.15 +
-                    (_usage.get("completion_tokens", 0) / 1_000_000) * 0.60, 6
+                    (_usage.get("prompt_tokens", 0) / 1_000_000) * pricing["input"] +
+                    (_usage.get("completion_tokens", 0) / 1_000_000) * pricing["output"], 6
                 ),
             }
             break

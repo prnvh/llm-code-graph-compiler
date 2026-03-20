@@ -88,7 +88,7 @@ The LLM cannot produce a wrong column name when the node implementation is fixed
 
 ## Results
 
-First-pass success rate (plan → validate → compile → execute → criteria, zero human intervention). Evaluated at **N=3, all-must-pass**: a task is scored as a success only if all three runs pass independently. Baselines are GPT-4.1 and Claude Sonnet 4.6 generating free-form Python under the same evaluation protocol.
+First-pass success rate (plan → validate → compile → execute → criteria, zero human intervention). Evaluated at **N=3, all-must-pass**: a task is scored as a success only if all three runs pass independently. Baselines are GPT-4.1, Claude Sonnet 4.6, and MiniMax-M2.5 generating free-form Python under the same evaluation protocol.
 
 | Set | Pipeline / Focus | PlanCompiler | GPT-4.1 | Claude Sonnet 4.6 | Delta (vs GPT-4.1) |
 |-----|------------------|--------------|---------|-------------------|--------------------|
@@ -124,7 +124,7 @@ The LLM planner can only reference nodes that exist in the registry. The validat
 
 ### Planner
 
-The only LLM call in the system. Uses `gpt-4o-mini`. Receives the task description plus a serialised representation of the node registry (names, descriptions, input/output types, required params). Returns a JSON plan:
+The only LLM call in the system. Uses `gpt-4o-mini` by default (configurable via `--model`; also supports `MiniMax-M2.5`). Receives the task description plus a serialised representation of the node registry (names, descriptions, input/output types, required params). Returns a JSON plan:
 
 ```json
 {
@@ -236,6 +236,8 @@ source .venv/bin/activate
 
 pip install -r requirements.txt
 echo "OPENAI_API_KEY=your_key_here" > .env
+# Optional — for MiniMax planner/baseline support:
+echo "MINIMAX_API_KEY=your_key_here" >> .env
 ```
 
 **Dependencies:** `openai`, `anthropic`, `pydantic`, `python-dotenv`, `pandas`, `sqlalchemy>=2.0`, `psycopg2-binary`, `flask`, `requests`
@@ -247,6 +249,9 @@ echo "OPENAI_API_KEY=your_key_here" > .env
 ```bash
 # Natural language task
 python cli.py --task "Read CSV file, filter rows where salary > 35000, store into SQLite, and export results"
+
+# Use MiniMax-M2.5 as the planner model
+python cli.py --task "Read CSV file, filter rows, export results" --model MiniMax-M2.5
 
 # Specify nodes manually
 python cli.py --nodes CSVParser DataFilter SQLiteConnector QueryEngine CSVExporter
@@ -290,7 +295,7 @@ python benchmark/run_baseline.py --tasks benchmark/tasks/tasks_set_e.json --resu
 python benchmark/run_baseline.py --tasks benchmark/tasks/tasks_set_f.json --results benchmark/results/results_set_f.json
 ```
 
-The baseline runner defaults to `--model all` (GPT-4.1 + Claude Sonnet 4.6). To run a single model: `--model gpt-4.1` or `--model claude-sonnet-4-6`. Results are written incrementally — if a run is interrupted, rerunning will resume from where it left off.
+The baseline runner defaults to `--model all` (GPT-4.1 + Claude Sonnet 4.6 + MiniMax-M2.5). To run a single model: `--model gpt-4.1`, `--model claude-sonnet-4-6`, or `--model MiniMax-M2.5`. Results are written incrementally — if a run is interrupted, rerunning will resume from where it left off.
 
 ```bash
 # Single task debug
@@ -324,7 +329,7 @@ Probe tasks 31–50 per set directly stress-test two systematic failure patterns
 
 **Baseline API drift** — GPT-4.1 occasionally generates `engine.execute("SELECT ...")` — a SQLAlchemy 1.x pattern removed in 2.0. This is a training recency failure: syntactically valid code against a stale API assumption. The compiler is immune because node templates are environment-verified before registry inclusion. Reported as a distinct failure category in results.
 
-**Single model and temperature** — all results use `gpt-4o-mini` at `temperature=0` for the planner, `gpt-4.1` and `claude-sonnet-4-6` at `temperature=0` for the baselines. Generalization to other models or temperatures is untested.
+**Single model and temperature** — all results use `gpt-4o-mini` at `temperature=0` for the planner (also supports `MiniMax-M2.5` via `--model`), `gpt-4.1`, `claude-sonnet-4-6`, and `MiniMax-M2.5` at `temperature≈0` for the baselines. MiniMax uses `temperature=0.01` (the API requires `temperature > 0`). Generalization to other models or temperatures is untested.
 
 **No fan-in or branching** — the execution model passes state strictly through single-predecessor function calls. CHECK 6 enforces this by rejecting any node with more than one inbound edge. Pipelines requiring data merges are not currently expressible.
 
@@ -354,7 +359,7 @@ python benchmark/run_baseline.py --tasks benchmark/tasks/tasks_set_e.json --resu
 python benchmark/run_baseline.py --tasks benchmark/tasks/tasks_set_f.json --results benchmark/results/results_set_f.json
 ```
 
-Both `OPENAI_API_KEY` and `ANTHROPIC_API_KEY` must be set in `.env` to reproduce both baseline results. To run a single baseline model: `--model gpt-4.1` or `--model claude-sonnet-4-6`.
+Both `OPENAI_API_KEY` and `ANTHROPIC_API_KEY` must be set in `.env` to reproduce both baseline results. Set `MINIMAX_API_KEY` to include MiniMax-M2.5 as a baseline. To run a single baseline model: `--model gpt-4.1`, `--model claude-sonnet-4-6`, or `--model MiniMax-M2.5`.
 
 Fixture row counts are fixed. `sales.csv`: 40 rows, 38 after deduplication, 27 with `revenue > 100`. These counts are embedded in task success criteria — regenerating fixtures without regenerating tasks will break `file_row_count` checks.
 

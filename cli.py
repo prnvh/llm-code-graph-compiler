@@ -13,6 +13,9 @@ def main():
     parser.add_argument("--nodes", nargs="*")
     parser.add_argument("--plan")
     parser.add_argument("--task", type=str)
+    parser.add_argument("--model", default="gpt-4o-mini",
+                        choices=["gpt-4o-mini", "MiniMax-M2.5"],
+                        help="LLM model for the planner (default: gpt-4o-mini)")
     parser.add_argument("--output", default="output/app.py")
 
     args = parser.parse_args()
@@ -27,7 +30,7 @@ def main():
         plan = load_plan(args.plan)
 
     elif args.task:
-        plan = get_plan(args.task)
+        plan = get_plan(args.task, model=args.model)
         import pprint
         pprint.pprint(plan)
 
